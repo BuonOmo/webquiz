@@ -8,7 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "node index.js"
+    "build": "node index.js",
+    "clean": "rm html/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
