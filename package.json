@@ -1,0 +1,23 @@
+{
+  "name": "web-tp1-html",
+  "version": "0.0.1",
+  "description": "First lab of web in poly, the goal is to make an html structure.",
+  "main": "index.js",
+  "dependencies": {
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/BuonOmo/web-tp1-html.git"
+  },
+  "author": "Lucas Fifou, Ulysse Buonomo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BuonOmo/web-tp1-html/issues"
+  },
+  "homepage": "https://github.com/BuonOmo/web-tp1-html#readme"
+}
