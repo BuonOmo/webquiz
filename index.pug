@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    block title
+      title Web quiz | #{pageTitle}
+
+    block stylesheets
+  body
+    // navbar.pug
+    include layouts/navbar/navbar.pug
+    // /navbar.pug
+    // content block
+    block content
+    // /content block
+    // footer.pug
+    include layouts/footer/footer.pug
+    // /footer.pug
+    // scripts block
+    block scripts
+    // /scripts block
