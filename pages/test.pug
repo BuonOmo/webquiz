@@ -1,0 +1,26 @@
+extends ../index.pug
+
+prepend title
+  - var pageTitle = "Quick test - question " + questionNumber
+
+block content
+  h1 Quick test - question #{questionNumber}
+  div
+    p I have a question ?
+    span= domain
+    //- FIXME: les divs sont-ils utile dans le cadre de ce tp ? Dans ce cas la les
+    //- sections sont-elles utiles ?
+    div
+      each id in ['answer1', 'answer2', 'answer3']
+        input(type='checkbox' id=id)
+        label(for=id)= id
+    //- FIXME: when does it become a nav ?
+    ul
+      li
+        a(href='/dashboard') Back to dashboard
+      li
+        a(href=next) Next page
+  section
+    //- FIXME: use dt / dd here ?
+    h1 Your score
+    p 20/20

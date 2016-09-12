@@ -13,12 +13,36 @@ const configs = [
     path: 'pages/home.pug',
     render: {
       path: 'html/index.html'
-    }
+    },
+    variables: {}
   },
   {
     path: 'pages/dashboard.pug',
     render: {
       path: 'html/dashboard/index.html'
+    },
+    variables: {}
+  },
+  { // quick test page 1
+    path: 'pages/test.pug',
+    render: {
+      path: 'html/test/1/index.html'
+    },
+    variables: {
+      next: '/test/2/',
+      questionNumber: '1',
+      domain: 'HTML5'
+    }
+  },
+  { // quick test page 2
+    path: 'pages/test.pug',
+    render: {
+      path: 'html/test/2/index.html'
+    },
+    variables: {
+      next: '/dashboard/',
+      questionNumber: '2',
+      domain: 'CSS3'
     }
   }
   // configs for each pages here
@@ -37,9 +61,8 @@ function writeFile(path, contents, callback) {
 
 for (page of configs) {
   //--------------------------------------------------------------------- Render
-  var render = pug.renderFile(page.path,{
-    pretty: true
-  });
+  var opt = Object.assign(page.variables, { pretty: true });
+  var render = pug.renderFile(page.path,opt);
 
   //----------------------------------------------------------------- Write file
   /*
