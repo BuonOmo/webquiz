@@ -3,6 +3,8 @@ Configuration below use code from https://pugjs.org/api/getting-started.html
 */
 
 const fs = require('fs'),
+  mkdirp = require('mkdirp'),
+     dir = require('path').dirname,
      pug = require('pug');
 
 
@@ -22,6 +24,14 @@ const configs = [
   // configs for each pages here
 ]
 
+function writeFile(path, contents, callback) {
+  mkdirp(dir(path), function (err) {
+    if (err) return callback(err);
+
+    fs.writeFile(path, contents, callback);
+  });
+}
+
 for (page of configs) {
   //--------------------------------------------------------------------- Render
   var render = pug.renderFile(page.path,{
@@ -32,8 +42,7 @@ for (page of configs) {
   /*
   Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
   */
-  fs.writeFile(page.render.path, render, function(err) {
+  writeFile(page.render.path, render, function(err) {
     if(err) { return console.error(err); }
-    console.log("The file "+page.render.path+" was saved!");
   });
 }
