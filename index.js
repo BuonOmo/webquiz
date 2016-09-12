@@ -9,18 +9,16 @@ const fs = require('fs'),
 const configs = [
   {
     path: "pages/home.pug",
-    title: "home",
     render: {
-      path: "html/home.html"
+      path: "html/index.html"
     }
-  }
+  },
   // configs for each pages here
 ]
 
 for (page of configs) {
   //--------------------------------------------------------------------- Render
   var render = pug.renderFile(page.path,{
-    currentTitle: page.title,
     pretty: true
   });
 
