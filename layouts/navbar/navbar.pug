@@ -1,5 +1,12 @@
+-
+  var pages = [
+    {path: "/", title: "Home"},
+    {path: "/dashboard/", title:"Dashboard"},
+    {path: "/instruction/", title:"Instruction"}
+  ]
+
 nav
   ul
-    li
-      a(href='/') Web Quiz
-      a(href='/betise') test
+    each page in pages
+      li
+        a(href=page.path)= page.title
