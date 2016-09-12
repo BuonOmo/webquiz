@@ -24,6 +24,9 @@ const configs = [
   // configs for each pages here
 ]
 
+/*
+Help from http://stackoverflow.com/questions/16316330/how-to-write-file-if-parent-folder-doesnt-exist#16317628
+*/
 function writeFile(path, contents, callback) {
   mkdirp(dir(path), function (err) {
     if (err) return callback(err);
