@@ -8,11 +8,17 @@ const fs = require('fs'),
 
 const configs = [
   {
-    path: "pages/home.pug",
+    path: 'pages/home.pug',
     render: {
-      path: "html/index.html"
+      path: 'html/index.html'
     }
   },
+  {
+    path: 'pages/dashboard.pug',
+    render: {
+      path: 'html/dashboard/index.html'
+    }
+  }
   // configs for each pages here
 ]
 
@@ -24,7 +30,7 @@ for (page of configs) {
 
   //----------------------------------------------------------------- Write file
   /*
-  Helped from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
+  Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
   */
   fs.writeFile(page.render.path, render, function(err) {
     if(err) { return console.error(err); }
