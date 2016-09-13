@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# watch.rb by Brett Terpstra, 2011 <http://brettterpstra.com>
+# with credit to Carlo Zottmann <https://github.com/carlo/haml-sass-file-watcher>
+# modifications have been made by buonomo.ulysse@gmail.com
+
+trap("SIGINT") { exit }
+
+if ARGV.length < 1
+  puts "Usage: #{$0} watch_folder"
+  puts "Example: #{$0} ."
+  exit
+end
+
+dev_extension = 'dev'
+filetypes = ['css','pug','js']
+watch_folder = ARGV[0]
+keyword = ARGV[1]
+puts "Watching #{watch_folder} and subfolders for changes in project files..."
+
+while true do
+  files = []
+  filetypes.each {|type|
+    files += Dir.glob( File.join( watch_folder, "**", "*.#{type}" ) )
+  }
+  new_hash = files.collect {|f| [ f, File.stat(f).mtime.to_i ] }
+  hash ||= new_hash
+  diff_hash = new_hash - hash
+
+  unless diff_hash.empty?
+    hash = new_hash
+
+    diff_hash.each do |df|
+      #puts "Detected change in #{df[0]}, refreshing"
+      `npm run build`
+=begin
+%x{osascript<<ENDGAME
+tell application "Google Chrome"
+  set windowList to every window
+	repeat with aWindow in windowList
+		set tabList to every tab of aWindow
+		repeat with atab in tabList
+			if (URL of atab contains "#{keyword}") then
+				tell atab to reload
+			end if
+		end repeat
+	end repeat
+end tell
+ENDGAME
+}
+=end
+    end
+  end
+
+  sleep 1
+end
