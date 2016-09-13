@@ -6,11 +6,15 @@
   "dependencies": {
     "pug": "^2.0.0-beta6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.15.0",
+    "gulp": "^3.9.1"
+  },
   "scripts": {
-    "build": "node index.js",
-    "clean": "rm -r html/*",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./bin/build",
+    "clean": "rm -rf html log",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "mkdir -p log; echo \"See logs in log/gulp and log/watch\";( gulp > log/gulp & ./bin/watch . > log/watch );"
   },
   "repository": {
     "type": "git",

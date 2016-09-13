@@ -1,6 +1,10 @@
+### Log ###
+/log/**
+
 ### Pug ###
 # generated html
 /html/**
+*.html
 
 # Part below reated by https://www.gitignore.io/api/node
 ### Node ###
