@@ -31,7 +31,7 @@ const configs = [{ // ------------------------------------------------ home page
         next: '/test/2',
         questionNumber: '1',
         domain: 'HTML5',
-        question:   "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=".."> ?",
+        question:   "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
         answers: [
             "Utiliser un attribut integrity",
             "Lire le script et vérifier que c'est correct",
@@ -64,7 +64,7 @@ const configs = [{ // ------------------------------------------------ home page
         next: '/exam/2',
         questionNumber: '1',
         domain: 'HTML5',
-        question:   "Question 1/2: Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=".."> ?",
+        question:   "Question 1/2: Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
         answers: [
             "Use integrity attribute",
             "Read the script and check if it’s good",
