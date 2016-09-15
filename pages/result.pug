@@ -1,0 +1,10 @@
+extends ../index.pug
+
+prepend title
+  - var pageTitle = "result"
+
+block content
+  main
+    h1 Congratulation, you finished your test!
+    p You have 2/2 good answers.
+    a(href='/dashboard') Go back to dashboard..
