@@ -94,6 +94,12 @@ const configs = [{ // ------------------------------------------------ home page
         path: 'html/result/index.html'
     },
     variables: {}
+}, { // ----------------------------------------------------------------- result
+    path: 'pages/instructions.pug',
+    render: {
+        path: 'html/instructions/index.html'
+    },
+    variables: {}
 }]
 
 /*
