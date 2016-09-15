@@ -1,76 +1,127 @@
 #!/usr/bin/env node
+
 /*
 Configuration below use code from https://pugjs.org/api/getting-started.html
 */
 
 const fs = require('fs'),
-  mkdirp = require('mkdirp'),
-     dir = require('path').dirname,
-     pug = require('pug');
+    mkdirp = require('mkdirp'),
+    dir = require('path').dirname,
+    pug = require('pug');
 
 
-const configs = [
-  {
+const configs = [{ // ------------------------------------------------ home page
     path: 'pages/home.pug',
     render: {
-      path: 'html/index.html'
+        path: 'html/index.html'
     },
     variables: {}
-  },
-  {
+}, { // -------------------------------------------------------------- dashboard
     path: 'pages/dashboard.pug',
     render: {
-      path: 'html/dashboard/index.html'
+        path: 'html/dashboard/index.html'
     },
     variables: {}
-  },
-  { // quick test page 1
+}, { // ------------------------------------------------------ quick test page 1
     path: 'pages/test.pug',
     render: {
-      path: 'html/test/1/index.html'
+        path: 'html/test/1/index.html'
     },
     variables: {
-      next: '/test/2',
-      questionNumber: '1',
-      domain: 'HTML5'
+        next: '/test/2',
+        questionNumber: '1',
+        domain: 'HTML5',
+        question:   'How do we check integrity of a script inserted with a tag <script src=".."> ?',
+        answers: [
+            "Use integrity attribute",
+            "Read the script and check if it’s good",
+            "Call a friend"
+        ]
     }
-  },
-  { // quick test page 2
+}, { // ------------------------------------------------------ quick test page 2
     path: 'pages/test.pug',
     render: {
-      path: 'html/test/2/index.html'
+        path: 'html/test/2/index.html'
     },
     variables: {
-      next: '/dashboard',
-      questionNumber: '2',
-      domain: 'CSS3'
+        next: '/dashboard',
+        questionNumber: '2',
+        domain: 'CSS3',
+        question: 'Is it possible to use global variables using CSS3 ?',
+        answers: [
+            "Yes",
+            "Maybe",
+            "No",
+            "I don’t care"
+        ]
     }
-  }
-  // configs for each pages here
-]
+}, { // ------------------------------------------------------------ exam page 1
+    path: 'pages/test.pug',
+    render: {
+        path: 'html/exam/1/index.html'
+    },
+    variables: {
+        next: '/exam/2',
+        questionNumber: '1',
+        domain: 'HTML5',
+        question:   'Question 1/2: How do we check integrity of a script inserted with a tag <script src=".."> ?',
+        answers: [
+            "Use integrity attribute",
+            "Read the script and check if it’s good",
+            "Call a friend"
+        ]
+    }
+}, { // ------------------------------------------------------------ exam page 2
+    path: 'pages/test.pug',
+    render: {
+        path: 'html/exam/2/index.html'
+    },
+    variables: {
+        next: '/result',
+        questionNumber: '2',
+        domain: 'CSS3',
+        question: 'Question 2/2: Is it possible to use global variables using CSS3 ?',
+        answers: [
+            "Yes",
+            "Maybe",
+            "No",
+            "I don’t care"
+        ]
+    }
+}, { // ----------------------------------------------------------------- result
+    path: 'pages/result.pug',
+    render: {
+        path: 'html/result/index.html'
+    },
+    variables: {}
+}]
 
 /*
 Help from http://stackoverflow.com/questions/16316330/how-to-write-file-if-parent-folder-doesnt-exist#16317628
 */
 function writeFile(path, contents, callback) {
-  mkdirp(dir(path), function (err) {
-    if (err) return callback(err);
+    mkdirp(dir(path), function(err) {
+        if (err) return callback(err);
 
-    fs.writeFile(path, contents, callback);
-  });
+        fs.writeFile(path, contents, callback);
+    });
 }
 
 for (page of configs) {
-  //--------------------------------------------------------------------- Render
-  var opt = Object.assign(page.variables, { pretty: true });
-  var render = pug.renderFile(page.path,opt);
+    //--------------------------------------------------------------------- Render
+    var opt = Object.assign(page.variables, {
+        pretty: true
+    });
+    var render = pug.renderFile(page.path, opt);
 
-  //----------------------------------------------------------------- Write file
-  /*
-  Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
-  */
-  writeFile(page.render.path, render, function(err) {
-    if(err) { return console.error(err); }
-  });
+    //----------------------------------------------------------------- Write file
+    /*
+    Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
+    */
+    writeFile(page.render.path, render, function(err) {
+        if (err) {
+            return console.error(err);
+        }
+    });
 }
 console.log('Built successfully');
