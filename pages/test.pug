@@ -4,21 +4,22 @@ prepend title
   - var pageTitle = "Quick test - question " + questionNumber
 
 block content
-  h1 Test Rapide
-  form(method="get" action=next)
-    p= question
-    span= domain
-    //- FIXME: les divs sont-ils utile dans le cadre de ce tp ? Dans ce cas la les
-    //- sections sont-elles utiles ? s
-    div
-      each answer in answers
-        input(type='checkbox' name=answer)
-        label(for=answer)= answer
-    ul
-      li
-        input(type='submit' formaction='/dashboard' value='Back to dashboard')
-      li
-        input(type='submit' value='Next page')
-  section
-    h1 Votre score
-    p 20/20
+  main
+    h1= firstHeader
+    section
+      h1= question
+      span= domain
+      form(method="get" action=next)
+        // Cette balise servira plus tard pour le CSS
+        div
+          each answer in answers
+            input(type='checkbox' name=answer)
+            label(for=answer)= answer
+        ul
+          li
+            input(type='submit' formaction='/dashboard' value='Back to dashboard')
+          li
+            input(type='submit' value='Next page')
+    aside
+      h1 Score courant
+      p 20/20

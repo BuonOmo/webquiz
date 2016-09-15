@@ -28,6 +28,7 @@ const configs = [{ // ------------------------------------------------ home page
         path: 'html/test/1/index.html'
     },
     variables: {
+        firstHeader: 'Test rapide',
         next: '/test/2',
         questionNumber: '1',
         domain: 'HTML5',
@@ -44,6 +45,7 @@ const configs = [{ // ------------------------------------------------ home page
         path: 'html/test/2/index.html'
     },
     variables: {
+        firstHeader: 'Test rapide',
         next: '/dashboard',
         questionNumber: '2',
         domain: 'CSS3',
@@ -61,6 +63,7 @@ const configs = [{ // ------------------------------------------------ home page
         path: 'html/exam/1/index.html'
     },
     variables: {
+        firstHeader: 'Examen',
         next: '/exam/2',
         questionNumber: '1',
         domain: 'HTML5',
@@ -77,6 +80,7 @@ const configs = [{ // ------------------------------------------------ home page
         path: 'html/exam/2/index.html'
     },
     variables: {
+        firstHeader: 'Examen',
         next: '/result',
         questionNumber: '2',
         domain: 'CSS3',
