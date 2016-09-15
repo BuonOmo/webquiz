@@ -5,22 +5,20 @@ prepend title
 
 block content
   h1 Quick test - question #{questionNumber}
-  div
+  form(method="get" action=next)
     p I have a question ?
     span= domain
     //- FIXME: les divs sont-ils utile dans le cadre de ce tp ? Dans ce cas la les
     //- sections sont-elles utiles ?
     div
-      each id in ['answer1', 'answer2', 'answer3']
-        input(type='checkbox' id=id)
-        label(for=id)= id
-    //- FIXME: when does it become a nav ?
+      each name in ['answer1', 'answer2', 'answer3']
+        input(type='checkbox' name=name)
+        label(for=name)= name
     ul
       li
-        a(href='/dashboard') Back to dashboard
+        input(type='submit' formaction='/dashboard' value='Back to dashboard')
       li
-        a(href=next) Next page
+        input(type='submit' value='Next page')
   section
-    //- FIXME: use dt / dd here ?
     h1 Your score
     p 20/20

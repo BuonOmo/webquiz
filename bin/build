@@ -30,7 +30,7 @@ const configs = [
       path: 'html/test/1/index.html'
     },
     variables: {
-      next: '/test/2/',
+      next: '/test/2',
       questionNumber: '1',
       domain: 'HTML5'
     }
@@ -41,7 +41,7 @@ const configs = [
       path: 'html/test/2/index.html'
     },
     variables: {
-      next: '/dashboard/',
+      next: '/dashboard',
       questionNumber: '2',
       domain: 'CSS3'
     }
