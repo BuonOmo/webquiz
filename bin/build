@@ -32,7 +32,13 @@ const configs = [
     variables: {
       next: '/test/2',
       questionNumber: '1',
-      domain: 'HTML5'
+      domain: 'HTML5',
+      question: 'How do we check integrity of a script inserted with a tag <script src=".."> ?',
+      answers: [
+        "Use integrity attribute",
+        "Read the script and check if it’s good",
+        "Call a friend"
+      ]
     }
   },
   { // quick test page 2
@@ -43,7 +49,14 @@ const configs = [
     variables: {
       next: '/dashboard',
       questionNumber: '2',
-      domain: 'CSS3'
+      domain: 'CSS3',
+      question: 'Is it possible to use global variables using CSS3 ?',
+      answers: [
+        "Yes",
+        "Maybe",
+        "No",
+        "I don’t care"
+      ]
     }
   }
   // configs for each pages here
