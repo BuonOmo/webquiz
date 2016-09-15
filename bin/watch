@@ -6,9 +6,7 @@
 trap("SIGINT") { exit }
 
 if ARGV.length < 1
-  puts "Usage: #{$0} watch_folder"
-  puts "Example: #{$0} ."
-  exit
+  watch_folder = '.'
 end
 
 dev_extension = 'dev'
