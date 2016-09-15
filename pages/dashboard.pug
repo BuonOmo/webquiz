@@ -4,8 +4,6 @@ prepend title
   - var pageTitle = "dashboard"
 
 block content
-  - var stats = ["Success Rate (%)", "Average", "Score"]
-
   main
     h1 Dashboard
     section
@@ -28,12 +26,35 @@ block content
           in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
       section
         h1 Score per exam
-        p.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-          in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        table
+          thead
+            tr
+              th Cours
+              th Evaluation
+              th Date
+              th Note (/20)
+          tbody
+            tr
+              td LOG4420
+              td HTML5
+              td 18/09/2016
+              td 20
+            tr
+              td INF3710
+              td E/A
+              td 20/09/2016
+              td 12
+            tr
+              td INF2705
+              td OpenGL
+              td 25/09/2016
+              td 19
+            tr
+              td LOG4715
+              td Bases
+              td 28/09/2016
+              td 14
+
     aside
       h1 Quick acces to exam
       ul
