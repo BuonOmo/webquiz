@@ -9,23 +9,25 @@ const fs = require('fs'),
     dir = require('path').dirname,
     pug = require('pug');
 
+const pagePath  = 'app/pages/',
+      rendePath = 'webroot/'
 
 const configs = [{ // ------------------------------------------------ home page
-    path: 'pages/home.pug',
+    path: pagePath + 'home.pug',
     render: {
-        path: 'html/index.html'
+        path: rendePath + 'index.html'
     },
     variables: {}
 }, { // -------------------------------------------------------------- dashboard
-    path: 'pages/dashboard.pug',
+    path: pagePath + 'dashboard.pug',
     render: {
-        path: 'html/dashboard/index.html'
+        path: rendePath + 'dashboard/index.html'
     },
     variables: {}
 }, { // ------------------------------------------------------ quick test page 1
-    path: 'pages/test.pug',
+    path: pagePath + 'test.pug',
     render: {
-        path: 'html/test/1/index.html'
+        path: rendePath + 'test/1/index.html'
     },
     variables: {
         firstHeader: 'Test rapide',
@@ -40,9 +42,9 @@ const configs = [{ // ------------------------------------------------ home page
         ]
     }
 }, { // ------------------------------------------------------ quick test page 2
-    path: 'pages/test.pug',
+    path: pagePath + 'test.pug',
     render: {
-        path: 'html/test/2/index.html'
+        path: rendePath + 'test/2/index.html'
     },
     variables: {
         firstHeader: 'Test rapide',
@@ -58,9 +60,9 @@ const configs = [{ // ------------------------------------------------ home page
         ]
     }
 }, { // ------------------------------------------------------------ exam page 1
-    path: 'pages/test.pug',
+    path: pagePath + 'test.pug',
     render: {
-        path: 'html/exam/1/index.html'
+        path: rendePath + 'exam/1/index.html'
     },
     variables: {
         firstHeader: 'Examen',
@@ -75,9 +77,9 @@ const configs = [{ // ------------------------------------------------ home page
         ]
     }
 }, { // ------------------------------------------------------------ exam page 2
-    path: 'pages/test.pug',
+    path: pagePath + 'test.pug',
     render: {
-        path: 'html/exam/2/index.html'
+        path: rendePath + 'exam/2/index.html'
     },
     variables: {
         firstHeader: 'Examen',
@@ -89,19 +91,19 @@ const configs = [{ // ------------------------------------------------ home page
             "Oui",
             "Peut-être",
             "Non",
-            "Tabarnak, le web s'est pas fait pour moi !"
+            "Tabarnak, le web c'est pas fait pour moi !"
         ]
     }
 }, { // ----------------------------------------------------------------- result
-    path: 'pages/result.pug',
+    path: pagePath + 'result.pug',
     render: {
-        path: 'html/result/index.html'
+        path: rendePath + 'result/index.html'
     },
     variables: {}
 }, { // ----------------------------------------------------------------- result
-    path: 'pages/instructions.pug',
+    path: pagePath + 'instructions.pug',
     render: {
-        path: 'html/instructions/index.html'
+        path: rendePath + 'instructions/index.html'
     },
     variables: {}
 }]
@@ -118,13 +120,13 @@ function writeFile(path, contents, callback) {
 }
 
 for (page of configs) {
-    //--------------------------------------------------------------------- Render
+    // ------------------------------------------------------------------ Render
     var opt = Object.assign(page.variables, {
         pretty: true
     });
     var render = pug.renderFile(page.path, opt);
 
-    //----------------------------------------------------------------- Write file
+    // -------------------------------------------------------------- Write file
     /*
     Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
     */
