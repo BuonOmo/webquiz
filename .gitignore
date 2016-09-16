@@ -5,6 +5,10 @@
 # generated html
 *.html
 
+### Less ###
+# generated css
+*.css
+
 # Part below reated by https://www.gitignore.io/api/node
 ### Node ###
 # Logs

@@ -4,27 +4,31 @@
 Configuration below use code from https://pugjs.org/api/getting-started.html
 */
 
-const fs = require('fs'),
-    mkdirp = require('mkdirp'),
-    dir = require('path').dirname,
-    pug = require('pug');
+const fs     = require('fs'),
+      mkdirp = require('mkdirp'),
+      dir    = require('path').dirname,
+      pug    = require('pug'),
+      less   = require('less');
 
 const pagePath  = 'app/pages/',
       rendePath = 'webroot/'
 
-const configs = [{ // ------------------------------------------------ home page
+const pages = [
+  { // --------------------------------------------------------------- home page
     path: pagePath + 'home.pug',
     render: {
         path: rendePath + 'index.html'
     },
     variables: {}
-}, { // -------------------------------------------------------------- dashboard
+  },
+  { // --------------------------------------------------------------- dashboard
     path: pagePath + 'dashboard.pug',
     render: {
         path: rendePath + 'dashboard/index.html'
     },
     variables: {}
-}, { // ------------------------------------------------------ quick test page 1
+  },
+  { // ------------------------------------------------------- quick test page 1
     path: pagePath + 'test.pug',
     render: {
         path: rendePath + 'test/1/index.html'
@@ -41,7 +45,8 @@ const configs = [{ // ------------------------------------------------ home page
             "Appeler un ami !"
         ]
     }
-}, { // ------------------------------------------------------ quick test page 2
+  },
+  { // ------------------------------------------------------- quick test page 2
     path: pagePath + 'test.pug',
     render: {
         path: rendePath + 'test/2/index.html'
@@ -59,7 +64,8 @@ const configs = [{ // ------------------------------------------------ home page
             "Tabarnak, le web s'est fait pas pour moi !"
         ]
     }
-}, { // ------------------------------------------------------------ exam page 1
+  },
+  { // ------------------------------------------------------------- exam page 1
     path: pagePath + 'test.pug',
     render: {
         path: rendePath + 'exam/1/index.html'
@@ -76,7 +82,8 @@ const configs = [{ // ------------------------------------------------ home page
             "Call a friend"
         ]
     }
-}, { // ------------------------------------------------------------ exam page 2
+  },
+  { // ------------------------------------------------------------- exam page 2
     path: pagePath + 'test.pug',
     render: {
         path: rendePath + 'exam/2/index.html'
@@ -94,20 +101,23 @@ const configs = [{ // ------------------------------------------------ home page
             "Tabarnak, le web c'est pas fait pour moi !"
         ]
     }
-}, { // ----------------------------------------------------------------- result
+  },
+  { // ------------------------------------------------------------------ result
     path: pagePath + 'result.pug',
     render: {
         path: rendePath + 'result/index.html'
     },
     variables: {}
-}, { // ----------------------------------------------------------------- result
+  },
+  { // ------------------------------------------------------------------ result
     path: pagePath + 'instructions.pug',
     render: {
         path: rendePath + 'instructions/index.html'
     },
     variables: {}
-}]
+  }]
 
+// ------------------------------------------------------------------- functions
 /*
 Help from http://stackoverflow.com/questions/16316330/how-to-write-file-if-parent-folder-doesnt-exist#16317628
 */
@@ -119,14 +129,15 @@ function writeFile(path, contents, callback) {
     });
 }
 
-for (page of configs) {
-    // ------------------------------------------------------------------ Render
+// ------------------------------------------------- Pages rendering and writing
+for (page of pages) {
+    // Render
     var opt = Object.assign(page.variables, {
         pretty: true
     });
     var render = pug.renderFile(page.path, opt);
 
-    // -------------------------------------------------------------- Write file
+    // Write file
     /*
     Help from http://stackoverflow.com/questions/2496710/writing-files-in-node-js
     */
@@ -136,4 +147,19 @@ for (page of configs) {
         }
     });
 }
+
+// --------------------------------------------------- CSS rendering and writing
+less.render(fs.readFileSync('app/main.less','utf-8'),
+    {
+      filename: 'main.less', // Specify a filename, for better error messages
+      // compress: true          // Minify CSS output
+    },
+    function (err, output) {
+      if (err) throw err;
+      writeFile('webroot/main.css',output.css, function (err) {
+        if (err) throw err;
+      });
+    });
+
+
 console.log('Built successfully');
