@@ -1,10 +1,18 @@
 doctype html
-html(lang="en")
+html(lang="fr")
   head
     meta(charset='UTF-8')
     block title
       title Web quiz | #{pageTitle}
     link(rel='shortcut icon' href='assets/logo.png' type='image/x-icon')
+
+    meta(property="og:title" content="WebQuiz")
+    meta(property="og:description" content="Questionnaires sur les technologies du Web")
+    meta(property="og:type" content="website")
+    meta(property="og:locale" content="fr")
+    meta(property="og:site_name" content="WebQuiz")
+    meta(property="og:image" content="http://vps294606.ovh.net/assets/logo.png")
+    meta(property="og:url" content="http://vps294606.ovh.net")
 
   body
     // navbar.pug
