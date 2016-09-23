@@ -15,7 +15,7 @@
     "build": "./bin/build",
     "clean": "rm -rf html log",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "mkdir -p log; echo \"See logs in log/gulp and log/watch\";( gulp > log/gulp & ruby bin/watch app/ > log/watch );"
+    "watch": "mkdir -p log; echo \"See logs in log/gulp and log/watch\";( gulp > log/gulp & bin/watch app/ > log/watch );"
   },
   "repository": {
     "type": "git",
