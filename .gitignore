@@ -8,6 +8,7 @@
 ### Less ###
 # generated css
 *.css
+!webroot/lib/*
 
 # Part below reated by https://www.gitignore.io/api/node
 ### Node ###
