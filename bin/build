@@ -10,28 +10,30 @@ const fs     = require('fs'),
       pug    = require('pug'),
       less   = require('less');
 
-const pagePath  = 'app/pages/',
-      rendePath = 'webroot/'
+const renderPath = 'webroot/';
+
+// --------------------------------------------------------- PUG to HTML configs
+const pagePath  = 'app/pages/';
 
 const pages = [
   { // --------------------------------------------------------------- home page
     path: pagePath + 'home.pug',
     render: {
-        path: rendePath + 'index.html'
+        path: renderPath + 'index.html'
     },
     variables: {}
   },
   { // --------------------------------------------------------------- dashboard
     path: pagePath + 'dashboard.pug',
     render: {
-        path: rendePath + 'dashboard/index.html'
+        path: renderPath + 'dashboard/index.html'
     },
     variables: {}
   },
   { // ------------------------------------------------------- quick test page 1
     path: pagePath + 'test.pug',
     render: {
-        path: rendePath + 'test/1/index.html'
+        path: renderPath + 'test/1/index.html'
     },
     variables: {
         firstHeader: 'Test rapide',
@@ -49,7 +51,7 @@ const pages = [
   { // ------------------------------------------------------- quick test page 2
     path: pagePath + 'test.pug',
     render: {
-        path: rendePath + 'test/2/index.html'
+        path: renderPath + 'test/2/index.html'
     },
     variables: {
         firstHeader: 'Test rapide',
@@ -68,7 +70,7 @@ const pages = [
   { // ------------------------------------------------------------- exam page 1
     path: pagePath + 'test.pug',
     render: {
-        path: rendePath + 'exam/1/index.html'
+        path: renderPath + 'exam/1/index.html'
     },
     variables: {
         firstHeader: 'Examen',
@@ -86,7 +88,7 @@ const pages = [
   { // ------------------------------------------------------------- exam page 2
     path: pagePath + 'test.pug',
     render: {
-        path: rendePath + 'exam/2/index.html'
+        path: renderPath + 'exam/2/index.html'
     },
     variables: {
         firstHeader: 'Examen',
@@ -105,17 +107,34 @@ const pages = [
   { // ------------------------------------------------------------------ result
     path: pagePath + 'result.pug',
     render: {
-        path: rendePath + 'result/index.html'
+        path: renderPath + 'result/index.html'
     },
     variables: {}
   },
   { // ------------------------------------------------------------------ result
     path: pagePath + 'instructions.pug',
     render: {
-        path: rendePath + 'instructions/index.html'
+        path: renderPath + 'instructions/index.html'
     },
     variables: {}
   }]
+
+// --------------------------------------------------------- LESS to CSS configs
+
+const stylesheetPath = 'app/';
+
+const stylesheets = [
+  {
+    path: '',
+    basename: 'main',
+    compress: 'false'
+  },
+  {
+    path: 'layouts/navbar/',
+    basename: 'navbar',
+    compress: 'false'
+  }
+];
 
 // ------------------------------------------------------------------- functions
 /*
@@ -149,17 +168,20 @@ for (page of pages) {
 }
 
 // --------------------------------------------------- CSS rendering and writing
-less.render(fs.readFileSync('app/main.less','utf-8'),
-    {
-      filename: 'main.less', // Specify a filename, for better error messages
-      // compress: true          // Minify CSS output
-    },
-    function (err, output) {
+for (stylesheet of stylesheets) {
+  less.render(fs.readFileSync(stylesheetPath+stylesheet.path+stylesheet.basename+'.less','utf-8'),
+  {
+    filename: stylesheet.basename+'.less', // Specify a filename, for better error messages
+    compress: stylesheet.compress
+  },
+  function (err, output) {
+    if (err) throw err;
+    writeFile(renderPath+stylesheet.path+stylesheet.basename+'.css',output.css, function (err) {
       if (err) throw err;
-      writeFile('webroot/main.css',output.css, function (err) {
-        if (err) throw err;
-      });
     });
+  });
+
+}
 
 
 console.log('Built successfully');
