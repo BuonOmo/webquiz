@@ -133,6 +133,11 @@ const stylesheets = [
     path: 'layouts/navbar/',
     basename: 'navbar',
     compress: 'false'
+  },
+  {
+    path: 'layouts/footer/',
+    basename: 'footer',
+    compress: 'false'
   }
 ];
 
@@ -168,6 +173,7 @@ for (page of pages) {
 }
 
 // --------------------------------------------------- CSS rendering and writing
+console.log(stylesheets);
 for (stylesheet of stylesheets) {
   less.render(fs.readFileSync(stylesheetPath+stylesheet.path+stylesheet.basename+'.less','utf-8'),
   {
