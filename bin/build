@@ -174,20 +174,29 @@ for (page of pages) {
 
 // --------------------------------------------------- CSS rendering and writing
 for (stylesheet of stylesheets) {
-  less.render(fs.readFileSync(stylesheetPath+stylesheet.path+stylesheet.basename+'.less','utf-8'),
-  {
-    filename: stylesheet.basename+'.less', // Specify a filename, for better error messages
-    //compress: stylesheet.compress
-  },
-  function (err, output) {
-    if (err) {
-      console.log(err);
-      throw err;
-    }
-    writeFile(renderPath+stylesheet.path+stylesheet.basename+'.css',output.css, function (err) {
-      if (err) throw err;
+  (function () {
+    var stylesheet_cb = stylesheet;
+    less.render(fs.readFileSync(stylesheetPath+stylesheet_cb.path+stylesheet_cb.basename+'.less','utf-8'),
+    {
+      filename: stylesheet_cb.basename+'.less', // Specify a filename, for better error messages
+      //compress: stylesheet_cb.compress
+    },
+    function (err, output) {
+      var path    = renderPath+stylesheet_cb.path+stylesheet_cb.basename+'.css';
+      var content = output.css;
+      (function () {
+        var path_cb = path;
+        var content_cb = content;
+        if (err) {
+          console.log(err);
+          throw err;
+        }
+        writeFile(path_cb,content_cb, function (err) {
+          if (err) throw err;
+        });
+      })();
     });
-  });
+  })();
 
 }
 
