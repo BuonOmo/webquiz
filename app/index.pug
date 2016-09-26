@@ -24,9 +24,12 @@ html(lang="fr")
     // navbar.pug
     include layouts/navbar/navbar.pug
     // /navbar.pug
-    // content block
-    block content
-    // /content block
-    // footer.pug
-    include layouts/footer/footer.pug
-    // /footer.pug
+
+    //classe englobante
+    div(class='container')
+      // content block
+      block content
+      // /content block
+      // footer.pug
+      include layouts/footer/footer.pug
+      // /footer.pug
