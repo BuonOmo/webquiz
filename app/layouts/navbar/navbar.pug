@@ -5,10 +5,13 @@
     {path: "/instructions/", title:"Instructions"}
   ]
 
-header
-  h1 WebQuiz
+header.navbar.elevation--4dp
+  h1.title
+    span Web
+    span.logo
+    span uiz
   nav
     ul
       each page in pages
-        li
+        li.navbar-button
           a(href=page.path)= page.title
