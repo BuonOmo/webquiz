@@ -1,8 +1,8 @@
 -
   var pages = [
-    {path: "/", title: "Accueil"},
-    {path: "/dashboard/", title:"Tableau de bord"},
-    {path: "/instructions/", title:"Instructions"}
+    {path: "/", title: "Accueil", icon: "home"},
+    {path: "/dashboard/", title:"Tableau de bord", icon: "dashboard"},
+    {path: "/instructions/", title:"Instructions", icon: "help"}
   ]
 
 header.navbar.elevation--4dp
@@ -14,4 +14,6 @@ header.navbar.elevation--4dp
     ul
       each page in pages
         li.navbar-button
-          a(href=page.path)= page.title
+          a(href=page.path)
+            i.material-icons= page.icon
+            = page.title
