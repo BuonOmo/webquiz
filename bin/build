@@ -173,15 +173,17 @@ for (page of pages) {
 }
 
 // --------------------------------------------------- CSS rendering and writing
-console.log(stylesheets);
 for (stylesheet of stylesheets) {
   less.render(fs.readFileSync(stylesheetPath+stylesheet.path+stylesheet.basename+'.less','utf-8'),
   {
     filename: stylesheet.basename+'.less', // Specify a filename, for better error messages
-    compress: stylesheet.compress
+    //compress: stylesheet.compress
   },
   function (err, output) {
-    if (err) throw err;
+    if (err) {
+      console.log(err);
+      throw err;
+    }
     writeFile(renderPath+stylesheet.path+stylesheet.basename+'.css',output.css, function (err) {
       if (err) throw err;
     });

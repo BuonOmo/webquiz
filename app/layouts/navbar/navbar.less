@@ -1,4 +1,8 @@
-@import "../../palette";
+@import 'misc/palette';
+
+/* ====================================================================
+    navbar
+   ==================================================================== */
 
 .navbar {
   top: 0;
@@ -11,7 +15,6 @@
   justify-content: space-around;
   padding: 20px;
   border-bottom: 2px solid @dividerColor;
-  align-items: center; //On aligne les ul>li sur la même ligne que le titre
   .title {
     display: flex;
   }
@@ -19,7 +22,6 @@
     width: 37px;
     background-image: url('/assets/logo.png');
     background-size: contain;
-    background-repeat: no-repeat;
   }
 
   ul {
@@ -28,19 +30,5 @@
   }
   ul>li {
     margin: 0 20px;
-    padding: 10px;
-  }
-
-  ul>li>a {
-    text-decoration: none;
-    color: @primaryTextColor;
-  }
-
-  ul>li>a:hover {
-    color: @accentColor;
-  }
-
-  ul>li>.material-icons {
-    margin-top: 25px;
   }
 }
