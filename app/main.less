@@ -3,6 +3,8 @@
 /* ================== TABLE OF CONTENTS ===============================
  - color classes (cc)
  - material design evelation (mde)
+ - mobile responsive classes (mrc)
+ - generic classes (gc)
  - main content (mc)
    ==================================================================== */
 
@@ -24,13 +26,79 @@
 .divider-color        {	background-color: @dividerColor       }
 
 
+
+
 /* ====================================================================
    Material design elevation $mde
    ==================================================================== */
+// those shadows come from getmdl.io
+
 .elevation--4dp {
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),
-              0 1px 10px 0 rgba(0,0,0,.12),
+  box-shadow: 0 4px 5px  0   rgba(0,0,0,.14),
+              0 1px 10px 0   rgba(0,0,0,.12),
               0 2px 4px -1px rgba(0,0,0,.2);
+}
+
+.elevation--2dp {
+  box-shadow: 0 2px 2px  0   rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 1px 5px  0   rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* ====================================================================
+   Mobile responsive classes $mrc
+   ==================================================================== */
+@media all and (max-width: 950px) {
+  .large-screen {
+    display: none !important;
+  }
+}
+
+@media all and (min-width: 950px) {
+  .small-screen {
+    display: none !important;
+  }
+}
+
+/* ====================================================================
+   Generic classes $gc
+   ==================================================================== */
+.container {
+ padding: 0 150px;
+}
+
+.page-header {
+  margin-bottom : 10px;
+  border-bottom:1px solid @accentColorHalfOpacity;
+}
+
+/* material icons fix */
+.material-icons {
+  margin-top: -2px;
+}
+
+.min-page-height {
+  height: 84vh;
+}
+
+.big-centered-button-container {
+  text-align: center;
+  margin:40px 0;
+  transition: all 0.4s;
+  &:hover {
+    transform: scale(1.4);
+  }
+}
+
+.big-centered-button {
+  all: initial;
+  padding: 20px;
+  background-color: @accentColor;
+  box-shadow: 0 2px 2px  0   rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 1px 5px  0   rgba(0, 0, 0, 0.12);
 }
 
 /* ====================================================================
@@ -40,8 +108,50 @@ body{
   background: @lightPrimaryColor;
   margin: 0;
 }
+.sheet {
+  padding: 8px;
+  position: relative;
+  .top-right {
+    transition: all 0.3s;
+    position: absolute;
+    padding: 2px;
+    top: 0;
+    right: 0;
+    background-color: @accentColor;
+    &:hover {
+      transform: scale(2);
+      box-shadow: 0 2px 2px  0   rgba(0, 0, 0, 0.14),
+                  0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                  0 1px 5px  0   rgba(0, 0, 0, 0.12);
+    }
+  }
+  ul.action-group {
+    border-top: 1px solid @dividerColor;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flex;
+    display: inline-flex;
+    justify-content: space-between;
+    list-style-type: none;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin: 15px 2px 0;
+    padding: 3px 0 0;
+    a {
+      all: inherit;
+      transition: all 0.5s;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      cursor: pointer;
+      &:hover {
+        color: @accentColor;
+      }
+    }
+  }
+}
 
-.container{
+.main-container{
   display: flex;
   flex-wrap: wrap;
   justify-content: center; //On centre les blocs dans la page
@@ -171,15 +281,8 @@ body{
   }
 }
 
-.page-header{
-  margin-bottom : 10px;
-  border-bottom:1px solid @accentColorHalfOpacity;
-}
-
 @media all and (max-width: 950px) {
-  .only-large { display: none; }
-
-  .container{
+  .main-container{
     main{
       section.central{
         flex-direction: column;

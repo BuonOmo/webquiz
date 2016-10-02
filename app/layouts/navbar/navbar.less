@@ -5,30 +5,46 @@
    ==================================================================== */
 
 .navbar {
+  h1 {
+    margin-left: 150px;
+  }
   top: 0;
   left: 0;
   width: 100%;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
   position: fixed;
+  justify-content: space-between;
   background: @primaryColor;
   color: @primaryTextColor;
-  display: inline-flex;
-  justify-content: space-around;
-  padding: 20px;
   border-bottom: 2px solid @dividerColor;
   .title {
     display: flex;
   }
   .logo {
+    height: 37px;
     width: 37px;
     background-image: url('/assets/logo.png');
     background-size: contain;
   }
 
   ul {
+    height: 100%;
     list-style-type: none;
     display: inline-flex;
   }
   ul>li {
+    padding-top: 20px;
     margin: 0 20px;
+    a:hover {
+      color: @secondaryTextColor;
+    }
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
 }

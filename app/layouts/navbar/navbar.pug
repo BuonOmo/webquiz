@@ -6,14 +6,16 @@
   ]
 
 header.navbar.elevation--4dp
-  h1.title
+  h1.title.large-screen
     span Web
     span.logo
     span uiz
+  h1.title.small-screen
+    span.logo
   nav
     ul
       each page in pages
         li.navbar-button
           a(href=page.path)
-            i.material-icons= page.icon
-            span.only-large= page.title
+            i.material-icons.small-screen= page.icon
+            span.large-screen= page.title

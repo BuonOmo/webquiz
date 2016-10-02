@@ -4,22 +4,27 @@ prepend title
   - var pageTitle = "Quick test - question " + questionNumber
 
 block content
-  main
-    h1= firstHeader
-    section
+  main.min-page-height
+    h1.page-header= firstHeader
+    section.elevation--2dp.sheet
       h1= question
-      span= domain
+      span.top-right= domain
       form(method="get" action=next)
         // Cette balise servira plus tard pour le CSS
-        div
-          each answer in answers
-            input(type='checkbox' name=answer)
-            label(for=answer)= answer
-        ul
+        div.center
+            each answer in answers
+              div
+                input(type='checkbox' name=answer)
+                label(for=answer)= answer
+        ul.action-group
           li
-            input(type='submit' formaction='/dashboard' value='Retourner au tableau de bord')
+              a(href='/dashboard')
+                i.material-icons dashboard
+                span.large-screen Retourner au tableau de bord
           li
-            input(type='submit' value='Page suivante')
+              a(href=next)
+                span.large-screen Page suivante
+                i.material-icons navigate_next
     aside
       h1 Score courant
       p 20/20
