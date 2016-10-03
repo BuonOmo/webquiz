@@ -4,6 +4,8 @@
 Configuration below use code from https://pugjs.org/api/getting-started.html
 */
 
+console.log('   == START BUILD ==')
+
 const fs     = require('fs'),
       mkdirp = require('mkdirp'),
       dir    = require('path').dirname,
@@ -204,3 +206,5 @@ if (process.argv[process.argv.length-1] != "pug") {
     })();
   }
 }
+
+console.log('   == END BUILD ==')
