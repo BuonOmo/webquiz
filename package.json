@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "./bin/build",
-    "clean": "rm -rf html log",
+    "clean": "mv webroot/assets tmp-assets && mv webroot/lib tmp-lib && rm -rf webroot/* log && mv tmp-assets webroot/assets && mv tmp-lib webroot/lib",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "mkdir -p log; echo \"See logs in log/gulp and log/watch\";( gulp > log/gulp & bin/watch app/ > log/watch );"
   },
