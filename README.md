@@ -13,6 +13,7 @@ WebQuiz vous permet de tester vos connaissances et de suivre vos résultats faci
 	- [build](#build)
 	- [watch](#watch)
 - [Auteurs](#auteurs)
+
 ## Dépendances
 
 Parmi les librairies de nodejs nous utilisons fs (FileSystem) pour la compilation du code pug et less. Celle-ci peut être installé globalement grâce au gestionnaire de paquets npm.
