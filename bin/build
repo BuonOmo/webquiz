@@ -23,14 +23,18 @@ const pages = [
     render: {
         path: renderPath + 'index.html'
     },
-    variables: {}
+    variables: {
+      id: "home"
+    }
   },
   { // --------------------------------------------------------------- dashboard
     path: pagePath + 'dashboard.pug',
     render: {
         path: renderPath + 'dashboard/index.html'
     },
-    variables: {}
+    variables: {
+      id: "dashboard"
+    }
   },
   { // ------------------------------------------------------- quick test page 1
     path: pagePath + 'test.pug',
@@ -38,16 +42,17 @@ const pages = [
         path: renderPath + 'test/1/index.html'
     },
     variables: {
-        firstHeader: 'Test rapide',
-        next: '/test/2',
-        questionNumber: '1',
-        domain: 'HTML5',
-        question:   "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
-        answers: [
-            "Utiliser un attribut integrity",
-            "Lire le script et vérifier que c'est correct",
-            "Appeler un ami !"
-        ]
+      id: "quick-test-page-1",
+      firstHeader: 'Test rapide',
+      next: '/test/2',
+      questionNumber: '1',
+      domain: 'HTML5',
+      question:   "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
+      answers: [
+          "Utiliser un attribut integrity",
+          "Lire le script et vérifier que c'est correct",
+          "Appeler un ami !"
+      ]
     }
   },
   { // ------------------------------------------------------- quick test page 2
@@ -56,17 +61,18 @@ const pages = [
         path: renderPath + 'test/2/index.html'
     },
     variables: {
-        firstHeader: 'Test rapide',
-        next: '/dashboard',
-        questionNumber: '2',
-        domain: 'CSS3',
-        question: "Est-il possible d'utiliser des variables globales en CSS3 ?",
-        answers: [
-            "Oui",
-            "Peut-être",
-            "Non",
-            "Tabarnak, le web s'est fait pas pour moi !"
-        ]
+      id: "quick-test-page-2",
+      firstHeader: 'Test rapide',
+      next: '/dashboard',
+      questionNumber: '2',
+      domain: 'CSS3',
+      question: "Est-il possible d'utiliser des variables globales en CSS3 ?",
+      answers: [
+          "Oui",
+          "Peut-être",
+          "Non",
+          "Tabarnak, le web s'est fait pas pour moi !"
+      ]
     }
   },
   { // ------------------------------------------------------------- exam page 1
@@ -75,16 +81,17 @@ const pages = [
         path: renderPath + 'exam/1/index.html'
     },
     variables: {
-        firstHeader: 'Examen',
-        next: '/exam/2',
-        questionNumber: '1',
-        domain: 'HTML5',
-        question:   "Question 1/2: Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
-        answers: [
-            "Use integrity attribute",
-            "Read the script and check if it’s good",
-            "Call a friend"
-        ]
+      id: "exam-page-1",
+      firstHeader: 'Examen',
+      next: '/exam/2',
+      questionNumber: '1',
+      domain: 'HTML5',
+      question:   "Question 1/2: Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise <script src=\"..\"> ?",
+      answers: [
+          "Use integrity attribute",
+          "Read the script and check if it’s good",
+          "Call a friend"
+      ]
     }
   },
   { // ------------------------------------------------------------- exam page 2
@@ -93,17 +100,18 @@ const pages = [
         path: renderPath + 'exam/2/index.html'
     },
     variables: {
-        firstHeader: 'Examen',
-        next: '/result',
-        questionNumber: '2',
-        domain: 'CSS3',
-        question: "Question 2/2: Est-il possible d'utiliser des variables globales en CSS3 ?",
-        answers: [
-            "Oui",
-            "Peut-être",
-            "Non",
-            "Tabarnak, le web c'est pas fait pour moi !"
-        ]
+      id: "exam-page-2",
+      firstHeader: 'Examen',
+      next: '/result',
+      questionNumber: '2',
+      domain: 'CSS3',
+      question: "Question 2/2: Est-il possible d'utiliser des variables globales en CSS3 ?",
+      answers: [
+          "Oui",
+          "Peut-être",
+          "Non",
+          "Tabarnak, le web c'est pas fait pour moi !"
+      ]
     }
   },
   { // ------------------------------------------------------------------ result
@@ -111,14 +119,18 @@ const pages = [
     render: {
         path: renderPath + 'result/index.html'
     },
-    variables: {}
+    variables: {
+      id: "result"
+    }
   },
-  { // ------------------------------------------------------------------ result
+  { // ------------------------------------------------------------ instructions
     path: pagePath + 'instructions.pug',
     render: {
         path: renderPath + 'instructions/index.html'
     },
-    variables: {}
+    variables: {
+      id: "instructions"
+    }
   }]
 
 // --------------------------------------------------------- LESS to CSS configs
