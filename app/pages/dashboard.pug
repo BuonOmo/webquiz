@@ -6,6 +6,19 @@ prepend title
 block content
   main
     h1 Tableau de bord
+
+    div(id="modal" class="modal")
+      div
+        header
+          a(href="#fermer" title="Fermer la fenêtre" class="droite") X
+          h2 Détails des notes :
+        section
+          p.
+             Nous n'avons pas eu le temps d'ajouter les notes dans le modal.
+             Il est possible de retrouver le détail, en dessous dans un tableau.
+             Celui-ci sera ajouté au modal dès le prochain TP !
+    a(href="#modal") Accéder au détail des notes !
+
     section.central
       h1.page-header Statistiques
       section
@@ -16,8 +29,10 @@ block content
         h1 Moyenne
         p.
           La moyenne des notes aux examens est : 16/20.
+
       section
         h1 Résultats par examens
+
         table
           thead
             tr
