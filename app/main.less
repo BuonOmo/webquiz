@@ -105,6 +105,9 @@
   float: right;
 }
 
+.clear {
+  clear: both;
+}
 
 /* ====================================================================
    Main content $mc
@@ -293,15 +296,14 @@ body{
 
           td{
             padding: 15px;
-
-            &:hover{
-              padding: 20px 0;
-              transition: padding 0.5s;
-            }
           }
 
           tr{
             border-top: 1px solid @dividerColor;
+            &:hover{
+              color: gray;
+              transition: color 0.3s;
+            }
           }
 
           td:first-child{
