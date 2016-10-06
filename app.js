@@ -1,4 +1,5 @@
 var express = require('express');
+var less = require('express-less');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -24,6 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/less-css', less(
+    path.join(__dirname, 'style'),
+    { debug: app.get('env') == 'development' }
+  )
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
