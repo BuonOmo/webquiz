@@ -105,7 +105,6 @@ const pages = [
 for (var page of pages) {
   (function (page) {
     var currentPage = page;
-    // console.log(currentPage);
     router.get(page.url, function(req, res, next) {
       res.render(page.path,page.opt);
     });
