@@ -1,31 +1,18 @@
 {
-  "name": "web-tp1-html",
-  "version": "0.0.1",
-  "description": "First lab of web in poly, the goal is to make an html structure.",
-  "main": "index.js",
-  "dependencies": {
-    "pug": "^2.0.0-beta6"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.15.0",
-    "gulp": "^3.9.1",
-    "less": "^2.7.1"
-  },
+  "name": "webQuiz",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "build": "./bin/build",
-    "w-build": "bin\\build",
-    "clean": "mv webroot/assets tmp-assets && mv webroot/lib tmp-lib && rm -rf webroot/* log && mv tmp-assets webroot/assets && mv tmp-lib webroot/lib",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "mkdir -p log; echo \"See logs in log/gulp and log/watch\";( gulp > log/gulp & bin/watch app/ > log/watch );"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/BuonOmo/web-tp1-html.git"
-  },
-  "author": "Lucas Boudereaux, Ulysse Buonomo",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/BuonOmo/web-tp1-html/issues"
-  },
-  "homepage": "https://github.com/BuonOmo/web-tp1-html#readme"
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "jade": "~1.11.0",
+    "morgan": "~1.7.0",
+    "pug": "^2.0.0-beta6",
+    "serve-favicon": "~2.3.0"
+  }
 }
