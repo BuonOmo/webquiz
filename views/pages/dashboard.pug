@@ -3,21 +3,24 @@ extends ../index.pug
 prepend title
   - var pageTitle = "tableau de bord"
 
+append scripts
+  script(src="/javascripts/dashboard.js")
+
 block content
   main
     h1 Tableau de bord
 
-    div(id="modal" class="modal")
+    div(id="modal-notes" class="modal")
       div
         header
-          a(href="#fermer" title="Fermer la fenêtre" class="droite") X
+          a(href="#" title="Fermer la fenêtre" class="droite") X
           h2 Détails des notes :
         section
           p.
              Nous n'avons pas eu le temps d'ajouter les notes dans le modal.
              Il est possible de retrouver le détail, en dessous dans un tableau.
              Celui-ci sera ajouté au modal dès le prochain TP !
-    a(href="#modal") Accéder au détail des notes !
+    a(href="#modal-notes") Accéder au détail des notes !
 
     section.central
       h1.page-header Statistiques
@@ -68,4 +71,18 @@ block content
         li
           a(href='/test/1') Test
         li
-          a(href='/exam/1') Exam
+          a(href='#modal-exam') Exam
+
+    div(id="modal-exam" class="modal")
+      div
+        header
+          a(href="#" title="Fermer la fenêtre" class="droite") X
+          h2 Choix des caractéristiques de l’examen :
+        form(method="POST" action="/api/test" id="start-exam")
+          label(for="numberOfQuestions") Nombre de questions
+          input(type="number" min=1 max=2 value=1 name="numberOfQuestions" autofocus)
+          label(for="domains") Domaines concernés
+          select(name="domains" multiple)
+            each domain in ['HTML5', 'CSS3']
+              option(value= domain)= domain
+          input(type="submit" value="Commencer")

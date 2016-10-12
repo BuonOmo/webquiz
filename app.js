@@ -27,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/users', users);
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.min.js'))
+app.use('/modernizr', express.static(__dirname + '/public/javascripts/modernizr.min.js'))
 app.use('/less-css', less(
     path.join(__dirname, 'style'),
     { debug: app.get('env') == 'development' }

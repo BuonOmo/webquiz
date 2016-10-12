@@ -11,7 +11,7 @@ var router = express.Router();
  *   answer: Array[String]
  * }
  */
-router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"], function(req, res, next) {
+router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"], function(req, res) {
   if (req.params.domains) {
     var domains = req.params.domains.split(',');
     var ansList = dbAnswers.filter(function (element) {
@@ -47,7 +47,7 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"], function(r
  *   answer: Array[String]
  * }
  */
-router.get(["/question/id/:id", "/ask/id/:id"], function(req, res, next) {
+router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
   var ans = dbAnswers[req.params.id]
   if (ans)
     res.json({
@@ -71,7 +71,7 @@ router.get(["/question/id/:id", "/ask/id/:id"], function(req, res, next) {
  *   isGoodAnswer: Boolean
  * }
  */
-router.get('/ans(wers?)?/:id/:answer', function(req, res, next) {
+router.get('/ans(wers?)?/:id/:answer', function(req, res) {
   if (dbAnswers[req.params.id])
     res.json({
       goodAnswerIndex: dbAnswers[req.params.id]['goodAnswer'],
