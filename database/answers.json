@@ -19,4 +19,103 @@
     "Tabarnak, le web c'est pas fait pour moi !"
   ],
   "goodAnswer": 0
+   }, {
+  "id": 2,
+  "domain": "HTML5",
+  "question": "Quel est l'élément qui permet de créer un titre de niveau 1",
+  "answers": [
+    "h2",
+    "h1",
+    "h0",
+    "p"
+  ],
+  "goodAnswer": 1
+  }, {
+  "id": 3,
+  "domain": "JS",
+  "question": "Qu'est-ce que JQuery ?",
+  "answers": [
+    "C'est une requête J",
+    "C'est une librairie javascript facilitant la manipulation du DOM",
+    "JQuery n'existe pas",
+    "C'est une librairie PHP"
+  ],
+  "goodAnswer": 1
+  }, {
+  "id": 4,
+  "domain": "JS",
+  "question": "Comment vérifie-t-on qu'un document chargé avec JQuery?",
+  "answers": [
+    "$(document).ready(function(){//Do something})",
+    "$('document').ready(function(){//Do something})",
+    "$(document).load(function(){//Do something})",
+    "$('document').load(function(){//Do something})"
+  ],
+  "goodAnswer": 0
+  }, {
+  "id": 5,
+  "domain": "CSS3",
+  "question": "Quel est la propriété à changer pour changer la couleur de fond d'un bloc ?",
+  "answers": [
+    "background-color = myColor;",
+    "background-color: myColor",
+    "background-color: myColor;",
+    "On ne peut pas changer la couleur d'un bloc"
+  ],
+  "goodAnswer": 2
+  }, {
+  "id": 6,
+  "domain": "Divers",
+  "question": "Quel est le nom de la machine inventé par Alan Turing ?",
+  "answers": [
+    "Enigme",
+    "Il a rien inventé !",
+    "La machine de Turing",
+    "Enigma"
+  ],
+  "goodAnswer": 2
+  }, {
+  "id": 7,
+  "domain": "HTML5",
+  "question": "Que doit-on trouver en premier dans un document HTML ?",
+  "answers": [
+    "<!DOCTYPE html>",
+    "<html>",
+    "<head>",
+    "Rien"
+  ],
+  "goodAnswer": 0
+  }, {
+  "id": 8,
+  "domain": "CSS3",
+  "question": "Quel propriété faut-il utiliser pour faire flotter un élément à gauche ?",
+  "answers": [
+    "float: right;",
+    "float: left",
+    "float: right",
+    "float: left;"
+  ],
+  "goodAnswer": 3
+  }, {
+  "id": 9,
+  "domain": "JS",
+  "question": "Qu'est-ce que le DOM",
+  "answers": [
+    "Document Object Middle;",
+    "Document Object Modele",
+    "Document Object Model",
+    "Document Object Maple;"
+  ],
+  "goodAnswer": 2
+ }, {
+  "id": 9,
+  "domain": "CSS3",
+  "question": "Quel est la couleur du cheval blanc d'Henry IV ?",
+  "answers": [
+    "color: #fff;",
+    "color: #000;",
+    "color: #ccc;",
+    "color: #eee;"
+  ],
+  "goodAnswer": 0
 }]
