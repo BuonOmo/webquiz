@@ -1,0 +1,22 @@
+[{
+  "id": 0,
+  "domain": "HTML5",
+  "question": "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise &lt;script src=\"..\"&gt; ?",
+  "answers": [
+    "En utilisant l’attribut \"integrity\"",
+    "On lit le code et on regarde si il est joli",
+    "Je demande l’appel à un ami"
+  ],
+  "goodAnswer": 0
+ }, {
+  "id": 1,
+  "domain": "CSS3",
+  "question": "Est-il possible d'utiliser des variables globales en CSS3 ?",
+  "answers": [
+    "Oui",
+    "Peut-être",
+    "Non",
+    "Tabarnak, le web c'est pas fait pour moi !"
+  ],
+  "goodAnswer": 0
+}]
