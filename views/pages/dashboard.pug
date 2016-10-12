@@ -61,7 +61,7 @@ block content
         li
           a(href='/test') Test
         li
-          a(href='#modal-exam') Exam
+          a(href='#modal-exam').button Exam
 
     // modals
     // modal-notes
@@ -109,11 +109,13 @@ block content
           a(href="#" title="Fermer la fenêtre" class="droite") X
           h2 Choix des caractéristiques de l’examen :
         form(method="POST" action="/api/test" id="start-exam")
-          label(for="numberOfQuestions") Nombre de questions
-          input(type="number" min=1 max=2 value=1 name="numberOfQuestions" autofocus)
-          label(for="domains") Domaines concernés
-          select(name="domains" multiple)
-            each domain in ['HTML5', 'CSS3']
-              option(value= domain)= domain
-          input(type="submit" value="Commencer")
+          fieldset
+            legend Theme et nombre de questions
+            label(for="numberOfQuestions") Nombre de questions :
+            input(type="number" min=1 max=2 value=1 name="numberOfQuestions" autofocus)
+            label(for="domains") Domaines concernés :
+            select(name="domains" multiple)
+              each domain in ['HTML5', 'CSS3']
+                option(value= domain)= domain
+          input(type="submit" value="Commencer").button
     // /modal-exam

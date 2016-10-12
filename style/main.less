@@ -109,6 +109,23 @@
   clear: both;
 }
 
+.button{
+    background-color: rgba(255, 152, 0, 0.9);
+    border: none;
+    margin: 10px auto;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.button:hover{
+      transition: background-color 0.3s;
+      background-color: rgba(255, 152, 0, 1);
+      cursor:pointer;
+}
+
 /* ====================================================================
    Main content $mc
    ==================================================================== */
@@ -181,6 +198,12 @@ body{
     }
     .droite {
       float:right;
+      color: black;
+      text-decoration: none;
+
+      &:hover{
+        transform: scale(1.5);
+      }
     }
 
     .modal {
@@ -207,6 +230,21 @@ body{
           -moz-transition: all 0.4s ease-in-out;
           -webkit-transition: all 0.4s ease-in-out;
         }
+      }
+
+      fieldset{
+        margin-top: 20px;
+        display: flex;
+        flex-flow: row wrap;
+
+        label, input, select{
+          width:100%;
+        }
+      }
+
+      input[type ="submit"]{
+        width: 200px;
+        display: block;
       }
 
       &>div {
@@ -356,28 +394,27 @@ body{
     aside{
       ul{
         display: flex;
+        padding: 0;
 
         li{
           list-style: none;
           margin-right: 10px;
-          font-family: Arial,sans-serif;
-          font-size: 1.2em;
           width: 200px;
-          height: 30px;
           padding-top: 7px; /*permet le centrage vertical*/
           text-align: center;
-          background: rgba(81, 45, 168, 0.5);
-          border-radius: 8px;
-          box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
-                    0 -1px 0 rgba( 255, 255, 255, 0.4);
+
 
           a{
             text-decoration: none;
+            background-color:rgba(81, 45, 168, 0.6);
             color: @primaryTextColor;
+            display: block;
+            box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
+                      0 -1px 0 rgba( 255, 255, 255, 0.4);
           }
 
-          &:hover{
-            background: rgba(81, 45, 168, 0.7);
+          a:hover{
+            background-color: rgba(81, 45, 168,0.8);
           }
         }
       }
