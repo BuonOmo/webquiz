@@ -19,8 +19,10 @@
       var answers = $('#answers');
       for (var answer of questionData.answers) {
         answers
-          .find('.answer:last')
+          // clone body of an answer
+          .find('.answer:first')
           .clone()
+          // append current answer elements to the clone
           .find('input')
             .attr('name', answer)
           .end()
@@ -28,7 +30,9 @@
             .attr('for', answer)
             .html(answer)
           .end()
+          // append the clone to DOM (#answer)
           .appendTo(answers)
+          // show the clone
           .show();
       }
     })
