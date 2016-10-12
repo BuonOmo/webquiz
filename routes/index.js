@@ -17,40 +17,20 @@ const pages = [
       id: "dashboard"
     }
   },
-  { // ------------------------------------------------------- quick test page 1
+  { // -------------------------------------------------------------- quick test
     path: pagePath + 'test',
-    url: '/test/1',
+    url: '/test',
     opt: {
-      id: "quick-test-page-1",
-      firstHeader: 'Test rapide',
-      next: '/test/2',
+      id: "quick-test",
+      firstHeader: 'Test rapide'
     }
   },
-  { // ------------------------------------------------------- quick test page 2
-    path: pagePath + 'test',
-    url: '/test/2',
+  { // -------------------------------------------------------------------- exam
+    path: pagePath + 'testicule',
+    url: '/exam',
     opt: {
-      id: "quick-test-page-2",
-      firstHeader: 'Test rapide',
-      next: '/dashboard',
-    }
-  },
-  { // ------------------------------------------------------------- exam page 1
-    path: pagePath + 'test',
-    url: '/exam/1',
-    opt: {
-      id: "exam-page-1",
-      firstHeader: 'Examen',
-      next: '/exam/2',
-    }
-  },
-  { // ------------------------------------------------------------- exam page 2
-    path: pagePath + 'test',
-    url: '/exam/2',
-    opt: {
-      id: "exam-page-2",
-      firstHeader: 'Examen',
-      next: '/result',
+      id: "exam",
+      firstHeader: 'Examen'
     }
   },
   { // ------------------------------------------------------------------ result

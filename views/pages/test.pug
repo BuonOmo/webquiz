@@ -1,28 +1,30 @@
 extends ../index.pug
 
 prepend title
-  - var pageTitle = "Quick test - question " + questionNumber
+  - var pageTitle = "Quick test"
+
+append scripts
+  script(src="/javascripts/test.js" data-id=id)
 
 block content
   main.min-page-height
     h1.page-header= firstHeader
     section.elevation--2dp.sheet
-      h1= question
-      span.top-right= domain
-      form(method="get" action=next)
+      h1#question
+      span.top-right#domain
+      form#form-answers
         // Cette balise servira plus tard pour le CSS
-        div.center
-            each answer in answers
-              div
-                input(type='checkbox' name=answer)
-                label(for=answer)= answer
+        div#answers.center
+              div.answer(hidden)
+                input(type='checkbox')
+                label
         ul.action-group
           li
               a(href='/dashboard')
                 i.material-icons dashboard
                 span.large-screen Retourner au tableau de bord
           li
-              a(href=next)
+              a#next-question
                 span.large-screen Page suivante
                 i.material-icons navigate_next
     aside

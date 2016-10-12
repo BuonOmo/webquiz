@@ -27,10 +27,10 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"], function(r
     res.json({
       domain: ans.domain,
       question: ans.question,
-      answer: ans.answer
+      answers: ans.answers
     });
   else {
-    res.statusCode = 500;
+    res.status(500);
     res.json({
       error: 'No question in these domains.'
     });
@@ -56,7 +56,7 @@ router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
       answer: ans.answer
     });
   else {
-    res.statusCode = 500;
+    res.status(500);
     res.json({
       error: 'Bad ID.'
     });
@@ -78,7 +78,7 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
       isGoodAnswer: dbAnswers[req.params.id]['goodAnswer'] == req.params.answer
     });
   else {
-    res.statusCode = 500;
+    res.status(500);
     res.json({
       error: 'bad id'
     });

@@ -79,9 +79,9 @@
   "domain": "HTML5",
   "question": "Que doit-on trouver en premier dans un document HTML ?",
   "answers": [
-    "<!DOCTYPE html>",
-    "<html>",
-    "<head>",
+    "&lt;!DOCTYPE html&gt;",
+    "&lt;html&gt;",
+    "&lt;head&gt;",
     "Rien"
   ],
   "goodAnswer": 0
