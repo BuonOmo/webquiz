@@ -167,10 +167,6 @@ body{
   padding: 0 150px;
   margin-top: 125px; // navbar height
 
-  img{
-    margin-bottom: 20px;
-  }
-
   main{
     flex-basis: 100%;
     padding: 5px;
@@ -243,6 +239,37 @@ body{
         border-top: 1px solid #e7e7e7;
         border-radius: 0 0 5px 5px;
       }
+
+      table{
+        border-collapse: collapse;
+        margin:auto;
+
+        tr, th{
+          text-align: center;
+          margin: 10px;
+        }
+
+        td{
+          padding: 15px;
+        }
+
+        tr{
+          border-top: 1px solid @dividerColor;
+          &:hover{
+            color: brown;
+            transition: color 0.3s;
+          }
+        }
+
+        td:first-child{
+          font-weight: bold;
+          margin-right:1px solid @dividerColor;
+        }
+
+        tr:nth-child(2n){
+          background-color:rgba(81, 45, 168, 0.2);
+        }
+      }
     }
 
     p{
@@ -301,7 +328,7 @@ body{
           tr{
             border-top: 1px solid @dividerColor;
             &:hover{
-              color: gray;
+              color: brown;
               transition: color 0.3s;
             }
           }
@@ -321,7 +348,7 @@ body{
 
           h1{
             transition: background-color 0.8s;
-            background-color:@accentColor;
+            background-color:rgba(255, 152, 0, 0.9);
           }
         }
       }

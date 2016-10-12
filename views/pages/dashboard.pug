@@ -10,16 +10,6 @@ block content
   main
     h1 Tableau de bord
 
-    div(id="modal-notes" class="modal")
-      div
-        header
-          a(href="#" title="Fermer la fenêtre" class="droite") X
-          h2 Détails des notes :
-        section
-          p.
-             Nous n'avons pas eu le temps d'ajouter les notes dans le modal.
-             Il est possible de retrouver le détail, en dessous dans un tableau.
-             Celui-ci sera ajouté au modal dès le prochain TP !
     a(href="#modal-notes") Accéder au détail des notes !
 
     section.central
@@ -73,6 +63,46 @@ block content
         li
           a(href='#modal-exam') Exam
 
+          // modals
+          // modal-notes
+          div(id="modal-notes" class="modal")
+            div
+              header
+                a(href="#" title="Fermer la fenêtre" class="droite") X
+                h2 Détails des notes :
+              section
+                p
+                  table
+                    thead
+                      tr
+                        th Cours
+                        th Evaluation
+                        th Date
+                        th Note (/20)
+                    tbody
+                      tr
+                        td LOG4420
+                        td HTML5
+                        td 18/09/2016
+                        td 20
+                      tr
+                        td INF3710
+                        td E/A
+                        td 20/09/2016
+                        td 12
+                      tr
+                        td INF2705
+                        td OpenGL
+                        td 25/09/2016
+                        td 19
+                      tr
+                        td LOG4715
+                        td Bases
+                        td 28/09/2016
+                        td 14
+    // /modal-notes
+    
+    // modal-exam
     div(id="modal-exam" class="modal")
       div
         header
@@ -86,3 +116,4 @@ block content
             each domain in ['HTML5', 'CSS3']
               option(value= domain)= domain
           input(type="submit" value="Commencer")
+    // /modal-exam
