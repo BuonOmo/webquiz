@@ -26,7 +26,7 @@ const pages = [
     }
   },
   { // -------------------------------------------------------------------- exam
-    path: pagePath + 'testicule',
+    path: pagePath + 'test',
     url: '/exam',
     opt: {
       id: "exam",
