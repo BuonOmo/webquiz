@@ -1,24 +1,39 @@
 (function () {
   'use strict';
 
-  /**
-   * id represents the 'data-id' html element that you can find in test.pug.
-   * Here it can be 'quick-test' or 'exam'
+  // --------------------------------------------------- variable initialisation
+  /*
+   * HACK: we are passing a parameter to this scripts through a data-* balise.
    * more here: http://stackoverflow.com/a/32589923/6320039
    */
-  var id = document.currentScript.getAttribute('data-id');
+  var isExam = 'exam' == document.currentScript.getAttribute('data-id');
 
   // JQuery quick access to important nodes
-  var $domain   = $('#domain');
-  var $question = $('#question');
-  var $answers  = $('#answers');
+  var $domain       = $('#domain');
+  var $question     = $('#question');
+  var $answers      = $('#answers');
   var $nextQuestion = $('#next-question');
-  var $dashboard = $('#dashboard');
-  if (id == 'exam') var counter = 0;
+  var $dashboard    = $('#dashboard');
 
+  if (isExam) var counter = 0;
+
+  // ---------------------------------------------------- main logic (functions)
+  /**
+   * Change DOM elements relative to a question :
+   *  - question
+   *  - domain
+   *  - answers
+   *
+   * The question is randomly retrieved from the database. If the global
+   * parameter isExam is set, then the question can be only in domains
+   * contained in sessionStorage.domains; and it also increment the counter.
+   * If the counter is greater than sessionStorage.numberOfQuestions, then exam
+   * is over and window is redirected to /result.
+   * @return undefined
+   */
   function changeQuestion() {
     var url;
-    if (id == 'exam') {
+    if (isExam) {
       if (++counter == sessionStorage.numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > sessionStorage.numberOfQuestions) {
@@ -59,6 +74,7 @@
       });
     }
 
+    // ------------------------------------------------------------- DOM binding
     $(document).ready(changeQuestion);
     $nextQuestion.click(changeQuestion);
 })();
