@@ -22,8 +22,8 @@
       if (++counter == sessionStorage.numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > sessionStorage.numberOfQuestions) {
-        window.location.href = window.location.href.replace(/exam.*$/,'result');
-        exit();
+        window.location = '/result';
+        return;
       }
       url = "/api/ask/rand/" + sessionStorage.domains;
     } else {
