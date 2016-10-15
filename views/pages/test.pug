@@ -5,6 +5,7 @@ prepend title
 
 append scripts
   script(src="/javascripts/test.js" data-id=id)
+  script(src="/javascripts/dragndrop.js")
 
 block content
   main.min-page-height
@@ -12,16 +13,18 @@ block content
     section.elevation--2dp.sheet
       h1#question
       span.top-right#domain
+      div#droptarget Faites glisser la réponse !
       form#form-answers
         // Cette balise servira plus tard pour le CSS
         div#answers.center
-              div.answer(hidden)
+              div.draggable.answer(hidden, draggable='true')
+                //Utilité de la checbox avec le drag&drop
                 input(type='checkbox')
                 label
         ul.action-group
           li
               a#dashboard(href='/dashboard')
-                i.material-icons dashboard
+                i.material-icons d  ashboard
                 span.large-screen Retourner au tableau de bord
           li
               a#next-question

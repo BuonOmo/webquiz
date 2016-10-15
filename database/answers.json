@@ -1,11 +1,12 @@
 [{
   "id": 0,
   "domain": "HTML5",
-  "question": "Comment vérifiez l'intégrité d'un script inséré à l'aide de la valise &lt;script src=\"..\"&gt; ?",
+  "question": "Comment vérifiez l'intégrité d'un script inséré à l'aide de la balise &lt;script src=\"..\"&gt; ?",
   "answers": [
     "En utilisant l’attribut \"integrity\"",
     "On lit le code et on regarde si il est joli",
-    "Je demande l’appel à un ami"
+    "Je demande l’appel à un ami",
+    "On utilise la méthode wellIntegrated()"
   ],
   "goodAnswer": 0
  }, {
