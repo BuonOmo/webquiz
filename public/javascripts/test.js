@@ -74,7 +74,12 @@
       });
     }
 
+
+    function reload() {
+      changeQuestion();
+      // function here
+    }
     // ------------------------------------------------------------- DOM binding
-    $(document).ready(changeQuestion);
-    $nextQuestion.click(changeQuestion);
+    $(document).ready(reload);
+    $nextQuestion.click(reload);
 })();
