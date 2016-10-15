@@ -68,6 +68,7 @@
             // show the clone
             .show();
         }
+        dragndrop();
       })
       .fail(function (data) {
         console.log(data);
@@ -155,12 +156,7 @@
     }
 
 
-    function reload() {
-      changeQuestion();
-      dragndrop();
-      // function here
-    }
     // ------------------------------------------------------------- DOM binding
-    $(document).ready(reload);
-    $nextQuestion.click(reload);
+    $(document).ready(changeQuestion);
+    $nextQuestion.click(changeQuestion);
 })();
