@@ -68,24 +68,29 @@
             // show the clone
             .show();
         }
+
         dragndrop();
       })
       .fail(function (data) {
         console.log(data);
       });
+
+
     }
 
     function dragndrop(){
-      var draggable = document.getElementsByClassName("draggable");
+      var draggable = document.querySelectorAll(".answer");
       var droptarget = document.getElementById("droptarget");
 
-      console.log(draggable);
+      droptarget.innerHTML = "Glisser la réponse !"
+      droptarget.classList.add("free");
 
-      for(var i = 0; i < draggable.length; i++){
+      for(var i = 1; i < draggable.length; i++){
         (function(i){
+          draggable[i].classList.add("draggable");
+          draggable[i].setAttribute("draggable", "true");
           draggable[i].addEventListener('dragstart', dragStart, false);  //the user starts dragging the element
           draggable[i].addEventListener('dragend'  , dragEnd  , false);
-          console.log(i); //Devrait s'afficher 5 fois
         })(i)
       }
 
@@ -98,17 +103,32 @@
       function dragStart(event) {
           var dataToSet = event.target.getElementsByTagName('label')[0].getAttribute('for');
           event.dataTransfer.setData("text", dataToSet); //data that is transfered to the drop target when the element is dropped. (MIME, data)
+
+          for(var i = 1; i < draggable.length; i++){
+            (function(i){
+              if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
+                draggable[i].classList.add("dragged");
+              }
+            })(i)
+          }
+
           event.dataTransfer.effectsAllowed = "copy";
-          event.target.style.border = "10px solid #cccccc";
       }
 
       function dragEnd(event) {
-        event.target.style.border = "none";
+        for(var i = 1; i < draggable.length; i++){
+          (function(i){
+            if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
+              draggable[i].classList.remove("dragged");
+            }
+          })(i)
+        }
       }
 
       /* Drop target event handlers */
       function dragEnter(event) {
-        event.target.style.border = "2px dashed rgb(0,255,0)";
+        droptarget.classList.remove("free");
+        droptarget.classList.add("enter");
       }
 
       function dragOver(event) {
@@ -118,28 +138,54 @@
       }
 
       function dragLeave(event) {
-        event.target.style.border = "1px solid black";
+        droptarget.classList.remove("enter");
+        droptarget.classList.add("free");
       }
 
       function drop(event) {
-          var choice = event.dataTransfer.getData('text'); //reads the data set in dragStart()
-          var answer = "petit test"; //IL FAUT RECUPERER ICI LA BONNE REPONSE POUR EFFECTUER LA COMPARAISON
-          event.target.innerHTML = choice;
-          if(choice == answer){
-            event.target.style.border = "5px solid green"; //We indicate that the choosen answer is the good one
+          var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
+          var answer = "petit test"; //TODO Utiliser $.get(url) etc ...
+
+
+          //var url = "/api/ans/" + questionNumber + "/" + answerNumber;
+
+          /*$.get(url)
+            .done(function(data) {
+              $domain.html(data.domain);
+            })*/
+
+
+          var choice = 0;
+
+          droptarget.classList.remove("enter");
+
+          for(var i = 1; i < draggable.length; i++){
+            (function(i){
+              if(document.getElementsByTagName('label')[i].getAttribute('for') == data){
+                answerNumber = i;
+                choice = draggable[i];
+                choice.classList.add("hidden");
+                event.target.innerHTML = data;
+              }
+            })(i)
+          }
+
+          if(choice.getElementsByTagName('label')[0].getAttribute('for') == answer){
+            droptarget.classList.add("right");
+            //event.target.style.border = "5px solid green"; //We indicate that the choosen answer is the good one
           }else{
-            event.target.style.border = "5px solid red"; //We indicate that the the choosen answer is not the good one
+            droptarget.classList.add("false");
+            //event.target.style.border = "5px solid red"; //We indicate that the the choosen answer is not the good one
           }
 
 
           //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
-          for(var j = draggable.length; j >= 0; j-- ){
-
+          for(var j = 1; j < draggable.length; j++ ){
             if(draggable[j] != undefined){
               (function(j){
                 draggable[j].removeEventListener("dragstart", dragStart);
                 draggable[j].removeEventListener("dragend", dragEnd);
-                draggable[j].removeAttribute("draggable");
+                draggable[j].setAttribute("draggable", "false");
                 draggable[j].classList.remove("draggable");
               })(j)
             }
