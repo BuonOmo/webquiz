@@ -103,7 +103,8 @@
       function dragStart(event) {
           var dataToSet = event.target.getElementsByTagName('label')[0].getAttribute('for');
           event.dataTransfer.setData("text", dataToSet); //data that is transfered to the drop target when the element is dropped. (MIME, data)
-
+          event.dataTransfer.effectsAllowed = "copy";
+          
           for(var i = 1; i < draggable.length; i++){
             (function(i){
               if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
@@ -112,7 +113,7 @@
             })(i)
           }
 
-          event.dataTransfer.effectsAllowed = "copy";
+
       }
 
       function dragEnd(event) {
@@ -145,7 +146,7 @@
       function drop(event) {
           var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
           var answer = "petit test"; //TODO Utiliser $.get(url) etc ...
-
+          var answerNumber = 0;
 
           //var url = "/api/ans/" + questionNumber + "/" + answerNumber;
 
