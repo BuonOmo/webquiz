@@ -1,76 +1,94 @@
-var express = require('express');
-var fs = require('fs');
+/* ================================= API FILE ==================================
+ * Every request are preceded by /api. Responses can throw 404 or 500 errors.
+ *
+ * List of all requests:
+ * 1. GET /question/random/:domains /ask/rand/:domains => Any question,
+ * 2. GET /question/id/:id /ask/id/:id => A specific question,
+ * 3. GET /answer[s]/:id/:answer /ans/:id/:answer => Answer to a question.
+ */
+
+var express = require('express')
+    fs      = require('fs');
+
 var router = express.Router();
 
-/**
- * GET /question/random/:domains   /ask/rand/:domains
- * Route to get any question in specific domains (domains must be comma
- * separated)
+
+/* ===================================== 1 =====================================
+ * GET /question/random/:domains /ask/rand/:domains
+ * Route to get any question in some specific domains (domains must be comma
+ * separated). If domain is ommited, the question will be picked from all the
+ * database without filter.
  * Response format : {
  *   question: String,
  *   answer: Array[String]
  * }
- */
-router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"], function(req, res) {
+ */// ==========================================================================
+router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
+           function(req, res) {
   if (req.params.domains) {
     var domains = req.params.domains.split(',');
     var ansList = dbAnswers.filter(function (element) {
       return domains.indexOf(element.domain) != -1;
     });
-  }
-  else {
+  } else {
     ansList = dbAnswers;
   }
   var index = Math.floor(Math.random()*ansList.length);
   var ans = ansList[index];
   if (ans)
     res.json({
-      domain: ans.domain,
+      domain:   ans.domain,
       question: ans.question,
-      answers: ans.answers
+      answers:  ans.answers
     });
   else {
-    res.status(500);
+    res.status(404);
     res.json({
-      error: 'No question in these domains.'
+      error: 'No question in these domains.',
+      params: {
+          domains: req.params.domains
+      }
     });
   }
 });
 
 
-/**
- * GET /question/id/:id   /ask/id/:id
+/* ===================================== 2 =====================================
+ * GET /question/id/:id /ask/id/:id
  * Route to get a specific question using its ID
  * Response format : {
  *   domain: String,
  *   question: String,
  *   answer: Array[String]
  * }
- */
+ */// ==========================================================================
 router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
   var ans = dbAnswers[req.params.id]
   if (ans)
     res.json({
-      domain: ans.domain,
+      domain:   ans.domain,
       question: ans.question,
-      answer: ans.answer
+      answers:  ans.answers
     });
   else {
-    res.status(500);
+    res.status(404);
     res.json({
-      error: 'Bad ID.'
+      error: 'Answer not found.',
+      params: {
+          id: req.params.id
+      }
     });
   }
 });
 
-/**
- * GET /answers/:id/:answer   /answer/:id/:answer   /ans/:id/:answer
- * Route to get answer
+/* ===================================== 3 =====================================
+ * GET /answers/:id/:answer /answer/:id/:answer /ans/:id/:answer
+ * Route to get an answer
  * Response format : {
  *   goodAnswerIndex: Integer,
  *   isGoodAnswer: Boolean
  * }
- */
+ */// ==========================================================================
 router.get('/ans(wers?)?/:id/:answer', function(req, res) {
   if (dbAnswers[req.params.id])
     res.json({
@@ -78,17 +96,21 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
       isGoodAnswer: dbAnswers[req.params.id]['goodAnswer'] == req.params.answer
     });
   else {
-    res.status(500);
+    res.status(404);
     res.json({
-      error: 'bad id'
+      error: 'Answer not found.',
+      params: {
+          id:     req.params.id,
+          answer: req.params.answer
+      }
     });
   }
 });
 
 /*
-help from :
-http://stackoverflow.com/questions/10011011/using-node-js-how-do-i-read-a-json-object-into-server-memory#10011078
-*/
+ * Retrieve answers from pseudo database.
+ * help from stackoverflow: http://stackoverflow.com/a/10011078/6320039
+ */
 var dbAnswers;
 fs.readFile('database/answers.json','utf8', function (err, data) {
   if (err) throw err;
