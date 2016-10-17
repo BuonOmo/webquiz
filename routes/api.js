@@ -1,5 +1,6 @@
 /* ================================= API FILE ==================================
  * Every request are preceded by /api. Responses can throw 404 or 500 errors.
+ * At the end of this document we retrieve all answers from our pseudo database.
  *
  * List of all requests:
  * 1. GET /question/random/:domains /ask/rand/:domains => Any question,
@@ -45,9 +46,7 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
     res.status(404);
     res.json({
       error: 'No question in these domains.',
-      params: {
-          domains: req.params.domains
-      }
+      params: req.params
     });
   }
 });
@@ -55,7 +54,7 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
 
 /* ===================================== 2 =====================================
  * GET /question/id/:id /ask/id/:id
- * Route to get a specific question using its ID
+ * Route to get a specific question using its ID. ID is mandatory
  * Response format : {
  *   domain: String,
  *   question: String,
@@ -74,16 +73,15 @@ router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
     res.status(404);
     res.json({
       error: 'Answer not found.',
-      params: {
-          id: req.params.id
-      }
+      params: req.params
     });
   }
 });
 
 /* ===================================== 3 =====================================
  * GET /answers/:id/:answer /answer/:id/:answer /ans/:id/:answer
- * Route to get an answer
+ * Route to get an answer. This route is made separated from the question for
+ * security purpose.
  * Response format : {
  *   goodAnswerIndex: Integer,
  *   isGoodAnswer: Boolean
@@ -99,16 +97,13 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
     res.status(404);
     res.json({
       error: 'Answer not found.',
-      params: {
-          id:     req.params.id,
-          answer: req.params.answer
-      }
+      params: req.params
     });
   }
 });
 
-/*
- * Retrieve answers from pseudo database.
+/* =================================== MODEL ===================================
+ * Retrieve answers from pseudo database using fs and a simple json file.
  * help from stackoverflow: http://stackoverflow.com/a/10011078/6320039
  */
 var dbAnswers;
