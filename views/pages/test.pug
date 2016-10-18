@@ -4,7 +4,8 @@ prepend title
   - var pageTitle = "Quick test"
 
 append scripts
-  script(src="/javascripts/test.js" data-id=id)
+  script var pageId="#{id}";
+  script(src="/javascripts/test.js")
 
 block content
   main.min-page-height
@@ -24,8 +25,8 @@ block content
               span.large-screen Retourner au tableau de bord
         li
             a#next-question
-              span.large-screen Page suivante
+              span.large-screen Question suivante
               i.material-icons navigate_next
     aside
       h1 Score courant
-      div#score
+      div#score 0 / 0

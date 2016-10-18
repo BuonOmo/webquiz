@@ -3,15 +3,15 @@
 
   // --------------------------------------------------- variable initialisation
   /*
-   * HACK: we are passing a parameter to this scripts through a data-* balise.
-   * more here: http://stackoverflow.com/a/32589923/6320039
+   * HACK: we are passing a parameter to this scripts through a script tag in
+   *       test.pug. pageId is a global variable.
    */
-  var isExam = 'exam' == document.currentScript.getAttribute('data-id');
+  var isExam = 'exam' == pageId;
 
-  var id       = 0,
+  var questionId,
       score    = 0,
       counter  = 0,
-      answered = true;
+      answered = true; // used in changeQuestion, to see if used has answered
 
   // JQuery quick access to important nodes
   var $domain       = $('#domain'),
@@ -63,7 +63,7 @@
     }
     $.get(url)
       .done(function(data) {
-        id = data.id;
+        questionId = data.id;
         $domain.html(data.domain);
         $question.html(data.question);
         // clean everything except first answer (bones)
@@ -171,7 +171,7 @@
 
       function drop(event) {
           var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
-          var url = "/api/ans/" + id + "/";
+          var url = "/api/ans/" + questionId + "/";
           var isGoodAnswer = 0;
           var indexAnswer = 0;
           var choice = 0;
@@ -204,7 +204,7 @@
               }
               answered = true;
               // update score in DOM
-              $score.html(score + " / " + (isExam ? numberOfQuestions : counter) );
+              $score.html(score + " / " + counter);
 
               //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
               for(var j = 1; j < draggable.length; j++ ){
@@ -239,5 +239,4 @@
 
     // ---------------------------------------------------------- Initialisation
     changeQuestion();
-    $score.html(score + " / " + (isExam ? numberOfQuestions : counter) );
 })();
