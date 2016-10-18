@@ -49,7 +49,6 @@
     $.get(url)
       .done(function(data) {
         id = data.id;
-        console.log(id);
         $domain.html(data.domain);
         $question.html(data.question);
         // clean everything except first answer (bones)
@@ -174,7 +173,6 @@
             .done(function(data) {
               isGoodAnswer = data.isGoodAnswer;
               indexAnswer = data.goodAnswerIndex;
-              console.log(isGoodAnswer);
               if(isGoodAnswer){
                 droptarget.classList.add("right");
                 //We indicate that the choosen answer is the good one
