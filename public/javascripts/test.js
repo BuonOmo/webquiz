@@ -8,7 +8,9 @@
    */
   var isExam = 'exam' == document.currentScript.getAttribute('data-id');
 
-  var id = 0;
+  var id       = 0,
+      score    = 0,
+      counter  = 0;
 
   // JQuery quick access to important nodes
   var $domain       = $('#domain');
@@ -16,8 +18,12 @@
   var $answers      = $('#answers');
   var $nextQuestion = $('#next-question');
   var $dashboard    = $('#dashboard');
+  var $score        = $('#score');
 
-  if (isExam) var counter = 0;
+  // Session storage use
+  var numberOfQuestions = sessionStorage.numberOfQuestions || 10,
+      domains           = sessionStorage.domains || "";
+
 
   // ---------------------------------------------------- main logic (functions)
   /**
@@ -25,6 +31,7 @@
    *  - question
    *  - domain
    *  - answers
+   *  - score count (through dragndrop function)
    *
    * The question is randomly retrieved from the database. If the global
    * parameter isExam is set, then the question can be only in domains
@@ -34,15 +41,20 @@
    * @return undefined
    */
   function changeQuestion() {
+    if (!answered) {
+      return;
+    }
+    answered = false;
+    ++counter;
     var url;
     if (isExam) {
-      if (++counter == sessionStorage.numberOfQuestions)
+      if (counter == numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
-      else if (counter > sessionStorage.numberOfQuestions) {
+      else if (counter > numberOfQuestions) {
         window.location = '/result';
         return;
       }
-      url = "/api/ask/rand/" + sessionStorage.domains;
+      url = "/api/ask/rand/" + domains;
     } else {
       url = "/api/ask/rand/";
     }
@@ -179,6 +191,7 @@
               isGoodAnswer = data.isGoodAnswer;
               indexAnswer = data.goodAnswerIndex;
               if(isGoodAnswer){
+                ++score;
                 droptarget.classList.add("right");
                 //We indicate that the choosen answer is the good one
               }else{
@@ -186,6 +199,8 @@
                 draggable[indexAnswer+1].classList.add("right");
                 //We indicate that the the choosen answer is not the good one and we show the good one
               }
+              // update score in DOM
+              $score.html(score + " / " + (isExam ? numberOfQuestions : counter) );
 
               //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
               for(var j = 1; j < draggable.length; j++ ){
@@ -213,6 +228,9 @@
 
 
     // ------------------------------------------------------------- DOM binding
-    $(document).ready(changeQuestion);
     $nextQuestion.click(changeQuestion);
+
+    // ---------------------------------------------------------- Initialisation
+    changeQuestion();
+    $score.html(score + " / " + (isExam ? numberOfQuestions : counter) );
 })();
