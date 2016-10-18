@@ -37,11 +37,7 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
   var index = Math.floor(Math.random()*ansList.length);
   var ans = ansList[index];
   if (ans)
-    res.json({
-      domain:   ans.domain,
-      question: ans.question,
-      answers:  ans.answers
-    });
+    res.json(questionJSON(ans));
   else {
     res.status(404);
     res.json({
@@ -64,11 +60,7 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
 router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
   var ans = dbAnswers[req.params.id]
   if (ans)
-    res.json({
-      domain:   ans.domain,
-      question: ans.question,
-      answers:  ans.answers
-    });
+    res.json(questionJSON(ans));
   else {
     res.status(404);
     res.json({
@@ -111,5 +103,29 @@ fs.readFile('database/answers.json','utf8', function (err, data) {
   if (err) throw err;
   dbAnswers = JSON.parse(data);
 });
+
+/* Below, a function that returns a JSON of the good format of question to the 
+ * client using format from the database.
+ * Return format:
+ * {
+ *   "id"       : 0,
+ *   "domain"   : "LIFE",
+ *   "question" : "To be or not to be ?",
+ *   "answers"  : [
+ *     "To be",
+ *     "Not to be"
+ *   ]
+ * }
+ */
+function questionJSON(dbQuestion) {
+    return {
+      id:       dbQuestion.id
+      domain:   dbQuestion.domain,
+      question: dbQuestion.question,
+      answers:  dbQuestion.answers
+    }
+}
+
+
 
 module.exports = router;
