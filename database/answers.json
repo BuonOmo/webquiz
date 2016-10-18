@@ -102,14 +102,14 @@
   "domain": "JS",
   "question": "Qu'est-ce que le DOM",
   "answers": [
-    "Document Object Middle;",
+    "Document Object Middle",
     "Document Object Modele",
     "Document Object Model",
-    "Document Object Maple;"
+    "Document Object Maple"
   ],
   "goodAnswer": 2
  }, {
-  "id": 9,
+  "id": 10,
   "domain": "CSS3",
   "question": "Quel est la couleur du cheval blanc d'Henry IV ?",
   "answers": [
