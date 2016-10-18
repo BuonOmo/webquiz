@@ -59,11 +59,7 @@
             .find('.answer:first')
             .clone()
             // append current answer elements to the clone
-            .find('input')
-              .attr('name', answer)
-            .end()
             .find('label')
-              .attr('for', answer)
               .html(answer)
             .end()
             // append the clone to DOM (#answer)
@@ -100,10 +96,19 @@
         })(i)
       }
 
-      droptarget.addEventListener('dragenter', dragEnter  , false); //fired when the user drags the draggable onto the drop target (only fires when the draggable element changes from being outside to being over)
-      droptarget.addEventListener('dragover' , dragOver   , false); //Fired once the draggable element is over the drop target and keeps firing for as long as the draggable element is being dragged over the drop target.
-      droptarget.addEventListener('dragleave', dragLeave  , false); //If the user drags the draggable object out of the drop target again, the dragleave event is fired.
-      droptarget.addEventListener('drop'     , drop       , false); //If the user drops the draggable object on the drop target, the drop event is fired.
+      // Fired when the user drags the draggable onto the drop target (only fires
+      // when the draggable element changes from being outside to being over)
+      droptarget.addEventListener('dragenter', dragEnter, false);
+      // Fired once the draggable element is over the drop target and keeps
+      // firing for as long as the draggable element is being dragged over the
+      // drop target.
+      droptarget.addEventListener('dragover' , dragOver , false);
+      // If the user drags the draggable object out of the drop target again,
+      // the dragleave event is fired.
+      droptarget.addEventListener('dragleave', dragLeave, false);
+      // If the user drops the draggable object on the drop target, the drop
+      // event is fired.
+      droptarget.addEventListener('drop'     , drop     , false);
 
       /* Draggable event handlers */
       function dragStart(event) {
@@ -112,6 +117,7 @@
           event.dataTransfer.effectsAllowed = "copy";
 
           for(var i = 1; i < draggable.length; i++){
+            // FIXME: here with have a performance issue : we are going through the whole dom each time
             (function(i){
               if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
                 draggable[i].classList.add("dragged");
@@ -122,6 +128,7 @@
 
       function dragEnd(event) {
         for(var i = 1; i < draggable.length; i++){
+          // FIXME: here with have a performance issue : we are going through the whole dom each time
           (function(i){
             if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
               draggable[i].classList.remove("dragged");

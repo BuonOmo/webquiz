@@ -10,8 +10,6 @@
 
 
 
-
-
 /* ====================================================================
     color classes $cc
    ==================================================================== */
@@ -109,52 +107,63 @@
   clear: both;
 }
 
-.hidden{
+.hidden {
   display:none;
 }
 
-.right{
+.right {
   border: 2px solid green;
 }
 
-.false{
+.false {
   border: 2px solid red;
 }
 
-.enter{
-  border: 2px dashed rgb(0,255,0);
+.enter {
+  border: 1px dashed gray;
 }
 
-.free{
+.free {
   border: 1px solid;
 }
 
-.dragged{
-  border: 3px solid #cccccc;
+.dragged {
+  border: 1px solid #cccccc;
   text-align: center;
 }
 
-.button{
-    background-color: rgba(255, 152, 0, 0.9);
-    border: none;
-    margin: 10px auto;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+.answer {
+  padding: 20px;
 }
 
-.button:hover{
-      transition: background-color 0.3s;
-      background-color: rgba(255, 152, 0, 1);
-      cursor:pointer;
+.button {
+  background-color: rgba(255, 152, 0, 0.9);
+  border: none;
+  margin: 10px auto;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  &:hover {
+    transition: background-color 0.3s;
+    background-color: rgba(255, 152, 0, 1);
+    cursor:pointer;
+  }
+}
+
+.flexbox {
+  display: flex;
+}
+#answers {
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ====================================================================
    Main content $mc
    ==================================================================== */
-body{
+body {
   background: @lightPrimaryColor;
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -205,14 +214,14 @@ body{
   }
 }
 
-.main-container{
+.main-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; //On centre les blocs dans la page
   padding: 0 150px;
   margin-top: 125px; // navbar height
 
-  main{
+  main {
     flex-basis: 100%;
     padding: 5px;
     text-decoration-color: @primaryTextColor;
@@ -229,7 +238,7 @@ body{
       color: black;
       text-decoration: none;
 
-      &:hover{
+      &:hover {
         transform: scale(1.5);
       }
     }
@@ -260,12 +269,12 @@ body{
         }
       }
 
-      fieldset{
+      fieldset {
         margin-top: 20px;
         display: flex;
         flex-flow: row wrap;
 
-        label, input, select{
+        label, input, select {
           width:100%;
         }
       }
@@ -306,28 +315,28 @@ body{
         border-radius: 0 0 5px 5px;
       }
 
-      table{
+      table {
         border-collapse: collapse;
         margin:auto;
 
-        tr, th{
+        tr, th {
           text-align: center;
           margin: 10px;
         }
 
-        td{
+        td {
           padding: 15px;
         }
 
-        tr{
+        tr {
           border-top: 1px solid @dividerColor;
-          &:hover{
+          &:hover {
             color: brown;
             transition: color 0.3s;
           }
         }
 
-        td:first-child{
+        td:first-child {
           font-weight: bold;
           margin-right:1px solid @dividerColor;
         }
@@ -338,27 +347,27 @@ body{
       }
     }
 
-    p{
+    p {
       padding-left:10px;
       text-align: justify;
     }
 
-    section.central{
+    section.central {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
 
-      h1{
+      h1 {
         order: 1;
         width:100%;
       }
 
-      section{
+      section {
         box-shadow: 0px 0px 5px @accentColorHalfOpacity;
         margin-bottom : 20px;
         padding-bottom: 0;
 
-        p, h1{
+        p, h1 {
           text-align: center;
         }
 
@@ -372,34 +381,34 @@ body{
           order:3;
         }
 
-        h1{
+        h1 {
           margin: 0;
           margin-bottom: 15px;
           background-color:rgba(81, 45, 168, 0.6);
         }
 
-        table{
+        table {
           border-collapse: collapse;
           margin:auto;
 
-          tr, th{
+          tr, th {
             text-align: center;
             margin: 10px;
           }
 
-          td{
+          td {
             padding: 15px;
           }
 
-          tr{
+          tr {
             border-top: 1px solid @dividerColor;
-            &:hover{
+            &:hover {
               color: brown;
               transition: color 0.3s;
             }
           }
 
-          td:first-child{
+          td:first-child {
             font-weight: bold;
             margin-right:1px solid @dividerColor;
           }
@@ -409,22 +418,22 @@ body{
           }
         }
 
-        &:hover{
+        &:hover {
           box-shadow: 0px 0px 10px @deepPurple;
 
-          h1{
+          h1 {
             transition: background-color 0.8s;
             background-color:rgba(255, 152, 0, 0.9);
           }
         }
       }
     }
-    aside{
-      ul{
+    aside {
+      ul {
         display: flex;
         padding: 0;
 
-        li{
+        li {
           list-style: none;
           margin-right: 10px;
           width: 200px;
@@ -432,7 +441,7 @@ body{
           text-align: center;
 
 
-          a{
+          a {
             text-decoration: none;
             background-color:rgba(81, 45, 168, 0.6);
             color: @primaryTextColor;
@@ -441,14 +450,14 @@ body{
                       0 -1px 0 rgba( 255, 255, 255, 0.4);
           }
 
-          a:hover{
+          a:hover {
             background-color: rgba(81, 45, 168,0.8);
           }
         }
       }
     }
 
-    div#droptarget{
+    div#droptarget {
       height: auto;
       width: 100%;
       box-sizing: border-box;
@@ -460,11 +469,11 @@ body{
 }
 
 @media all and (max-width: 950px) {
-  .main-container{
-    main{
-      section.central{
+  .main-container {
+    main {
+      section.central {
         flex-direction: column;
-        section{
+        section {
           &:nth-child(2), &:nth-child(3){
             width:100%;
           }

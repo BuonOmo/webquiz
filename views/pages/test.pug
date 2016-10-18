@@ -12,21 +12,20 @@ block content
     section.elevation--2dp.sheet
       h1#question
       span.top-right#domain
-      div#droptarget Faites glisser la réponse !
-      form#form-answers
-        // Cette balise servira plus tard pour le CSS
-        div#answers.center
-              div.draggable.answer(draggable='false')
-                label
-        ul.action-group
-          li
-              a#dashboard(href='/dashboard')
-                i.material-icons dashboard
-                span.large-screen Retourner au tableau de bord
-          li
-              a#next-question
-                span.large-screen Page suivante
-                i.material-icons navigate_next
+      div#droptarget
+      div#answers.center.flexbox.wrap
+            div.draggable.answer(draggable='false' hidden)
+              //- TODO: remove this and change js accordingly
+              label
+      ul.action-group
+        li
+            a#dashboard(href='/dashboard')
+              i.material-icons dashboard
+              span.large-screen Retourner au tableau de bord
+        li
+            a#next-question
+              span.large-screen Page suivante
+              i.material-icons navigate_next
     aside
       h1 Score courant
       p 20/20
