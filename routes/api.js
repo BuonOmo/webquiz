@@ -104,7 +104,7 @@ fs.readFile('database/answers.json','utf8', function (err, data) {
   dbAnswers = JSON.parse(data);
 });
 
-/* Below, a function that returns a JSON of the good format of question to the 
+/* Below, a function that returns a JSON of the good format of question to the
  * client using format from the database.
  * Return format:
  * {
@@ -119,7 +119,7 @@ fs.readFile('database/answers.json','utf8', function (err, data) {
  */
 function questionJSON(dbQuestion) {
     return {
-      id:       dbQuestion.id
+      id:       dbQuestion.id,
       domain:   dbQuestion.domain,
       question: dbQuestion.question,
       answers:  dbQuestion.answers
