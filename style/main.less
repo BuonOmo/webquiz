@@ -6,6 +6,7 @@
  - mobile responsive classes (mrc)
  - generic classes (gc)
  - main content (mc)
+ - animations (a)
    ==================================================================== */
 
 
@@ -481,4 +482,19 @@ body {
       }
     }
   }
+}
+
+
+
+/* ====================================================================
+   Animations $a
+   ==================================================================== */
+@keyframes blink {
+    0%  { background: lightgrey; }
+    60% { background: lightgrey; }
+  100%  { background: white; }
+}
+
+.blink {
+    animation: blink 0.2s alternate 5;
 }

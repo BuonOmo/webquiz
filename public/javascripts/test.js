@@ -10,15 +10,17 @@
 
   var id       = 0,
       score    = 0,
-      counter  = 0;
+      counter  = 0,
+      answered = true;
 
   // JQuery quick access to important nodes
-  var $domain       = $('#domain');
-  var $question     = $('#question');
-  var $answers      = $('#answers');
-  var $nextQuestion = $('#next-question');
-  var $dashboard    = $('#dashboard');
-  var $score        = $('#score');
+  var $domain       = $('#domain'),
+      $question     = $('#question'),
+      $answers      = $('#answers'),
+      $nextQuestion = $('#next-question'),
+      $dashboard    = $('#dashboard'),
+      $score        = $('#score'),
+      $droptarget   = $('#droptarget');
 
   // Session storage use
   var numberOfQuestions = sessionStorage.numberOfQuestions || 10,
@@ -42,6 +44,7 @@
    */
   function changeQuestion() {
     if (!answered) {
+      $droptarget.addClass('blink');
       return;
     }
     answered = false;
@@ -199,6 +202,7 @@
                 draggable[indexAnswer+1].classList.add("right");
                 //We indicate that the the choosen answer is not the good one and we show the good one
               }
+              answered = true;
               // update score in DOM
               $score.html(score + " / " + (isExam ? numberOfQuestions : counter) );
 
@@ -229,6 +233,9 @@
 
     // ------------------------------------------------------------- DOM binding
     $nextQuestion.click(changeQuestion);
+    $droptarget.on('animationend', function(event) {
+      $(this).removeClass('blink');
+    });
 
     // ---------------------------------------------------------- Initialisation
     changeQuestion();
