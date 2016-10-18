@@ -85,6 +85,7 @@
     function dragndrop(){
       var draggable = document.querySelectorAll(".answer");
       var droptarget = document.getElementById("droptarget");
+      //draggable[0].classList.remove("right");
 
       droptarget.innerHTML = "Glisser la réponse !"
       droptarget.classList.remove("false");
@@ -151,6 +152,7 @@
           var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
           var url = "/api/ans/" + id + "/";
           var isGoodAnswer = 0;
+          var indexAnswer = 0;
           var choice = 0;
 
           droptarget.classList.remove("enter");
@@ -171,13 +173,15 @@
           $.get(url)
             .done(function(data) {
               isGoodAnswer = data.isGoodAnswer;
+              indexAnswer = data.goodAnswerIndex;
               console.log(isGoodAnswer);
               if(isGoodAnswer){
                 droptarget.classList.add("right");
                 //We indicate that the choosen answer is the good one
               }else{
                 droptarget.classList.add("false");
-                //We indicate that the the choosen answer is not the good one
+                draggable[indexAnswer+1].classList.add("right");
+                //We indicate that the the choosen answer is not the good one and we show the good one
               }
 
               //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
@@ -197,16 +201,10 @@
               droptarget.removeEventListener("dragleave", dragLeave);
               droptarget.removeEventListener("drop", drop);
 
-              event.preventDefault();
-              return false; //Necessary to avoid default browsers behaviours
             });
 
-
-
-
-
-
-
+            event.preventDefault();
+            return false; //Necessary to avoid default browsers behaviours
       }
     }
 
