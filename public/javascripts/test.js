@@ -167,8 +167,6 @@
             })(i)
           }
 
-          console.log(url);
-
           $.get(url)
             .done(function(data) {
               isGoodAnswer = data.isGoodAnswer;
