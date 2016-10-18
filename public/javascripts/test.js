@@ -8,6 +8,8 @@
    */
   var isExam = 'exam' == document.currentScript.getAttribute('data-id');
 
+  var id = 0;
+
   // JQuery quick access to important nodes
   var $domain       = $('#domain');
   var $question     = $('#question');
@@ -46,6 +48,7 @@
     }
     $.get(url)
       .done(function(data) {
+        id = data.id;
         $domain.html(data.domain);
         $question.html(data.question);
         // clean everything except first answer (bones)
@@ -83,6 +86,8 @@
       var droptarget = document.getElementById("droptarget");
 
       droptarget.innerHTML = "Glisser la réponse !"
+      droptarget.classList.remove("false");
+      droptarget.classList.remove("right");
       droptarget.classList.add("free");
 
       for(var i = 1; i < draggable.length; i++){
@@ -104,7 +109,7 @@
           var dataToSet = event.target.getElementsByTagName('label')[0].getAttribute('for');
           event.dataTransfer.setData("text", dataToSet); //data that is transfered to the drop target when the element is dropped. (MIME, data)
           event.dataTransfer.effectsAllowed = "copy";
-          
+
           for(var i = 1; i < draggable.length; i++){
             (function(i){
               if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
@@ -112,8 +117,6 @@
               }
             })(i)
           }
-
-
       }
 
       function dragEnd(event) {
@@ -145,17 +148,8 @@
 
       function drop(event) {
           var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
-          var answer = "petit test"; //TODO Utiliser $.get(url) etc ...
-          var answerNumber = 0;
-
-          //var url = "/api/ans/" + questionNumber + "/" + answerNumber;
-
-          /*$.get(url)
-            .done(function(data) {
-              $domain.html(data.domain);
-            })*/
-
-
+          var url = "/api/ans/" + id + "/";
+          var isGoodAnswer = 0;
           var choice = 0;
 
           droptarget.classList.remove("enter");
@@ -163,7 +157,7 @@
           for(var i = 1; i < draggable.length; i++){
             (function(i){
               if(document.getElementsByTagName('label')[i].getAttribute('for') == data){
-                answerNumber = i;
+                url += i-1;
                 choice = draggable[i];
                 choice.classList.add("hidden");
                 event.target.innerHTML = data;
@@ -171,34 +165,47 @@
             })(i)
           }
 
-          if(choice.getElementsByTagName('label')[0].getAttribute('for') == answer){
-            droptarget.classList.add("right");
-            //event.target.style.border = "5px solid green"; //We indicate that the choosen answer is the good one
-          }else{
-            droptarget.classList.add("false");
-            //event.target.style.border = "5px solid red"; //We indicate that the the choosen answer is not the good one
-          }
+          console.log(url);
+
+          $.get(url)
+            .done(function(data) {
+              isGoodAnswer = data.isGoodAnswer;
+              console.log(isGoodAnswer);
+              if(isGoodAnswer){
+                droptarget.classList.add("right");
+                //We indicate that the choosen answer is the good one
+              }else{
+                droptarget.classList.add("false");
+                //We indicate that the the choosen answer is not the good one
+              }
+
+              //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
+              for(var j = 1; j < draggable.length; j++ ){
+                if(draggable[j] != undefined){
+                  (function(j){
+                    draggable[j].removeEventListener("dragstart", dragStart);
+                    draggable[j].removeEventListener("dragend", dragEnd);
+                    draggable[j].setAttribute("draggable", "false");
+                    draggable[j].classList.remove("draggable");
+                  })(j)
+                }
+              }
+
+              droptarget.removeEventListener("dragenter", dragEnter);
+              droptarget.removeEventListener("dragover", dragOver);
+              droptarget.removeEventListener("dragleave", dragLeave);
+              droptarget.removeEventListener("drop", drop);
+
+              event.preventDefault();
+              return false; //Necessary to avoid default browsers behaviours
+            });
 
 
-          //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
-          for(var j = 1; j < draggable.length; j++ ){
-            if(draggable[j] != undefined){
-              (function(j){
-                draggable[j].removeEventListener("dragstart", dragStart);
-                draggable[j].removeEventListener("dragend", dragEnd);
-                draggable[j].setAttribute("draggable", "false");
-                draggable[j].classList.remove("draggable");
-              })(j)
-            }
-          }
 
-          droptarget.removeEventListener("dragenter", dragEnter);
-          droptarget.removeEventListener("dragover", dragOver);
-          droptarget.removeEventListener("dragleave", dragLeave);
-          droptarget.removeEventListener("drop", drop);
 
-          event.preventDefault();
-          return false; //Necessary to avoid default browsers behaviours
+
+
+
       }
     }
 
