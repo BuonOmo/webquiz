@@ -112,14 +112,14 @@
 
       /* Draggable event handlers */
       function dragStart(event) {
-          var dataToSet = event.target.getElementsByTagName('label')[0].getAttribute('for');
+          var dataToSet = event.target.getElementsByTagName('label')[0].innerHTML;
           event.dataTransfer.setData("text", dataToSet); //data that is transfered to the drop target when the element is dropped. (MIME, data)
           event.dataTransfer.effectsAllowed = "copy";
 
           for(var i = 1; i < draggable.length; i++){
             // FIXME: here with have a performance issue : we are going through the whole dom each time
             (function(i){
-              if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
+              if(document.getElementsByTagName('label')[i].innerHTML == event.target.getElementsByTagName('label')[0].innerHTML){
                 draggable[i].classList.add("dragged");
               }
             })(i)
@@ -130,7 +130,7 @@
         for(var i = 1; i < draggable.length; i++){
           // FIXME: here with have a performance issue : we are going through the whole dom each time
           (function(i){
-            if(document.getElementsByTagName('label')[i].getAttribute('for') == event.target.getElementsByTagName('label')[0].getAttribute('for')){
+            if(document.getElementsByTagName('label')[i].innerHTML == event.target.getElementsByTagName('label')[0].innerHTML){
               draggable[i].classList.remove("dragged");
             }
           })(i)
@@ -165,7 +165,7 @@
 
           for(var i = 1; i < draggable.length; i++){
             (function(i){
-              if(document.getElementsByTagName('label')[i].getAttribute('for') == data){
+              if(document.getElementsByTagName('label')[i].innerHTML == data){
                 url += i-1;
                 choice = draggable[i];
                 choice.classList.add("hidden");
