@@ -200,6 +200,8 @@
               //We indicate that the the choosen answer is not the good one and we show the good one
             }
             answered = true;
+            // update stats in localstorage
+            updateQuestionStats($domain.html(), isGoodAnswer, isExam);
             // update score in DOM
             $score.html(score + " / " + counter);
 
@@ -223,10 +225,42 @@
           });
 
           event.preventDefault();
-          return false; //Necessary to avoid default browsers behaviours
+          return false; //Necessary to avoid default browsers behaviours <- FIXME: not event.stopPropagation() is even better
     }
   }
 
+
+  /**
+   * Update statistics for a question only.
+   *
+   * @return undefined
+   */
+  function updateQuestionStats(domain, isGood, isExam) {
+    var stats = JSON.parse(localStorage.getItem("WQ_questionStatistics"));
+    console.log(stats)
+    stats = stats || {
+      "answers"     : 0,
+      "examAnswers" : 0,
+      "goodAnswers" : 0,
+      "domains"     : {}
+    };
+    stats.domains[domain] = stats.domains[domain] || {
+      "answers"     : 0,
+      "examAnswers" : 0,
+      "goodAnswers" : 0
+    };
+    stats.domains[domain].answers++;
+    stats.answers++;
+    if (isExam) {
+      stats.domains[domain].examAnswers++;
+      stats.examAnswers++;
+    }
+    if (isGood) {
+      stats.domains[domain].goodAnswers++;
+      stats.goodAnswers++;
+    }
+    localStorage.setItem("WQ_questionStatistics",JSON.stringify(stats));
+  }
 
   // ------------------------------------------------------------- DOM binding
   $nextQuestion.click(changeQuestion);
