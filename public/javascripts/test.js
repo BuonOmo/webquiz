@@ -132,7 +132,6 @@
           event.dataTransfer.effectsAllowed = "copy";
 
           for(var i = 1; i < draggable.length; i++){
-            // FIXME: here with have a performance issue : we are going through the whole dom each time
             (function(i){
               if(document.getElementsByTagName('label')[i].innerHTML == event.target.getElementsByTagName('label')[0].innerHTML){
                 draggable[i].classList.add("dragged");
@@ -143,7 +142,6 @@
 
       function dragEnd(event) {
         for(var i = 1; i < draggable.length; i++){
-          // FIXME: here with have a performance issue : we are going through the whole dom each time
           (function(i){
             if(document.getElementsByTagName('label')[i].innerHTML == event.target.getElementsByTagName('label')[0].innerHTML){
               draggable[i].classList.remove("dragged");
