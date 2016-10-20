@@ -87,6 +87,20 @@ function removeLocal(name) {
 }
 
 /**
+ * Remove every variable in namespace WQ from localStorage and sessionStorage.
+ * This function is used for test purpuse.
+ * @return undefined
+ */
+function removeAllStorage() {
+  Object.keys(sessionStorage)
+    .filter(function(key) { return key.startsWith('WQ_') })
+    .forEach(function(key){ sessionStorage.removeItem(key); });
+  Object.keys(localStorage)
+    .filter(function(key) { return key.startsWith('WQ_') })
+    .forEach(function(key) { localStorage.removeItem(key); });
+}
+
+/**
  * Redirect to a page using it’s path, without basename. This function is made
  * for quick change in basename and logic centralisation.
  * @param  string    path
