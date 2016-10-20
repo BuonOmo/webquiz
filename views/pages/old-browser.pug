@@ -1,0 +1,12 @@
+extends ../index
+
+prepend title
+  - var pageTitle = "erreur"
+
+block content
+  main.min-page-height
+    h1 Fureteur trop ancient
+    p
+      | Certaines fonctionnalités ne sont pas à jour et empêchent le bon
+      | fonctionnement du site, veuillez considerer la&nbsp;
+      a(href="http://browsehappy.com/") mise à jour.
