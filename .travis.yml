@@ -1,6 +1,6 @@
 before_script:
-  - npm install -g phantomjs
-  - npm run start
+  - npm install -g phantomjs-prebuilt
+  - npm run start &
 language: node_js
 node_js:
   - "6"
