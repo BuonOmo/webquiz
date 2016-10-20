@@ -21,8 +21,12 @@ block content
       ul.action-group
         li
             a#dashboard(href='/dashboard')
-              i.material-icons dashboard
-              span.large-screen Retourner au tableau de bord
+              if id == 'exam'
+                i.material-icons sentiment_very_dissatisfied
+                span.large-screen Abandonner
+              else
+                i.material-icons dashboard
+                span.large-screen Retourner au tableau de bord
         li
             a#next-question
               span.large-screen Question suivante
