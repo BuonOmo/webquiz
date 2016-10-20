@@ -23,8 +23,8 @@
       $droptarget   = $('#droptarget');
 
   // Session storage use
-  var numberOfQuestions = getSession('numberOfQuestions') || 10,
-      domains           = getSession('domains') || "";
+  var numberOfQuestions = getSession('preferences').numberOfQuestions || 10,
+      domains           = getSession('preferences').domains || "";
 
 
   // ---------------------------------------------------- main logic (functions)

@@ -16,8 +16,12 @@ block content
       h1.page-header Statistiques
       section
         h1 Taux de réussite
-        p.
-          Votre taux de réussite est de : 84%
+        p.statistics
+          | Votre taux de réussite est de &nbsp;
+          span.total-ratio
+          | % pour &nbsp;
+          span.total-count
+          | &nbsp; questions répondus.
       section
         h1 Moyenne
         p.
@@ -112,10 +116,10 @@ block content
           fieldset
             legend Theme et nombre de questions
             label(for="numberOfQuestions") Nombre de questions :
-            input(type="number" min=1 max=2 value=1 name="numberOfQuestions" autofocus)
+            input(type="number" min=1 value=10 name="numberOfQuestions" autofocus)
             label(for="domains") Domaines concernés :
             select(name="domains" multiple)
               each domain in ['HTML5', 'CSS3']
                 option(value= domain)= domain
-          input(type="submit" value="Commencer").button
+          input#start-exam.button(type="submit" value="Commencer")
     // /modal-exam
