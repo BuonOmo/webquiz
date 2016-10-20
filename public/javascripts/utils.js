@@ -92,12 +92,11 @@ function removeLocal(name) {
  * @return undefined
  */
 function removeAllStorage() {
-  Object.keys(sessionStorage)
-    .filter(function(key) { return key.startsWith('WQ_') })
-    .forEach(function(key){ sessionStorage.removeItem(key); });
-  Object.keys(localStorage)
-    .filter(function(key) { return key.startsWith('WQ_') })
-    .forEach(function(key) { localStorage.removeItem(key); });
+  ['localStorage', 'sessionStorage'].forEach(function(method) {
+    Object.keys(window[method])
+      .filter(function(key) { return key.startsWith('WQ_') })
+      .forEach(function(key){ window[method].removeItem(key); });
+  });
 }
 
 /**

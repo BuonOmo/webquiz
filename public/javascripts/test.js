@@ -23,8 +23,12 @@
       $droptarget   = $('#droptarget');
 
   // Session storage use
-  var numberOfQuestions = getSession('preferences').numberOfQuestions || 10,
-      domains           = getSession('preferences').domains || "";
+  if (isExam && getSession('preferences') !== null) {
+    var numberOfQuestions = getSession('preferences').numberOfQuestions || 10,
+        domains           = getSession('preferences').domains || "";
+  } else {
+    var numberOfQuestions = 10, domains = "";
+  }
 
 
   // ---------------------------------------------------- main logic (functions)
@@ -96,7 +100,7 @@
     var droptarget = document.getElementById("droptarget");
     //draggable[0].classList.remove("right");
 
-    droptarget.innerHTML = "Glisser la réponse !"
+    droptarget.innerHTML = "Glisser la réponse !";
     droptarget.classList.remove("false");
     droptarget.classList.remove("right");
     droptarget.classList.add("free");
@@ -225,7 +229,7 @@
           });
 
           event.preventDefault();
-          return false; //Necessary to avoid default browsers behaviours <- FIXME: not event.stopPropagation() is even better
+          event.stopPropagation();
     }
   }
 
