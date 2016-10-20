@@ -23,8 +23,8 @@
       $droptarget   = $('#droptarget');
 
   // Session storage use
-  var numberOfQuestions = sessionStorage.numberOfQuestions || 10,
-      domains           = sessionStorage.domains || "";
+  var numberOfQuestions = getSession('numberOfQuestions') || 10,
+      domains           = getSession('domains') || "";
 
 
   // ---------------------------------------------------- main logic (functions)
@@ -54,7 +54,7 @@
       if (counter == numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > numberOfQuestions) {
-        window.location = '/result';
+        go('result');
         return;
       }
       url = "/api/ask/rand/" + domains;
@@ -236,18 +236,17 @@
    * @return undefined
    */
   function updateQuestionStats(domain, isGood, isExam) {
-    var stats = JSON.parse(localStorage.getItem("WQ_questionStatistics"));
-    console.log(stats)
+    var stats = getLocal("questionStatistics");
     stats = stats || {
-      "answers"     : 0,
-      "examAnswers" : 0,
-      "goodAnswers" : 0,
-      "domains"     : {}
+      "answers"         : 0,
+      "examAnswers"     : 0,
+      "goodAnswers"     : 0,
+      "domains"         : {}
     };
     stats.domains[domain] = stats.domains[domain] || {
-      "answers"     : 0,
-      "examAnswers" : 0,
-      "goodAnswers" : 0
+      "answers"         : 0,
+      "examAnswers"     : 0,
+      "goodAnswers"     : 0,
     };
     stats.domains[domain].answers++;
     stats.answers++;
@@ -259,7 +258,7 @@
       stats.domains[domain].goodAnswers++;
       stats.goodAnswers++;
     }
-    localStorage.setItem("WQ_questionStatistics",JSON.stringify(stats));
+    setLocal("questionStatistics",stats);
   }
 
   // ------------------------------------------------------------- DOM binding

@@ -46,6 +46,11 @@ const pages = [
     opt: {
       id: "instructions"
     }
+  },
+  { // ------------------------------------------------------------- old browser
+    path: pagePath + 'old-browser',
+    url: '/ie',
+    opt: {}
   }];
 
 for (var page of pages) {
