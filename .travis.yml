@@ -1,5 +1,5 @@
 before_script:
-  - npm install -g chromedriver mocha coffee
+  - npm install -g phantomjs mocha
   - npm run start 2>&1 /dev/null &
 language: node_js
 node_js:
