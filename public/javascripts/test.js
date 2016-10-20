@@ -241,18 +241,24 @@
       "answers"         : 0,
       "examAnswers"     : 0,
       "goodAnswers"     : 0,
+      "goodExamAnswers" : 0,
       "domains"         : {}
     };
     stats.domains[domain] = stats.domains[domain] || {
       "answers"         : 0,
       "examAnswers"     : 0,
       "goodAnswers"     : 0,
+      "goodExamAnswers" : 0
     };
     stats.domains[domain].answers++;
     stats.answers++;
     if (isExam) {
       stats.domains[domain].examAnswers++;
       stats.examAnswers++;
+      if (isGood) {
+        stats.domains[domain].goodExamAnswers++;
+        stats.goodExamAnswers++;
+      }
     }
     if (isGood) {
       stats.domains[domain].goodAnswers++;
