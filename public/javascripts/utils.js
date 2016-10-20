@@ -29,6 +29,20 @@ function getSession(name) {
 }
 
 /**
+ * Remove an item from sessionStorage. This page will redirect user if browser
+ * hasn’t got sessionStorage.
+ * @param  string    name name of the item
+ * @return undefined
+ */
+function removeSession(name) {
+  if (Modernizr.sessionstorage) {
+    sessionStorage.removeItem('WQ_'+name);
+  } else {
+    go('ie');
+  }
+}
+
+/**
  * Put an item in localStorage. This page will redirect user if browser hasn’t
  * got localStorage.
  * @param  object item
@@ -56,6 +70,20 @@ function getLocal(name) {
   }
   go('ie');
   return null;
+}
+
+/**
+ * Remove an item from localStorage. This page will redirect user if browser
+ * hasn’t got localStorage.
+ * @param  string    name name of the item
+ * @return undefined
+ */
+function removeLocal(name) {
+  if (Modernizr.localstorage) {
+    localStorage.removeItem('WQ_'+name);
+  } else {
+    go('ie');
+  }
 }
 
 /**

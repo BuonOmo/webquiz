@@ -64,6 +64,16 @@
 /* ====================================================================
    Generic classes $gc
    ==================================================================== */
+ a {
+   cursor: pointer;
+   color: @primaryTextColor;
+   text-decoration: underline;
+   transition: color 0.2s;
+   &:hover {
+     color: @accentColor;
+   }
+ }
+
 .container {
  padding: 0 150px;
 }
