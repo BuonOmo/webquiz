@@ -8,6 +8,7 @@ baseUrl = 'http://localhost:3000/'
 before ->
   @timeout 15000 # browser launching
   @driver = new webdriver.Builder()
+      # change 'phantomjs' to 'chrome' on your computer for visual tests
       .forBrowser 'phantomjs'
       .build()
   @driver.get baseUrl
