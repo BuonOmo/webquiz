@@ -44,6 +44,13 @@ describe "Interface", ->
       @driver.findElement(linkText: "Exam").click()
       expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}dashboard/#modal-exam"
       expect("#modal-exam").dom.to.be.visible()
+    it "select CSS3 and submit form", ->
+      domains = @driver.findElement(css: "[name=domains] > option:nth-of-type(2)")
+      domains.click()
+      domains.submit()
+      expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}exam"
+      expect(@driver.executeScript("return document.readyState")).to.eventually.equal("complete")
+      expect("h1.page-header").dom.to.contain.text "Examen"
 
 ###
 describe "theme", ->

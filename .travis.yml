@@ -1,6 +1,9 @@
 before_script:
-  - npm install -g phantomjs mocha
-  - npm run start 2>&1 /dev/null &
+- npm install -g phantomjs mocha
+- npm run start 2>&1 /dev/null &
 language: node_js
 node_js:
-  - "node"
+- node
+notifications:
+  slack:
+    secure: iVU+D3lmS4Qqj8ALArErEiRUxPGGOE1ydAUVikWL2apzQb72HcooW3XdhVN3jYfL3plRcOCa4X736i7G1N9akTNAghgoW3wbWT7D/BW4ZoYfrlzU3a9sLETflrD33ggrZn7KqYlIodfP4N6QeIp4bpeXW6B2cWN+rhealKZpPWNGyFgt0i0fVCqYQ1bnTz2xX7C0w065s8r2GjdmRwPjnGDGgeGd5ezcfV3D8ercnoAQSXvQlAUKip1h5C3XFTwTjN2GcENPdRJY6hFi2JUItmfMM8eDglp93Gn1rHkAxGeLpvgBmJfzw9vbvKmNSpNifYU5wpablHcpayDyBxodj3ePzUSzbwnu0VRjDENbNED4rcG5t9cujICFm82S12mr4ZOJiGXExlW6HHFoFGxqs9KpbZX0IVm5I0NrbxDXjJ9abGymVJepN8EncnwgjBs+80IDgBgykyVfyEItyA1Bp/4PqM0hnxma+I5fkkdre1tQr2yAFKsEPVssYivhUGlq1DUu5HDOCyYxMPBSLiUKn49D40/94/a6//x7nnlhPjDKNbCvLsTx19FF+rauGLmaV3gbuJCkntLLlBrG7dxu256cU1TyNQpx+CC7BSga9cryWFpbkpWIBDJcIUTXwZSy/8613XyfWXU3i3RuXQYF0K/rGMvNhKK0yAhF2/RQC2A=
