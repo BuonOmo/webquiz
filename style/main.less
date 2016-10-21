@@ -1,6 +1,6 @@
 @import 'palette';
 
-/* ================== TABLE OF CONTENTS ===============================
+/* ========================= TABLE OF CONTENTS ========================
  - color classes (cc)
  - material design evelation (mde)
  - mobile responsive classes (mrc)
@@ -66,11 +66,11 @@
    ==================================================================== */
  a {
    cursor: pointer;
-   color: @primaryTextColor;
+   color: darken(@accentColor, 10%);
    text-decoration: underline;
-   transition: color 0.2s;
+   transition: color 0.1s;
    &:hover {
-     color: @accentColor;
+     color: darken(@accentColor, 30%);
    }
  }
 

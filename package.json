@@ -19,7 +19,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "chai-webdriver": "^1.2.0",
     "coffee-script": "^1.11.1",
-    "selenium-webdriver": "^3.0.0-beta-3"
+    "selenium-webdriver": "^2.53.3"
   }
 }
