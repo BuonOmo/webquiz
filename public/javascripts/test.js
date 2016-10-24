@@ -61,6 +61,7 @@
         setLocal(
           "results",
           (getLocal("results") || []).concat({
+            domains: domains,
             timestamp: Date.now(),
             goodAnswers: score,
             totalAnswers: numberOfQuestions,
@@ -292,9 +293,10 @@
       setLocal(
         "results",
         (getLocal("results") || []).concat({
+          domains: domains,
           timestamp: Date.now(),
           goodAnswers: 0,
-          totalAnswers: numberOfQuestions,
+          totalAnswers: counter - 1,
           surrender: true
         })
       );

@@ -26,7 +26,7 @@ block content
         section
           h1 Moyenne
           p.exam-statistics
-            | La moyenne des notes aux examens est :
+            | La moyenne des notes aux examens est :&nbsp;
             span.exam-grade
 
       a#reset Remise à zéro
@@ -52,30 +52,16 @@ block content
                 tr
                   th Domaines
                   th Date
-                  th total des réponses
                   th réponses juste
+                  th total des réponses
                   th Note (/20)
               tbody
                 tr
-                  td LOG4420
-                  td HTML5
-                  td 18/09/2016
-                  td 20
-                tr
-                  td INF3710
-                  td E/A
-                  td 20/09/2016
-                  td 12
-                tr
-                  td INF2705
-                  td OpenGL
-                  td 25/09/2016
-                  td 19
-                tr
-                  td LOG4715
-                  td Bases
-                  td 28/09/2016
-                  td 14
+                  td.domains
+                  td.date
+                  td.good-answers
+                  td.total-answers
+                  td.grade
     // /modal-notes
 
     // modal-exam
