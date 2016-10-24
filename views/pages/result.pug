@@ -3,9 +3,12 @@ extends ../index
 prepend title
   - var pageTitle = "resultats"
 
+append scripts
+  script(src="/javascripts/result.js")
+
 block content
   main.min-page-height
     h1.page-header Félicitations, vous avez fini votre test !
-    p Vous avez 2/2 bonnes réponses.
+    p 
     div.big-centered-button-container
       a.big-centered-button(href='/dashboard') Retourner au Tableau de bord
