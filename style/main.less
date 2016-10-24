@@ -250,15 +250,6 @@ body {
     .cf:after {
       clear:both;
     }
-    .droite {
-      float:right;
-      color: black;
-      text-decoration: none;
-
-      &:hover {
-        transform: scale(1.5);
-      }
-    }
 
     p {
       text-align: justify;
@@ -411,6 +402,16 @@ body {
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
   pointer-events: none;
+
+  .droite {
+    float:right;
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }  
 
   &:target {
     opacity:1;
