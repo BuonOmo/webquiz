@@ -58,6 +58,15 @@
       if (counter == numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > numberOfQuestions) {
+        setLocal(
+          "result",
+          (getLocal("result") || []).concat({
+            timestamp: Date.now(),
+            goodAnswers: score,
+            totalAnswers: counter,
+            surrender: false
+          })
+        );
         go('result');
         return;
       }
@@ -276,6 +285,22 @@
   $droptarget.on('animationend', function(event) {
     $(this).removeClass('blink');
   });
+
+  if (isExam) {
+    $('#dashboard').click(function (event) {
+      event.preventDefault();
+      setLocal(
+        "result",
+        (getLocal("result") || []).concat({
+          timestamp: Date.now(),
+          goodAnswers: 0,
+          totalAnswers: counter,
+          surrender: true
+        })
+      );
+      go('result');
+    })
+  }
 
   // ---------------------------------------------------------- Initialisation
   changeQuestion();
