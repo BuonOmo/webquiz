@@ -4,8 +4,24 @@
    Footer
    ==================================================================== */
 
+/* Footer sticky position has been solved thanks to a hack found on stack overflow:
+ * http://stackoverflow.com/q/3443606/6320039
+ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 30px; /* bottom = footer height */
+}
+
 footer {
   background-color: @primaryColor;
+  overflow:hidden;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 30px;
   padding-top: 4px;

@@ -7,77 +7,76 @@ append scripts
   script(src="/javascripts/dashboard.js")
 
 block content
-  div.min-page-height
-    main
-      h1 Tableau de bord
+  main
+    h1 Tableau de bord
 
-      a(href="#modal-notes") Accéder au détail des notes !
+    a(href="#modal-notes") Accéder au détail des notes !
 
-      section.central
-        h1.page-header Statistiques
-        section
-          h1 Taux de réussite
-          p.question-statistics
-            | Votre taux de réussite est de &nbsp;
-            span.total-ratio
-            | % pour &nbsp;
-            span.total-count
-            | &nbsp; questions répondus.
-        section
-          h1 Moyenne
-          p.exam-statistics
-            | La moyenne des notes aux examens est :&nbsp;
-            span.exam-grade
+    section.central
+      h1 Statistiques
+      section
+        h1 Taux de réussite
+        p.question-statistics
+          | Votre taux de réussite est de &nbsp;
+          span.total-ratio
+          | % pour &nbsp;
+          span.total-count
+          | &nbsp; questions répondus.
+      section
+        h1 Moyenne
+        p.exam-statistics
+          | La moyenne des notes aux examens est :&nbsp;
+          span.exam-grade
 
-      a#reset Remise à zéro
-      aside
-        h1.page-header Accès rapide
-        ul
-          li
-            a(href='/test/').button Test
-          li
-            a(href='#modal-exam').button Exam
-    //- ------------------------------------------------------------------------
-    // modals
-    // modal-notes
-    div(id="modal-notes" class="modal")
-      div
-        header
-          a(href="#" title="Fermer la fenêtre" class="droite") X
-          h2 Détails des notes :
-        section
-          div.exam-statistics
-            table
-              thead
-                tr
-                  th Domaines
-                  th Date
-                  th réponses juste
-                  th total des réponses
-                  th Note (/20)
-              tbody
-                tr
-                  td.domains
-                  td.date
-                  td.good-answers
-                  td.total-answers
-                  td.grade
-    // /modal-notes
+    a#reset Remise à zéro
+    aside
+      h1 Accès rapide
+      ul
+        li
+          a(href='/test/').button Test
+        li
+          a(href='#modal-exam').button Exam
+  //- ------------------------------------------------------------------------
+  // modals
+  // modal-notes
+  div(id="modal-notes" class="modal")
+    div
+      header
+        a(href="#" title="Fermer la fenêtre" class="droite") X
+        h2 Détails des notes :
+      section
+        div.exam-statistics
+          table
+            thead
+              tr
+                th Domaines
+                th Date
+                th réponses juste
+                th total des réponses
+                th Note (/20)
+            tbody
+              tr
+                td.domains
+                td.date
+                td.good-answers
+                td.total-answers
+                td.grade
+  // /modal-notes
 
-    // modal-exam
-    div(id="modal-exam" class="modal")
-      div
-        header
-          a(href="#" title="Fermer la fenêtre" class="droite") X
-          h2 Choix des caractéristiques de l’examen :
-        form(method="POST" action="/api/test" id="start-exam")
-          fieldset
-            legend Theme et nombre de questions
-            label(for="numberOfQuestions") Nombre de questions :
-            input(type="number" min=1 value=10 name="numberOfQuestions" autofocus)
-            label(for="domains") Domaines concernés :
-            select(name="domains" multiple)
-              each domain in ['HTML5', 'CSS3']
-                option(value= domain)= domain
-          input#start-exam.button(type="submit" value="Commencer")
-    // /modal-exam
+  // modal-exam
+  div(id="modal-exam" class="modal")
+    div
+      header
+        a(href="#" title="Fermer la fenêtre" class="droite") X
+        h2 Choix des caractéristiques de l’examen :
+      form(method="POST" action="/api/test" id="start-exam")
+        fieldset
+          legend Theme et nombre de questions
+          label(for="numberOfQuestions") Nombre de questions :
+          input(type="number" min=1 value=10 name="numberOfQuestions" autofocus)
+          label(for="domains") Domaines concernés :
+          select(name="domains" multiple)
+            each domain in ['HTML5', 'CSS3']
+              option(value= domain)= domain
+        input#start-exam.button(type="submit" value="Commencer")
+  // /modal-exam

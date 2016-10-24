@@ -55,7 +55,7 @@ describe "Interface", ->
       # setTimeout -> # short timeout for pageload
       #   console.log 'hello'
       # , 400
-      # expect("h1.page-header").dom.to.contain.text "Examen"
+      # expect("h1").dom.to.contain.text "Examen"
     # it "tries to go to the next page", ->
     #   @driver.findElement(css: "#next-question").click()
 

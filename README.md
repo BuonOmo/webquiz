@@ -2,15 +2,33 @@
 
 [![Build Status](https://travis-ci.org/BuonOmo/webquiz.svg?branch=master)](https://travis-ci.org/BuonOmo/webquiz)
 
-WebQuiz vous permet de tester vos connaissances et de suivre vos résultats facilement !
+WebQuiz vous permet de tester vos connaissances et de suivre vos résultats facilement ! Cette documentation est faite pour les développeurs et pour les visiteurs du site. Si vous êtes développeur rendez-vous [ici](#instructions-aux-developpeurs). Sinon vous trouverez les instructions aux usagers ci-dessous.
+
+**Les liens du sommaire ne sont pas encore fonctionnels sur le site**. Nous allons changer le convertisseur de markdown bientôt, en attendant vous pouvez lire ces instructions sur [github](//github.com/buonomo/webquiz#readme).
+
+## Instructions aux usagers
+
+### Comment naviguer sur WebQuiz ?
+
+Afin d'avoir une navigation la plus fluide possible, l'équipe de WebQuiz vous recommande d'utiliser la barre de navigation. celle-ci est conçue de telle sorte à vous emmener sur les principales parties du site.
+
+### Comment utiliser les questionnaires ?
+
+![logo, visible seulement sur le site, partie instructions](/images/logo.png)
+
+Nous vous conseillons d'utiliser les questionnaires d’examens uniquement après avoir révisé votre cours. En revanche vous pouvez utiliser les questionnaires de test pour vous entrainer. Ceux-ci peuvent être arreter n’importe quand.
+Lorsque vous êtes dans un examen, vous ne pouvez plus le quitter sans l’abandonner et obtenir la note 0. Vous devez finir les examens. Avant chaque examen, vous pouvez choisir les domaines et nombre de questions que vous souhaitez faire. Le nombre de questions est requis. Par contre **si vous n’entrez pas de domaine**, tous les domaines disponible seront utilisés.
+
+
+## Instructions aux développeurs
 
 **Sommaire :** [Dépendances](#dépendances) — [Installation](#installation) — [Routes](#routes) — [API](#api) — [Tests](#tests) — [Auteurs](#auteurs)
 
-## Dépendances
+### Dépendances
 
 WebQuiz utilise essentiellement des dépendances associées au gestionnaire de projets node [npm][]. Pour les tests, certaines dépendances sont à installer globalement, voir [Tests](#tests).
 
-## Installation
+### Installation
 
 Récuperez d’abord le code source, soit grace à [l’archive zip](https://github.com/BuonOmo/webquiz/archive/master.zip). Soit en utilisant `git` :
 
@@ -24,23 +42,23 @@ Ensuite pour lancer le programme il vous suffit d’executer les commandes suiva
 
 Après l’execution de ces commandes, vous pourrez acceder au site sur la page http://localhost:3000.
 
-## Routes
+### Routes
 
 En plus des routes générées par express pour pug, tous le contenu du dossier style est lié au projet gràce à la route `/less-css`.
 
 
 Les routes `/jquery` et `/modernizr` permettent d’accerder aux scripts des paquets respectifs.
 
-## API
+### API
 
 L’API n’est documentée qu’au sein du code pour l’instant, voir `routes/api.js`. Toutes les routes de l’API sont précédées de `/api`.
 
-## Tests
+### Tests
 
 Pour plus de clarté les tests sont fait en [coffee script][], avec les outils de test [mocha][] pour la mise en forme générale des tests et [chai][] pour les assertions. Pour les requetes asynchrones, ce projet utilise aussi le plugin [chai as promised][].
 
 
-### Tests d’interfaces
+#### Tests d’interfaces
 
 Les tests d’interfaces utilisent [Selenium Webdriver][] et le navigateur [PhantomJS][] pour simuler une interface directement dans un terminal, avec de marcher aussi sur les machines virtuelles de [travis-ci][]. Pour faire tourner ceux-ci il vous faudra installer globalement PhantomJS, mocha et lancer la commande npm de tests :
 
