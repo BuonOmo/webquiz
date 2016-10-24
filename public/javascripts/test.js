@@ -59,11 +59,11 @@
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > numberOfQuestions) {
         setLocal(
-          "result",
-          (getLocal("result") || []).concat({
+          "results",
+          (getLocal("results") || []).concat({
             timestamp: Date.now(),
             goodAnswers: score,
-            totalAnswers: counter,
+            totalAnswers: numberOfQuestions,
             surrender: false
           })
         );
@@ -290,11 +290,11 @@
     $('#dashboard').click(function (event) {
       event.preventDefault();
       setLocal(
-        "result",
-        (getLocal("result") || []).concat({
+        "results",
+        (getLocal("results") || []).concat({
           timestamp: Date.now(),
           goodAnswers: 0,
-          totalAnswers: counter,
+          totalAnswers: numberOfQuestions,
           surrender: true
         })
       );
