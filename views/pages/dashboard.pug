@@ -7,65 +7,36 @@ append scripts
   script(src="/javascripts/dashboard.js")
 
 block content
-  main
-    h1 Tableau de bord
+  div.min-page-height
+    main
+      h1 Tableau de bord
 
-    a(href="#modal-notes") Accéder au détail des notes !
+      a(href="#modal-notes") Accéder au détail des notes !
 
-    section.central
-      h1.page-header Statistiques
-      section
-        h1 Taux de réussite
-        p.statistics
-          | Votre taux de réussite est de &nbsp;
-          span.total-ratio
-          | % pour &nbsp;
-          span.total-count
-          | &nbsp; questions répondus.
-      section
-        h1 Moyenne
-        p.
-          La moyenne des notes aux examens est : 16/20.
+      section.central
+        h1.page-header Statistiques
+        section
+          h1 Taux de réussite
+          p.question-statistics
+            | Votre taux de réussite est de &nbsp;
+            span.total-ratio
+            | % pour &nbsp;
+            span.total-count
+            | &nbsp; questions répondus.
+        section
+          h1 Moyenne
+          p.exam-statistics
+            | La moyenne des notes aux examens est :
+            span.exam-grade
 
-      section
-        h1 Résultats par examens
-
-        table
-          thead
-            tr
-              th Cours
-              th Evaluation
-              th Date
-              th Note (/20)
-          tbody
-            tr
-              td LOG4420
-              td HTML5
-              td 18/09/2016
-              td 20
-            tr
-              td INF3710
-              td E/A
-              td 20/09/2016
-              td 12
-            tr
-              td INF2705
-              td OpenGL
-              td 25/09/2016
-              td 19
-            tr
-              td LOG4715
-              td Bases
-              td 28/09/2016
-              td 14
-    a#reset Remise à zéro
-    aside
-      h1.page-header Accès rapide
-      ul
-        li
-          a(href='/test/').button Test
-        li
-          a(href='#modal-exam').button Exam
+      a#reset Remise à zéro
+      aside
+        h1.page-header Accès rapide
+        ul
+          li
+            a(href='/test/').button Test
+          li
+            a(href='#modal-exam').button Exam
     //- ------------------------------------------------------------------------
     // modals
     // modal-notes
@@ -75,13 +46,14 @@ block content
           a(href="#" title="Fermer la fenêtre" class="droite") X
           h2 Détails des notes :
         section
-          p
+          div.exam-statistics
             table
               thead
                 tr
-                  th Cours
-                  th Evaluation
+                  th Domaines
                   th Date
+                  th total des réponses
+                  th réponses juste
                   th Note (/20)
               tbody
                 tr

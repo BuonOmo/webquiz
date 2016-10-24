@@ -10,15 +10,25 @@
     go('exam');
   });
 
-  function printStatistics(){
+  function printStatistics () {
+
+
+    // first stats: about questions
     if (getLocal('questionStatistics') == null) {
-      $('.statistics').html('Aucune statistique pour le moment');
+      $('.question-statistics').html('Aucune statistique pour le moment');
     } else {
-      $('.statistics .total-ratio').html(
-        Math.round(( getLocal('questionStatistics').goodAnswers /
-        getLocal('questionStatistics').answers ) * 100)
-      );
-      $('.statistics .total-count').html(getLocal('questionStatistics').answers);
+      var totalCount = getLocal('questionStatistics').answers;
+      var totalRatio = Math.round(( getLocal('questionStatistics').goodAnswers /
+                                    totalCount ) * 100)
+      $('.question-statistics .total-ratio').html(totalRatio);
+      $('.question-statistics .total-count').html(totalCount);
+    }
+
+    // exam grades
+    if(getLocal('results') == null) {
+      $('.exam-statistics').html('Aucune statistique pour le moment');
+    } else {
+      var examGrade = 0;
     }
   }
 
