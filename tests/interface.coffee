@@ -37,7 +37,7 @@ describe "Interface", ->
       expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}test/"
 
   describe "Full exam", ->
-    @timeout 3000
+    @timeout 6000
     it "has a closed modal", ->
       expect("#modal-exam").dom.to.have.style "opacity", "0"
     it "opens the exam modal", ->
