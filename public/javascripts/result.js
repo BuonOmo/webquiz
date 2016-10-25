@@ -3,7 +3,7 @@
 
   var results = getLocal("results");
   var result = results[results.length - 1]; //On récupère le dernier
-  var pourcentage = Math.floor(100 * result.goodAnswers / result.totalAnswers);
+  var pourcentage = Math.floor(100 * result.goodAnswers / (result.totalAnswers || 1));
   var affichage = "Vous avez : " + result.goodAnswers + "/" + result.totalAnswers + " bonnes réponses.<br />" +
                    "Le pourcentage de réussite est donc de : " + pourcentage + "%. <br /><br />";
   var validiteRessource = 30000; //La ressource est valide pendant 30s

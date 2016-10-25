@@ -62,5 +62,12 @@
     printStatistics();
   });
 
+  // load preferences
+  if (getSession('preferences')) {
+    $('input[name="numberOfQuestions"]').val(getSession('preferences').numberOfQuestions)
+    for (var domain of getSession('preferences').domains)
+      $('option[value="'+domain+'"]')[0].selected = true;
+  }
+
   printStatistics();
 })();
