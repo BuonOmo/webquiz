@@ -44,7 +44,7 @@ describe "Interface", ->
       @driver.findElement(linkText: "Exam").click()
       expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}dashboard/#modal-exam"
       expect("#modal-exam").dom.to.be.visible()
-    it "select CSS3 and submit form", (done)->
+    it "select CSS3 and submit form", ()->
       domains = @driver.findElement(css: "[name=domains] > option:nth-of-type(2)")
       domains.click()
       domains.submit()
@@ -52,7 +52,6 @@ describe "Interface", ->
         setTimeout ->
           expect("#domain").dom.to.contain.text "CSS3"
           expect("h1").dom.to.contain.text "Examen"
-          done()
         , 1400
     it "tries to go to the next page", ->
       setTimeout ->
