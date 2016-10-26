@@ -9,7 +9,7 @@ before ->
   @timeout 15000 # browser launching
   @driver = new webdriver.Builder()
       # change 'phantomjs' to 'chrome' on your computer for visual tests
-      .forBrowser 'phantomjs'
+      .forBrowser 'chrome'
       .build()
   chai.use chaiWebdriver(@driver)
   @driver.get baseUrl
@@ -44,20 +44,42 @@ describe "Interface", ->
       @driver.findElement(linkText: "Exam").click()
       expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}dashboard/#modal-exam"
       expect("#modal-exam").dom.to.be.visible()
-    # it "select CSS3 and submit form", ->
-    #   domains = @driver.findElement(css: "[name=domains] > option:nth-of-type(2)")
-    #   domains.click()
-    #   domains.submit()
-    #   expect(@driver.getCurrentUrl()).to.eventually.equal "#{baseUrl}exam"
-    #   expect(@driver.executeScript("return document.readyState")).to.eventually.equal("complete")
-
-      # expect(@driver.findElement(css: "#domain").getText()).to.eventually.equal "CSS3"
-      # setTimeout -> # short timeout for pageload
-      #   console.log 'hello'
-      # , 400
-      # expect("h1").dom.to.contain.text "Examen"
-    # it "tries to go to the next page", ->
-    #   @driver.findElement(css: "#next-question").click()
+    it "select CSS3 and submit form", (done)->
+      domains = @driver.findElement(css: "[name=domains] > option:nth-of-type(2)")
+      domains.click()
+      domains.submit()
+      expect(@driver.getCurrentUrl()).to.eventually.equal("#{baseUrl}exam").then ->
+        setTimeout ->
+          expect("#domain").dom.to.contain.text "CSS3"
+          expect("h1").dom.to.contain.text "Examen"
+          done()
+        , 1400
+    it "tries to go to the next page", ->
+      setTimeout ->
+        @driver.findElement(css: "#next-question").click()
+        expect('#droptarget').dom.to.have.class "blink"
+      , 500
+    it "drag and drop ten times", ->
+      setTimeout ->
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+        @driver.dragAndDrop(css: "#answers > div:nth-of-type(3)", css: "#droptarget")
+        @driver.findElement(css: "#next-question").click()
+      , 700
 
 ###
 describe "theme", ->
