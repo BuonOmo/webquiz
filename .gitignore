@@ -1,15 +1,3 @@
-### old files ###
-clean
-
-### Pug ###
-# generated html
-*.html
-
-### Less ###
-# generated css
-*.css
-!material-icons.min.css
-
 # Part below reated by https://www.gitignore.io/api/node
 ### Node ###
 # Logs
