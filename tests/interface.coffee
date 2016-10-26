@@ -9,7 +9,7 @@ before ->
   @timeout 15000 # browser launching
   @driver = new webdriver.Builder()
       # change 'phantomjs' to 'chrome' on your computer for visual tests
-      .forBrowser 'chrome'
+      .forBrowser 'phantomjs'
       .build()
   chai.use chaiWebdriver(@driver)
   @driver.get baseUrl
