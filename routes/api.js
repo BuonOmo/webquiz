@@ -16,15 +16,16 @@ var router = express.Router();
 
 /* ===================================== 1 =====================================
  * GET /question/:id /ask/:id
- * Route to get a specific question using its ID. ID is mandatory
+ * Route to get a specific question using its ID. ID is mandatory and is a
+ * number. If not given, this will be redirected to request 2 (/ask/:domains)
  * Response format : {
  *   domain: String,
  *   question: String,
  *   answer: Array[String]
  * }
  */// ==========================================================================
-router.get(/\/(question|ask)\/\d+/, function(req, res) {
-  var ans = dbAnswers[req.params.id]
+router.get(/\/(?:question|ask)\/(\d+)/, function(req, res) {
+  var ans = dbAnswers[req.params[0]]
   if (ans)
     res.json(questionJSON(ans));
   else {

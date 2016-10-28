@@ -1,8 +1,8 @@
 {
-	"id": "cdf8f36a-df56-65f2-3d30-d3b5c1f2022d",
+	"id": "a1be701f-d000-e62b-ff36-e1ba31f8d918",
 	"name": "Webquiz",
 	"allTests": [],
-	"timestamp": 1477678190992,
+	"timestamp": 1477691434393,
 	"collection_id": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 	"folder_id": 0,
 	"target_type": "collection",
@@ -16,10 +16,34 @@
 		"description": "",
 		"order": [
 			"0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"9a772097-ebba-916a-2b2e-0cdb8c5a40fc"
+			"9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
+			"0ba195f5-9efb-11ee-572c-d7435f4dc691",
+			"fd611a88-f70f-f6c6-71d3-7ed5765af256",
+			"cfdbf15d-fa9c-2a69-459d-203815cbd45b",
+			"1ce14046-5841-9638-23b7-f793e882f318"
 		],
 		"folders": [],
 		"requests": [
+			{
+				"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ask/10000000000",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "",
+				"dataMode": "params",
+				"name": "localhost:3000/api/ask/10000000000",
+				"description": "Ask for a non existant question",
+				"descriptionFormat": "html",
+				"time": 1477690785356,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"data has an error text, 'Answer not found.'\"] = jsonData.error === \"Answer not found.\";\ntests[\"data has parameters\"] = typeof jsonData.params === \"object\";\n\ntests[\"Status code is 404\"] = responseCode.code === 404;",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
 			{
 				"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
@@ -37,6 +61,26 @@
 				"version": 2,
 				"responses": [],
 				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"data has an id\"] = typeof jsonData.id === \"number\";\ntests[\"data has a domain\"] = typeof jsonData.domain === \"string\";\ntests[\"data has a question\"] = typeof jsonData.question === \"string\";\ntests[\"data has answers\"] = typeof jsonData.answers === \"object\";\ntests[\"minimum two answers\"] = jsonData.answers.length > 1;\n",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "1ce14046-5841-9638-23b7-f793e882f318",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ans/0/0",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "",
+				"dataMode": "params",
+				"name": "localhost:3000/api/ask/0/0",
+				"description": "Give a good answer",
+				"descriptionFormat": "html",
+				"time": 1477691350459,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Object expected is correct\"] = typeof jsonData.goodAnswerIndex === \"number\" && typeof jsonData.isGoodAnswer === \"boolean\";\ntests[\"This is the good answer\"] = jsonData.isGoodAnswer;",
 				"currentHelper": "normal",
 				"helperAttributes": {}
 			},
@@ -59,6 +103,46 @@
 				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"data has an error text\"] = typeof jsonData.error === \"string\";\ntests[\"data has parameters\"] = typeof jsonData.params === \"object\";\n\ntests[\"Status code is 404\"] = responseCode.code === 404;",
 				"currentHelper": "normal",
 				"helperAttributes": {}
+			},
+			{
+				"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ans/0/1",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "",
+				"dataMode": "params",
+				"name": "localhost:3000/api/ask/0/1",
+				"description": "Give a bad answer",
+				"descriptionFormat": "html",
+				"time": 1477691308845,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Object expected is correct\"] = typeof jsonData.goodAnswerIndex === \"number\" && typeof jsonData.isGoodAnswer === \"boolean\";\ntests[\"This is not the good answer\"] = !jsonData.isGoodAnswer;",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ask/0",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "",
+				"dataMode": "params",
+				"name": "localhost:3000/api/ask/0",
+				"description": "Ask for a specific answer, and get it right",
+				"descriptionFormat": "html",
+				"time": 1477691115367,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\nvar shouldBe = {\n  \"id\": 0,\n  \"domain\": \"HTML5\",\n  \"question\": \"Comment vérifiez l'intégrité d'un script inséré à l'aide de la balise &lt;script src=\\\"..\\\"&gt; ?\",\n  \"answers\": [\n    \"En utilisant l’attribut \\\"integrity\\\"\",\n    \"On lit le code et on regarde si il est joli\",\n    \"Je demande l’appel à un ami\",\n    \"On utilise la méthode wellIntegrated()\"\n  ]\n}\ntests[\"Answer taken is the good one\"] = JSON.stringify(shouldBe) === JSON.stringify(jsonData);",
+				"currentHelper": "normal",
+				"helperAttributes": {}
 			}
 		],
 		"timestamp": 1477678044723,
@@ -71,7 +155,7 @@
 		"owner": "877335",
 		"subscribed": false,
 		"createdAt": 1477678044768,
-		"updatedAt": 1477678175888,
+		"updatedAt": 1477691350533,
 		"write": true,
 		"isDeleted": false,
 		"published": false,
@@ -123,7 +207,7 @@
 				}
 			},
 			"times": [
-				15
+				74
 			],
 			"allTests": [
 				{
@@ -134,8 +218,8 @@
 					"minimum two answers": true
 				}
 			],
-			"time": 15,
-			"totalRequestTime": 15,
+			"time": 74,
+			"totalRequestTime": 74,
 			"iterationResults": {}
 		},
 		{
@@ -168,7 +252,7 @@
 				}
 			},
 			"times": [
-				11
+				56
 			],
 			"allTests": [
 				{
@@ -177,14 +261,162 @@
 					"Status code is 404": true
 				}
 			],
-			"time": 11,
-			"totalRequestTime": 11,
+			"time": 56,
+			"totalRequestTime": 56,
+			"iterationResults": {}
+		},
+		{
+			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
+			"name": "localhost:3000/api/ask/10000000000",
+			"url": "localhost:3000/api/ask/10000000000",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"tests": {
+				"data has an error text, 'Answer not found.'": true,
+				"data has parameters": true,
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"data has an error text, 'Answer not found.'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has parameters": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				50
+			],
+			"allTests": [
+				{
+					"data has an error text, 'Answer not found.'": true,
+					"data has parameters": true,
+					"Status code is 404": true
+				}
+			],
+			"time": 50,
+			"totalRequestTime": 50,
+			"iterationResults": {}
+		},
+		{
+			"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
+			"name": "localhost:3000/api/ask/0",
+			"url": "localhost:3000/api/ask/0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"Answer taken is the good one": true
+			},
+			"testPassFailCounts": {
+				"Answer taken is the good one": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				48
+			],
+			"allTests": [
+				{
+					"Answer taken is the good one": true
+				}
+			],
+			"time": 48,
+			"totalRequestTime": 48,
+			"iterationResults": {}
+		},
+		{
+			"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
+			"name": "localhost:3000/api/ask/0/1",
+			"url": "localhost:3000/api/ans/0/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"Object expected is correct": true,
+				"This is not the good answer": true
+			},
+			"testPassFailCounts": {
+				"Object expected is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"This is not the good answer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Object expected is correct": true,
+					"This is not the good answer": true
+				}
+			],
+			"time": 38,
+			"totalRequestTime": 38,
+			"iterationResults": {}
+		},
+		{
+			"id": "1ce14046-5841-9638-23b7-f793e882f318",
+			"name": "localhost:3000/api/ask/0/0",
+			"url": "localhost:3000/api/ans/0/0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"Object expected is correct": true,
+				"This is the good answer": true
+			},
+			"testPassFailCounts": {
+				"Object expected is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"This is the good answer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Object expected is correct": true,
+					"This is the good answer": true
+				}
+			],
+			"time": 13,
+			"totalRequestTime": 13,
 			"iterationResults": {}
 		}
 	],
-	"totalPass": 8,
+	"totalPass": 16,
 	"totalFail": 0,
-	"totalTime": 26,
+	"totalTime": 279,
 	"lifecycle": "done",
 	"willStop": false,
 	"requests": [
@@ -192,7 +424,7 @@
 			"name": "localhost:3000/api/ask/",
 			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
 			"url": "localhost:3000/api/ask/",
-			"time": 15,
+			"time": 74,
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -248,7 +480,7 @@
 			"name": "localhost:3000/api/ask/notArealdomain",
 			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
 			"url": "localhost:3000/api/ask/notArealdomain",
-			"time": 11,
+			"time": 56,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -284,6 +516,146 @@
 				"data has an error text": true,
 				"data has parameters": true,
 				"Status code is 404": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/ask/10000000000",
+			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
+			"url": "localhost:3000/api/ask/10000000000",
+			"time": 50,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"testPassFailCounts": {
+				"data has an error text, 'Answer not found.'": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has parameters": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"data has an error text, 'Answer not found.'",
+				"data has parameters",
+				"Status code is 404"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"data has an error text, 'Answer not found.'": true,
+				"data has parameters": true,
+				"Status code is 404": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/ask/0",
+			"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
+			"url": "localhost:3000/api/ask/0",
+			"time": 48,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"Answer taken is the good one": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Answer taken is the good one"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Answer taken is the good one": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/ask/0/1",
+			"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
+			"url": "localhost:3000/api/ans/0/1",
+			"time": 38,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"Object expected is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"This is not the good answer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Object expected is correct",
+				"This is not the good answer"
+			],
+			"gridData": [
+				[
+					true,
+					true
+				]
+			],
+			"tests": {
+				"Object expected is correct": true,
+				"This is not the good answer": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/ask/0/0",
+			"id": "1ce14046-5841-9638-23b7-f793e882f318",
+			"url": "localhost:3000/api/ans/0/0",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"Object expected is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"This is the good answer": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Object expected is correct",
+				"This is the good answer"
+			],
+			"gridData": [
+				[
+					true,
+					true
+				]
+			],
+			"tests": {
+				"Object expected is correct": true,
+				"This is the good answer": true
 			}
 		}
 	],
