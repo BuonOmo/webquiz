@@ -71,9 +71,9 @@
         go('result');
         return;
       }
-      url = "/api/ask/rand/" + domains;
+      url = "/api/ask/" + domains;
     } else {
-      url = "/api/ask/rand/";
+      url = "/api/ask/";
     }
     $.get(url)
       .done(function(data) {

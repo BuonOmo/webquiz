@@ -3,8 +3,8 @@
  * At the end of this document we retrieve all answers from our pseudo database.
  *
  * List of all requests:
- * 1. GET /question/random/:domains /ask/rand/:domains => Any question,
- * 2. GET /question/id/:id /ask/id/:id => A specific question,
+ * 1. GET /question/:id /ask/:id => A specific question,
+ * 2. GET /question/:domains /ask/:domains => Any question,
  * 3. GET /answer[s]/:id/:answer /ans/:id/:answer => Answer to a question.
  */
 
@@ -15,7 +15,29 @@ var router = express.Router();
 
 
 /* ===================================== 1 =====================================
- * GET /question/random/:domains /ask/rand/:domains
+ * GET /question/:id /ask/:id
+ * Route to get a specific question using its ID. ID is mandatory
+ * Response format : {
+ *   domain: String,
+ *   question: String,
+ *   answer: Array[String]
+ * }
+ */// ==========================================================================
+router.get(/\/(question|ask)\/\d+/, function(req, res) {
+  var ans = dbAnswers[req.params.id]
+  if (ans)
+    res.json(questionJSON(ans));
+  else {
+    res.status(404);
+    res.json({
+      error: 'Answer not found.',
+      params: req.params
+    });
+  }
+});
+
+/* ===================================== 2 =====================================
+ * GET /question/:domains /ask/:domains
  * Route to get any question in some specific domains (domains must be comma
  * separated). If domain is ommited, the question will be picked from all the
  * database without filter.
@@ -24,7 +46,7 @@ var router = express.Router();
  *   answer: Array[String]
  * }
  */// ==========================================================================
-router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
+router.get(["/question/(:domains)?", "/ask/(:domains)?"],
            function(req, res) {
   if (req.params.domains) {
     var domains = req.params.domains.split(',');
@@ -47,28 +69,6 @@ router.get(["/question/random/(:domains)?", "/ask/rand/(:domains)?"],
   }
 });
 
-
-/* ===================================== 2 =====================================
- * GET /question/id/:id /ask/id/:id
- * Route to get a specific question using its ID. ID is mandatory
- * Response format : {
- *   domain: String,
- *   question: String,
- *   answer: Array[String]
- * }
- */// ==========================================================================
-router.get(["/question/id/:id", "/ask/id/:id"], function(req, res) {
-  var ans = dbAnswers[req.params.id]
-  if (ans)
-    res.json(questionJSON(ans));
-  else {
-    res.status(404);
-    res.json({
-      error: 'Answer not found.',
-      params: req.params
-    });
-  }
-});
 
 /* ===================================== 3 =====================================
  * GET /answers/:id/:answer /answer/:id/:answer /ans/:id/:answer
