@@ -55,10 +55,21 @@ L’API n’est documentée qu’au sein du code pour l’instant, voir `routes/
 
 ### Tests
 
-Pour plus de clarté les tests sont fait en [coffee script][], avec les outils de test [mocha][] pour la mise en forme générale des tests et [chai][] pour les assertions. Pour les requetes asynchrones, ce projet utilise aussi le plugin [chai as promised][].
+A shorthand to run them:
 
+    npm install -g newman phantomjs-prebuilt mocha
+    npm test
+
+
+#### Tests d’API
+
+Les tests d’API sont fait avec [Newman][], aka postman in command lines. You have to install it globally before running tests:
+
+    npm install -g newman
 
 #### Tests d’interfaces
+
+Pour plus de clarté les tests sont fait en [coffee script][], avec les outils de test [mocha][] pour la mise en forme générale des tests et [chai][] pour les assertions. Pour les requetes asynchrones, ce projet utilise aussi le plugin [chai as promised][].
 
 Les tests d’interfaces utilisent [Selenium Webdriver][] et le navigateur [PhantomJS][] pour simuler une interface directement dans un terminal, avec de marcher aussi sur les machines virtuelles de [travis-ci][]. Pour faire tourner ceux-ci il vous faudra installer globalement PhantomJS, mocha et lancer la commande npm de tests :
 
@@ -101,6 +112,7 @@ Ce travail est réalisé dans le cadre des cours, et sous license MIT par Lucas 
 [chai as promised]: http://chaijs.com/plugins/chai-as-promised/
 [coffee script]: http://coffeescript.org/
 [mocha]: https://mochajs.org/
+[newman]: https://www.npmjs.com/package/newman
 [npm]: https://npmjs.com
 [phantomjs]: http://phantomjs.org/
 [selenium webdriver]: http://seleniumhq.github.io/selenium/docs/api/javascript/index.html

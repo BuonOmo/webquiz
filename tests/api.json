@@ -1,0 +1,291 @@
+{
+	"id": "cdf8f36a-df56-65f2-3d30-d3b5c1f2022d",
+	"name": "Webquiz",
+	"allTests": [],
+	"timestamp": 1477678190992,
+	"collection_id": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+		"name": "Webquiz",
+		"description": "",
+		"order": [
+			"0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
+			"9a772097-ebba-916a-2b2e-0cdb8c5a40fc"
+		],
+		"folders": [],
+		"requests": [
+			{
+				"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ask/",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "{\n\t\"posted\": \"post\"\n}",
+				"dataMode": "raw",
+				"name": "localhost:3000/api/ask/",
+				"description": "Get a random question",
+				"descriptionFormat": "html",
+				"time": 1477678044721,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"data has an id\"] = typeof jsonData.id === \"number\";\ntests[\"data has a domain\"] = typeof jsonData.domain === \"string\";\ntests[\"data has a question\"] = typeof jsonData.question === \"string\";\ntests[\"data has answers\"] = typeof jsonData.answers === \"object\";\ntests[\"minimum two answers\"] = jsonData.answers.length > 1;\n",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
+				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
+				"url": "localhost:3000/api/ask/notArealdomain",
+				"pathVariables": {},
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"data": "{\n\t\"posted\": \"post\"\n}",
+				"dataMode": "raw",
+				"name": "localhost:3000/api/ask/notArealdomain",
+				"description": "Get a random question",
+				"descriptionFormat": "html",
+				"time": 1477678175783,
+				"version": 2,
+				"responses": [],
+				"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"data has an error text\"] = typeof jsonData.error === \"string\";\ntests[\"data has parameters\"] = typeof jsonData.params === \"object\";\n\ntests[\"Status code is 404\"] = responseCode.code === 404;",
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			}
+		],
+		"timestamp": 1477678044723,
+		"synced": false,
+		"syncedFilename": "",
+		"remote_id": 0,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"owner": "877335",
+		"subscribed": false,
+		"createdAt": 1477678044768,
+		"updatedAt": 1477678175888,
+		"write": true,
+		"isDeleted": false,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {}
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
+			"name": "localhost:3000/api/ask/",
+			"url": "localhost:3000/api/ask/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"data has an id": true,
+				"data has a domain": true,
+				"data has a question": true,
+				"data has answers": true,
+				"minimum two answers": true
+			},
+			"testPassFailCounts": {
+				"data has an id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has a domain": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has a question": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has answers": {
+					"pass": 1,
+					"fail": 0
+				},
+				"minimum two answers": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"data has an id": true,
+					"data has a domain": true,
+					"data has a question": true,
+					"data has answers": true,
+					"minimum two answers": true
+				}
+			],
+			"time": 15,
+			"totalRequestTime": 15,
+			"iterationResults": {}
+		},
+		{
+			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
+			"name": "localhost:3000/api/ask/notArealdomain",
+			"url": "localhost:3000/api/ask/notArealdomain",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"tests": {
+				"data has an error text": true,
+				"data has parameters": true,
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"data has an error text": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has parameters": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"data has an error text": true,
+					"data has parameters": true,
+					"Status code is 404": true
+				}
+			],
+			"time": 11,
+			"totalRequestTime": 11,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 8,
+	"totalFail": 0,
+	"totalTime": 26,
+	"lifecycle": "done",
+	"willStop": false,
+	"requests": [
+		{
+			"name": "localhost:3000/api/ask/",
+			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
+			"url": "localhost:3000/api/ask/",
+			"time": 15,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"data has an id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has a domain": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has a question": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has answers": {
+					"pass": 1,
+					"fail": 0
+				},
+				"minimum two answers": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"data has an id",
+				"data has a domain",
+				"data has a question",
+				"data has answers",
+				"minimum two answers"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"data has an id": true,
+				"data has a domain": true,
+				"data has a question": true,
+				"data has answers": true,
+				"minimum two answers": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/ask/notArealdomain",
+			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
+			"url": "localhost:3000/api/ask/notArealdomain",
+			"time": 11,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found",
+				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+			},
+			"testPassFailCounts": {
+				"data has an error text": {
+					"pass": 1,
+					"fail": 0
+				},
+				"data has parameters": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"data has an error text",
+				"data has parameters",
+				"Status code is 404"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"data has an error text": true,
+				"data has parameters": true,
+				"Status code is 404": true
+			}
+		}
+	],
+	"synced": false
+}
