@@ -102,9 +102,10 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
  * Response format : see question format (db.js)
  */// ==========================================================================
 router.post('/question', function(req, res) {
-  var minQuestions = 2
+  var minQuestions = 2;
   var qu = req.body;
-
+  if (qu["answers[]"]) qu.answers = qu["answers[]"];
+  if (typeof qu.goodAnswer !== "number") qu.goodAnswer = parseInt(qu.goodAnswer);
   function verify(value) {
     if (Array.isArray(value)) {
       return value.length > 0 && value.reduce(function(prev, curr){
@@ -119,6 +120,8 @@ router.post('/question', function(req, res) {
       typeof qu.answers    === "object" && verify(qu.answers) &&
       qu.answers.length >= minQuestions &&
       typeof qu.goodAnswer === "number" && verify(qu.goodAnswer)) {
+    // if created
+    res.status(201);
     res.send('cool');
   } else {
     res.status(400);

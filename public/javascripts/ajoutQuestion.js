@@ -60,9 +60,23 @@
       answers: answers,
       goodAnswer: goodAnswer
     };
-    $.post('/api/question', data, log, 'json');
-    function log(data){ console.log("Question envoyée") }
-
+    $.post('/api/question', data, 'json')
+      .done(feedback('success')).fail(feedback('error'))
   });
+
+  /**
+   * Show a feedback on the result of the POST request for a 5 seconds
+   * duration.
+   * @param  {string} status 'success' or 'error'
+   * @return {function(object)}
+   */
+  function feedback(status) {
+    return function(data) {
+      $('.'+status).show();
+      setTimeout(function (){
+        $('.'+status).hide();
+      }, 5000);
+    }
+  }
 
 })();

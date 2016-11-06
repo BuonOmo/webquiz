@@ -1,8 +1,8 @@
 {
-	"id": "5832a594-fb9d-3b1b-39a7-c7bce644071f",
+	"id": "b39eaf37-6a6a-046e-c805-89630f7d0476",
 	"name": "Webquiz",
 	"allTests": [],
-	"timestamp": 1478468314930,
+	"timestamp": 1478470157688,
 	"collection_id": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 	"folder_id": 0,
 	"target_type": "collection",
@@ -98,43 +98,39 @@
 				"id": "163e9842-3854-58fd-407f-ff343a5555a7",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
 				"url": "localhost:3000/api/question",
-				"pathVariables": {},
 				"preRequestScript": null,
+				"pathVariables": {},
 				"method": "POST",
-				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"question\": \"est-ce que ça va ?\",\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\"],\n\t\"goodAnswer\": \"so\"\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/question",
-				"description": "Question request with a bad type for good answer",
-				"descriptionFormat": "html",
-				"time": 1478467734017,
 				"version": 2,
-				"responses": [],
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 400;",
+				"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"time": 1478470112485,
+				"name": "localhost:3000/api/question",
+				"description": "Question request with a bad type for good answer",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"responses": []
 			},
 			{
 				"id": "169ce8ba-057b-2ab1-a1bc-426cdef3c632",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
 				"url": "localhost:3000/api/question",
-				"pathVariables": {},
 				"preRequestScript": null,
+				"pathVariables": {},
 				"method": "POST",
-				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"question\": \"\",\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\", \"non\", \"tais toi hostie\"],\n\t\"goodAnswer\": 2\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/question",
-				"description": "Question request with an empty field",
-				"descriptionFormat": "html",
-				"time": 1478467450690,
 				"version": 2,
-				"responses": [],
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 400;",
+				"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"time": 1478470107111,
+				"name": "localhost:3000/api/question",
+				"description": "Question request with an empty field",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"responses": []
 			},
 			{
 				"id": "1ce14046-5841-9638-23b7-f793e882f318",
@@ -167,78 +163,71 @@
 				"data": "{\n\t\"question\": \"est-ce que ça va ?\",\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\", \"non\", \"tais toi hostie\"],\n\t\"goodAnswer\": 2\n}",
 				"dataMode": "raw",
 				"version": 2,
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+				"tests": "tests[\"Status code is 201\"] = responseCode.code === 201;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"time": 1478467410868,
+				"time": 1478470143264,
 				"name": "localhost:3000/api/question",
 				"description": "Question request, simple send",
 				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
-				"responses": [],
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"responses": []
 			},
 			{
 				"id": "44a6ffd2-191d-007e-76d0-e00ba386c6e1",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
 				"url": "localhost:3000/api/question",
-				"pathVariables": {},
 				"preRequestScript": null,
+				"pathVariables": {},
 				"method": "POST",
-				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\", \"non\", \"tais toi hostie\"],\n\t\"goodAnswer\": 2\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/question",
-				"description": "Question request with a missing field",
-				"descriptionFormat": "html",
-				"time": 1478467477008,
 				"version": 2,
-				"responses": [],
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 400;",
+				"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"time": 1478470133974,
+				"name": "localhost:3000/api/question",
+				"description": "Question request with a missing field",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"responses": []
 			},
 			{
 				"id": "5b0785af-37c2-ce9d-97cf-82feb29e6899",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
 				"url": "localhost:3000/api/question",
-				"pathVariables": {},
 				"preRequestScript": null,
+				"pathVariables": {},
 				"method": "POST",
-				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"question\": \"est-ce que ça va ?\",\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\"],\n\t\"goodAnswer\": 2\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/question",
-				"description": "Question request with not enough answers",
-				"descriptionFormat": "html",
-				"time": 1478467704909,
 				"version": 2,
-				"responses": [],
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 400;",
+				"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"time": 1478470127565,
+				"name": "localhost:3000/api/question",
+				"description": "Question request with not enough answers",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"responses": []
 			},
 			{
 				"id": "7a5a2e8a-4a9e-3bb7-3aab-4cb0f0cbf51f",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
 				"url": "localhost:3000/api/question",
-				"pathVariables": {},
 				"preRequestScript": null,
+				"pathVariables": {},
 				"method": "POST",
-				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"question\": \"est-ce que ça va ?\",\n\t\"domain\" : \"CSS2345\",\n\t\"answers\": [ \"oui\", \"\", \"tais toi hostie\"],\n\t\"goodAnswer\": 2\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/question",
-				"description": "Question request with a wrong array (empty value)",
-				"descriptionFormat": "html",
-				"time": 1478467526025,
 				"version": 2,
-				"responses": [],
-				"tests": "tests[\"Status code is 200\"] = responseCode.code === 400;",
+				"tests": "tests[\"Status code is 400\"] = responseCode.code === 400;",
 				"currentHelper": "normal",
 				"helperAttributes": {},
-				"folder": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7"
+				"time": 1478470120200,
+				"name": "localhost:3000/api/question",
+				"description": "Question request with a wrong array (empty value)",
+				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
+				"responses": []
 			},
 			{
 				"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
@@ -366,7 +355,7 @@
 				}
 			},
 			"times": [
-				17
+				14
 			],
 			"allTests": [
 				{
@@ -377,8 +366,8 @@
 					"minimum two answers": true
 				}
 			],
-			"time": 17,
-			"totalRequestTime": 17,
+			"time": 14,
+			"totalRequestTime": 14,
 			"iterationResults": {}
 		},
 		{
@@ -411,7 +400,7 @@
 				}
 			},
 			"times": [
-				10
+				11
 			],
 			"allTests": [
 				{
@@ -420,8 +409,8 @@
 					"Status code is 404": true
 				}
 			],
-			"time": 10,
-			"totalRequestTime": 10,
+			"time": 11,
+			"totalRequestTime": 11,
 			"iterationResults": {}
 		},
 		{
@@ -454,7 +443,7 @@
 				}
 			},
 			"times": [
-				12
+				13
 			],
 			"allTests": [
 				{
@@ -463,8 +452,8 @@
 					"Status code is 404": true
 				}
 			],
-			"time": 12,
-			"totalRequestTime": 12,
+			"time": 13,
+			"totalRequestTime": 13,
 			"iterationResults": {}
 		},
 		{
@@ -487,15 +476,15 @@
 				}
 			},
 			"times": [
-				15
+				12
 			],
 			"allTests": [
 				{
 					"Answer taken is the good one": true
 				}
 			],
-			"time": 15,
-			"totalRequestTime": 15,
+			"time": 12,
+			"totalRequestTime": 12,
 			"iterationResults": {}
 		},
 		{
@@ -523,7 +512,7 @@
 				}
 			},
 			"times": [
-				11
+				12
 			],
 			"allTests": [
 				{
@@ -531,8 +520,8 @@
 					"This is not the good answer": true
 				}
 			],
-			"time": 11,
-			"totalRequestTime": 11,
+			"time": 12,
+			"totalRequestTime": 12,
 			"iterationResults": {}
 		},
 		{
@@ -560,7 +549,7 @@
 				}
 			},
 			"times": [
-				12
+				13
 			],
 			"allTests": [
 				{
@@ -568,8 +557,8 @@
 					"This is the good answer": true
 				}
 			],
-			"time": 12,
-			"totalRequestTime": 12,
+			"time": 13,
+			"totalRequestTime": 13,
 			"iterationResults": {}
 		},
 		{
@@ -583,24 +572,24 @@
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				14
+				12
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 400": true
 				}
 			],
-			"time": 14,
-			"totalRequestTime": 14,
+			"time": 12,
+			"totalRequestTime": 12,
 			"iterationResults": {}
 		},
 		{
@@ -614,24 +603,24 @@
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				12
+				11
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 400": true
 				}
 			],
-			"time": 12,
-			"totalRequestTime": 12,
+			"time": 11,
+			"totalRequestTime": 11,
 			"iterationResults": {}
 		},
 		{
@@ -645,24 +634,24 @@
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				14
+				12
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 400": true
 				}
 			],
-			"time": 14,
-			"totalRequestTime": 14,
+			"time": 12,
+			"totalRequestTime": 12,
 			"iterationResults": {}
 		},
 		{
@@ -676,24 +665,24 @@
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				12
+				19
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 400": true
 				}
 			],
-			"time": 12,
-			"totalRequestTime": 12,
+			"time": 19,
+			"totalRequestTime": 19,
 			"iterationResults": {}
 		},
 		{
@@ -707,24 +696,24 @@
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				12
+				11
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 400": true
 				}
 			],
-			"time": 12,
-			"totalRequestTime": 12,
+			"time": 11,
+			"totalRequestTime": 11,
 			"iterationResults": {}
 		},
 		{
@@ -733,35 +722,35 @@
 			"url": "localhost:3000/api/question",
 			"totalTime": 0,
 			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
 			},
 			"tests": {
-				"Status code is 200": true
+				"Status code is 201": true
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 201": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				14
+				13
 			],
 			"allTests": [
 				{
-					"Status code is 200": true
+					"Status code is 201": true
 				}
 			],
-			"time": 14,
-			"totalRequestTime": 14,
+			"time": 13,
+			"totalRequestTime": 13,
 			"iterationResults": {}
 		}
 	],
 	"totalPass": 22,
 	"totalFail": 0,
-	"totalTime": 155,
+	"totalTime": 153,
 	"lifecycle": "done",
 	"willStop": false,
 	"requests": [
@@ -769,7 +758,7 @@
 			"name": "localhost:3000/api/ask/",
 			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
 			"url": "localhost:3000/api/ask/",
-			"time": 17,
+			"time": 14,
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -825,7 +814,7 @@
 			"name": "localhost:3000/api/ask/notArealdomain",
 			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
 			"url": "localhost:3000/api/ask/notArealdomain",
-			"time": 10,
+			"time": 11,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -867,7 +856,7 @@
 			"name": "localhost:3000/api/ask/10000000000",
 			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
 			"url": "localhost:3000/api/ask/10000000000",
-			"time": 12,
+			"time": 13,
 			"responseCode": {
 				"code": 404,
 				"name": "Not Found",
@@ -909,7 +898,7 @@
 			"name": "localhost:3000/api/ask/0",
 			"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
 			"url": "localhost:3000/api/ask/0",
-			"time": 15,
+			"time": 12,
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -937,7 +926,7 @@
 			"name": "localhost:3000/api/ask/0/1",
 			"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
 			"url": "localhost:3000/api/ans/0/1",
-			"time": 11,
+			"time": 12,
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -972,7 +961,7 @@
 			"name": "localhost:3000/api/ask/0/0",
 			"id": "1ce14046-5841-9638-23b7-f793e882f318",
 			"url": "localhost:3000/api/ans/0/0",
-			"time": 12,
+			"time": 13,
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -1007,20 +996,20 @@
 			"name": "localhost:3000/api/question",
 			"id": "169ce8ba-057b-2ab1-a1bc-426cdef3c632",
 			"url": "localhost:3000/api/question",
-			"time": 14,
+			"time": 12,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 400"
 			],
 			"gridData": [
 				[
@@ -1028,27 +1017,27 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			}
 		},
 		{
 			"name": "localhost:3000/api/question",
 			"id": "163e9842-3854-58fd-407f-ff343a5555a7",
 			"url": "localhost:3000/api/question",
-			"time": 12,
+			"time": 11,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 400"
 			],
 			"gridData": [
 				[
@@ -1056,27 +1045,27 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			}
 		},
 		{
 			"name": "localhost:3000/api/question",
 			"id": "7a5a2e8a-4a9e-3bb7-3aab-4cb0f0cbf51f",
 			"url": "localhost:3000/api/question",
-			"time": 14,
+			"time": 12,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 400"
 			],
 			"gridData": [
 				[
@@ -1084,27 +1073,27 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			}
 		},
 		{
 			"name": "localhost:3000/api/question",
 			"id": "5b0785af-37c2-ce9d-97cf-82feb29e6899",
 			"url": "localhost:3000/api/question",
-			"time": 12,
+			"time": 19,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 400"
 			],
 			"gridData": [
 				[
@@ -1112,27 +1101,27 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			}
 		},
 		{
 			"name": "localhost:3000/api/question",
 			"id": "44a6ffd2-191d-007e-76d0-e00ba386c6e1",
 			"url": "localhost:3000/api/question",
-			"time": 12,
+			"time": 11,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
 				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 400": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 400"
 			],
 			"gridData": [
 				[
@@ -1140,27 +1129,27 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 400": true
 			}
 		},
 		{
 			"name": "localhost:3000/api/question",
 			"id": "1d74f4f0-1b93-ca18-e3e9-b377841ed352",
 			"url": "localhost:3000/api/question",
-			"time": 14,
+			"time": 13,
 			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
 			},
 			"testPassFailCounts": {
-				"Status code is 200": {
+				"Status code is 201": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Status code is 200"
+				"Status code is 201"
 			],
 			"gridData": [
 				[
@@ -1168,7 +1157,7 @@
 				]
 			],
 			"tests": {
-				"Status code is 200": true
+				"Status code is 201": true
 			}
 		}
 	],
