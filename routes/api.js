@@ -6,6 +6,7 @@
  * 1. GET /question/:id /ask/:id => A specific question,
  * 2. GET /question/:domains /ask/:domains => Any question,
  * 3. GET /answer[s]/:id/:answer /ans/:id/:answer => Answer to a question.
+ * 4. POST /question => create a new question
  */
 
 var express = require('express')
@@ -95,6 +96,16 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
   }
 });
 
+/* ===================================== 4 =====================================
+ * POST /question
+ * Route to create a question
+ * Response format : see question format (db.js)
+ */// ==========================================================================
+router.post('/question', function(req, res) {
+  console.log("TODO: link to the db");
+  res.json(req.body);
+});
+
 /* =================================== MODEL ===================================
  * Retrieve answers from pseudo database using fs and a simple json file.
  * help from stackoverflow: http://stackoverflow.com/a/10011078/6320039
@@ -105,7 +116,8 @@ fs.readFile('database/answers.json','utf8', function (err, data) {
   dbAnswers = JSON.parse(data);
 });
 
-/* Below, a function that returns a JSON of the good format of question to the
+/**
+ * This function returns a JSON of the good format of question to the
  * client using format from the database.
  * Return format:
  * {
@@ -117,6 +129,7 @@ fs.readFile('database/answers.json','utf8', function (err, data) {
  *     "Not to be"
  *   ]
  * }
+ * @return {object}
  */
 function questionJSON(dbQuestion) {
     return {
@@ -127,6 +140,27 @@ function questionJSON(dbQuestion) {
     }
 }
 
-
+/* This function returns a JSON of the good format of answer to the
+ * client using format from the database.
+ * Return format:
+ * {
+ *   "id"       : 0,
+ *   "domain"   : "LIFE",
+ *   "question" : "To be or not to be ?",
+ *   "answers"  : [
+ *     "To be",
+ *     "Not to be"
+ *   ]
+ * }
+ * @return {object}
+ */
+// function questionJSON(dbQuestion) {
+//     return {
+//       id:       dbQuestion.id,
+//       domain:   dbQuestion.domain,
+//       question: dbQuestion.question,
+//       answers:  dbQuestion.answers
+//     }
+// }
 
 module.exports = router;
