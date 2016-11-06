@@ -10,7 +10,8 @@
  */
 
 var express = require('express')
-    fs      = require('fs');
+    fs      = require('fs'),
+    questionController = require('../controllers/question');
 
 var router = express.Router();
 
@@ -101,31 +102,24 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
  * Route to create a question
  * Response format : see question format (db.js)
  */// ==========================================================================
-router.post('/question', function(req, res) {
-  var minQuestions = 2;
-  var qu = req.body;
-  if (qu["answers[]"]) qu.answers = qu["answers[]"];
-  if (typeof qu.goodAnswer !== "number") qu.goodAnswer = parseInt(qu.goodAnswer);
-  function verify(value) {
-    if (Array.isArray(value)) {
-      return value.length > 0 && value.reduce(function(prev, curr){
-        return prev ? (typeof curr === "string" && curr.length > 0) : false;
-      }, true);
-    }
-    return value != null && (value.length > 0 || typeof value === "number");
-  }
-
-  if (typeof qu.question   === "string" && verify(qu.question) &&
-      typeof qu.domain     === "string" && verify(qu.domain) &&
-      typeof qu.answers    === "object" && verify(qu.answers) &&
-      qu.answers.length >= minQuestions &&
-      typeof qu.goodAnswer === "number" && verify(qu.goodAnswer)) {
-    // if created
-    res.status(201);
-    res.send('cool');
+router.post('/question', (req, res) => {
+  if (questionController.verify(req.body)) {
+    questionController.save(req.body, (data) => {
+      res.status(201);
+      res.json(data);
+    }, (data) => {
+      res.json({
+        error: 'Error on save',
+        params: req.params,
+        data: data
+      })
+    });
   } else {
     res.status(400);
-    res.send('pas cool');
+    res.json({
+      error: 'Data verification failed',
+      params: req.params
+    });
   }
 });
 
