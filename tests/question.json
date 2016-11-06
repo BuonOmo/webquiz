@@ -1,10 +1,10 @@
 {
-	"id": "8ca6a05f-c1fe-8647-583a-b9321e244686",
-	"name": "API",
+	"id": "9ff5a2f9-25e6-5e4b-7890-f2adb1beb2a5",
+	"name": "question",
 	"allTests": [],
-	"timestamp": 1478467970392,
+	"timestamp": 1478467976297,
 	"collection_id": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
-	"folder_id": "7a989fb5-2ddf-46bb-546b-1c01a48d0d40",
+	"folder_id": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7",
 	"target_type": "folder",
 	"environment_id": "0",
 	"data": [],
@@ -323,17 +323,17 @@
 		"syncedPermissions": {}
 	},
 	"folder": {
-		"id": "7a989fb5-2ddf-46bb-546b-1c01a48d0d40",
-		"name": "API",
-		"description": "",
+		"id": "1b15345e-8ab8-d92b-0bd6-11ad616c7ae7",
+		"name": "question",
+		"description": "tests to save a question",
 		"write": true,
 		"order": [
-			"0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
-			"0ba195f5-9efb-11ee-572c-d7435f4dc691",
-			"fd611a88-f70f-f6c6-71d3-7ed5765af256",
-			"cfdbf15d-fa9c-2a69-459d-203815cbd45b",
-			"1ce14046-5841-9638-23b7-f793e882f318"
+			"169ce8ba-057b-2ab1-a1bc-426cdef3c632",
+			"163e9842-3854-58fd-407f-ff343a5555a7",
+			"7a5a2e8a-4a9e-3bb7-3aab-4cb0f0cbf51f",
+			"5b0785af-37c2-ce9d-97cf-82feb29e6899",
+			"44a6ffd2-191d-007e-76d0-e00ba386c6e1",
+			"1d74f4f0-1b93-ca18-e3e9-b377841ed352"
 		],
 		"collection": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 		"owner": "877335",
@@ -343,234 +343,51 @@
 	"globals": [],
 	"results": [
 		{
-			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"name": "localhost:3000/api/ask/",
-			"url": "localhost:3000/api/ask/",
+			"id": "169ce8ba-057b-2ab1-a1bc-426cdef3c632",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
 			"totalTime": 0,
 			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"data has an id": true,
-				"data has a domain": true,
-				"data has a question": true,
-				"data has answers": true,
-				"minimum two answers": true
+				"Status code is 200": true
 			},
 			"testPassFailCounts": {
-				"data has an id": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has a domain": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has a question": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has answers": {
-					"pass": 1,
-					"fail": 0
-				},
-				"minimum two answers": {
+				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				37
+				36
 			],
 			"allTests": [
 				{
-					"data has an id": true,
-					"data has a domain": true,
-					"data has a question": true,
-					"data has answers": true,
-					"minimum two answers": true
+					"Status code is 200": true
 				}
 			],
-			"time": 37,
-			"totalRequestTime": 37,
+			"time": 36,
+			"totalRequestTime": 36,
 			"iterationResults": {}
 		},
 		{
-			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
-			"name": "localhost:3000/api/ask/notArealdomain",
-			"url": "localhost:3000/api/ask/notArealdomain",
+			"id": "163e9842-3854-58fd-407f-ff343a5555a7",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
 			"totalTime": 0,
 			"responseCode": {
-				"code": 404,
-				"name": "Not Found",
-				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"tests": {
-				"data has an error text": true,
-				"data has parameters": true,
-				"Status code is 404": true
+				"Status code is 200": true
 			},
 			"testPassFailCounts": {
-				"data has an error text": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has parameters": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"data has an error text": true,
-					"data has parameters": true,
-					"Status code is 404": true
-				}
-			],
-			"time": 14,
-			"totalRequestTime": 14,
-			"iterationResults": {}
-		},
-		{
-			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
-			"name": "localhost:3000/api/ask/10000000000",
-			"url": "localhost:3000/api/ask/10000000000",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found",
-				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
-			},
-			"tests": {
-				"data has an error text, 'Answer not found.'": true,
-				"data has parameters": true,
-				"Status code is 404": true
-			},
-			"testPassFailCounts": {
-				"data has an error text, 'Answer not found.'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has parameters": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"data has an error text, 'Answer not found.'": true,
-					"data has parameters": true,
-					"Status code is 404": true
-				}
-			],
-			"time": 14,
-			"totalRequestTime": 14,
-			"iterationResults": {}
-		},
-		{
-			"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
-			"name": "localhost:3000/api/ask/0",
-			"url": "localhost:3000/api/ask/0",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-			},
-			"tests": {
-				"Answer taken is the good one": true
-			},
-			"testPassFailCounts": {
-				"Answer taken is the good one": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Answer taken is the good one": true
-				}
-			],
-			"time": 12,
-			"totalRequestTime": 12,
-			"iterationResults": {}
-		},
-		{
-			"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
-			"name": "localhost:3000/api/ask/0/1",
-			"url": "localhost:3000/api/ans/0/1",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-			},
-			"tests": {
-				"Object expected is correct": true,
-				"This is not the good answer": true
-			},
-			"testPassFailCounts": {
-				"Object expected is correct": {
-					"pass": 1,
-					"fail": 0
-				},
-				"This is not the good answer": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"Object expected is correct": true,
-					"This is not the good answer": true
-				}
-			],
-			"time": 14,
-			"totalRequestTime": 14,
-			"iterationResults": {}
-		},
-		{
-			"id": "1ce14046-5841-9638-23b7-f793e882f318",
-			"name": "localhost:3000/api/ask/0/0",
-			"url": "localhost:3000/api/ans/0/0",
-			"totalTime": 0,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-			},
-			"tests": {
-				"Object expected is correct": true,
-				"This is the good answer": true
-			},
-			"testPassFailCounts": {
-				"Object expected is correct": {
-					"pass": 1,
-					"fail": 0
-				},
-				"This is the good answer": {
+				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -580,179 +397,162 @@
 			],
 			"allTests": [
 				{
-					"Object expected is correct": true,
-					"This is the good answer": true
+					"Status code is 200": true
 				}
 			],
 			"time": 15,
 			"totalRequestTime": 15,
 			"iterationResults": {}
+		},
+		{
+			"id": "7a5a2e8a-4a9e-3bb7-3aab-4cb0f0cbf51f",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": 14,
+			"totalRequestTime": 14,
+			"iterationResults": {}
+		},
+		{
+			"id": "5b0785af-37c2-ce9d-97cf-82feb29e6899",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": 12,
+			"totalRequestTime": 12,
+			"iterationResults": {}
+		},
+		{
+			"id": "44a6ffd2-191d-007e-76d0-e00ba386c6e1",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": 14,
+			"totalRequestTime": 14,
+			"iterationResults": {}
+		},
+		{
+			"id": "1d74f4f0-1b93-ca18-e3e9-b377841ed352",
+			"name": "localhost:3000/api/question",
+			"url": "localhost:3000/api/question",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			],
+			"time": 14,
+			"totalRequestTime": 14,
+			"iterationResults": {}
 		}
 	],
-	"totalPass": 16,
+	"totalPass": 6,
 	"totalFail": 0,
-	"totalTime": 106,
+	"totalTime": 105,
 	"lifecycle": "done",
 	"willStop": false,
 	"requests": [
 		{
-			"name": "localhost:3000/api/ask/",
-			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"url": "localhost:3000/api/ask/",
-			"time": 37,
+			"name": "localhost:3000/api/question",
+			"id": "169ce8ba-057b-2ab1-a1bc-426cdef3c632",
+			"url": "localhost:3000/api/question",
+			"time": 36,
 			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"data has an id": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has a domain": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has a question": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has answers": {
-					"pass": 1,
-					"fail": 0
-				},
-				"minimum two answers": {
+				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"data has an id",
-				"data has a domain",
-				"data has a question",
-				"data has answers",
-				"minimum two answers"
-			],
-			"gridData": [
-				[
-					true,
-					true,
-					true,
-					true,
-					true
-				]
-			],
-			"tests": {
-				"data has an id": true,
-				"data has a domain": true,
-				"data has a question": true,
-				"data has answers": true,
-				"minimum two answers": true
-			}
-		},
-		{
-			"name": "localhost:3000/api/ask/notArealdomain",
-			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
-			"url": "localhost:3000/api/ask/notArealdomain",
-			"time": 14,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found",
-				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
-			},
-			"testPassFailCounts": {
-				"data has an error text": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has parameters": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"gridTitles": [
-				"data has an error text",
-				"data has parameters",
-				"Status code is 404"
-			],
-			"gridData": [
-				[
-					true,
-					true,
-					true
-				]
-			],
-			"tests": {
-				"data has an error text": true,
-				"data has parameters": true,
-				"Status code is 404": true
-			}
-		},
-		{
-			"name": "localhost:3000/api/ask/10000000000",
-			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
-			"url": "localhost:3000/api/ask/10000000000",
-			"time": 14,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found",
-				"detail": "The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible."
-			},
-			"testPassFailCounts": {
-				"data has an error text, 'Answer not found.'": {
-					"pass": 1,
-					"fail": 0
-				},
-				"data has parameters": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Status code is 404": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"gridTitles": [
-				"data has an error text, 'Answer not found.'",
-				"data has parameters",
-				"Status code is 404"
-			],
-			"gridData": [
-				[
-					true,
-					true,
-					true
-				]
-			],
-			"tests": {
-				"data has an error text, 'Answer not found.'": true,
-				"data has parameters": true,
-				"Status code is 404": true
-			}
-		},
-		{
-			"name": "localhost:3000/api/ask/0",
-			"id": "fd611a88-f70f-f6c6-71d3-7ed5765af256",
-			"url": "localhost:3000/api/ask/0",
-			"time": 12,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-			},
-			"testPassFailCounts": {
-				"Answer taken is the good one": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"gridTitles": [
-				"Answer taken is the good one"
+				"Status code is 200"
 			],
 			"gridData": [
 				[
@@ -760,77 +560,147 @@
 				]
 			],
 			"tests": {
-				"Answer taken is the good one": true
+				"Status code is 200": true
 			}
 		},
 		{
-			"name": "localhost:3000/api/ask/0/1",
-			"id": "cfdbf15d-fa9c-2a69-459d-203815cbd45b",
-			"url": "localhost:3000/api/ans/0/1",
-			"time": 14,
-			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-			},
-			"testPassFailCounts": {
-				"Object expected is correct": {
-					"pass": 1,
-					"fail": 0
-				},
-				"This is not the good answer": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"gridTitles": [
-				"Object expected is correct",
-				"This is not the good answer"
-			],
-			"gridData": [
-				[
-					true,
-					true
-				]
-			],
-			"tests": {
-				"Object expected is correct": true,
-				"This is not the good answer": true
-			}
-		},
-		{
-			"name": "localhost:3000/api/ask/0/0",
-			"id": "1ce14046-5841-9638-23b7-f793e882f318",
-			"url": "localhost:3000/api/ans/0/0",
+			"name": "localhost:3000/api/question",
+			"id": "163e9842-3854-58fd-407f-ff343a5555a7",
+			"url": "localhost:3000/api/question",
 			"time": 15,
 			"responseCode": {
-				"code": 200,
-				"name": "OK",
-				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
 			},
 			"testPassFailCounts": {
-				"Object expected is correct": {
-					"pass": 1,
-					"fail": 0
-				},
-				"This is the good answer": {
+				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"gridTitles": [
-				"Object expected is correct",
-				"This is the good answer"
+				"Status code is 200"
 			],
 			"gridData": [
 				[
-					true,
 					true
 				]
 			],
 			"tests": {
-				"Object expected is correct": true,
-				"This is the good answer": true
+				"Status code is 200": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/question",
+			"id": "7a5a2e8a-4a9e-3bb7-3aab-4cb0f0cbf51f",
+			"url": "localhost:3000/api/question",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Status code is 200"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Status code is 200": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/question",
+			"id": "5b0785af-37c2-ce9d-97cf-82feb29e6899",
+			"url": "localhost:3000/api/question",
+			"time": 12,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Status code is 200"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Status code is 200": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/question",
+			"id": "44a6ffd2-191d-007e-76d0-e00ba386c6e1",
+			"url": "localhost:3000/api/question",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Status code is 200"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Status code is 200": true
+			}
+		},
+		{
+			"name": "localhost:3000/api/question",
+			"id": "1d74f4f0-1b93-ca18-e3e9-b377841ed352",
+			"url": "localhost:3000/api/question",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"Status code is 200"
+			],
+			"gridData": [
+				[
+					true
+				]
+			],
+			"tests": {
+				"Status code is 200": true
 			}
 		}
 	],

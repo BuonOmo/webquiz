@@ -102,8 +102,28 @@ router.get('/ans(wers?)?/:id/:answer', function(req, res) {
  * Response format : see question format (db.js)
  */// ==========================================================================
 router.post('/question', function(req, res) {
-  console.log("TODO: link to the db");
-  res.json(req.body);
+  var minQuestions = 2
+  var qu = req.body;
+
+  function verify(value) {
+    if (Array.isArray(value)) {
+      return value.length > 0 && value.reduce(function(prev, curr){
+        return prev ? (typeof curr === "string" && curr.length > 0) : false;
+      }, true);
+    }
+    return value != null && (value.length > 0 || typeof value === "number");
+  }
+
+  if (typeof qu.question   === "string" && verify(qu.question) &&
+      typeof qu.domain     === "string" && verify(qu.domain) &&
+      typeof qu.answers    === "object" && verify(qu.answers) &&
+      qu.answers.length >= minQuestions &&
+      typeof qu.goodAnswer === "number" && verify(qu.goodAnswer)) {
+    res.send('cool');
+  } else {
+    res.status(400);
+    res.send('pas cool');
+  }
 });
 
 /* =================================== MODEL ===================================
