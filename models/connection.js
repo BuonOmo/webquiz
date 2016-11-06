@@ -1,6 +1,9 @@
+var configs = require('../configs');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://root:w3bQu1z@ds031257.mlab.com:31257/webquiz');
+
+
+mongoose.connect(configs.database.url);
 var database = mongoose.connection;
 database.on('error', console.error.bind(console, 'connection error:'));
 database.once('open', function() {
