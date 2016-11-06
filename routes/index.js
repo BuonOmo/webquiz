@@ -51,6 +51,11 @@ const pages = [
     path: pagePath + 'old-browser',
     url: '/ie',
     opt: {}
+  },
+  { // ---------------------------------------------------------------- question
+    path: pagePath + 'question',
+    url: '/ajoutQuestion',
+    opt: {}
   }];
 
 for (var page of pages) {

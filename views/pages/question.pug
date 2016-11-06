@@ -1,0 +1,36 @@
+extends ../index
+
+prepend title
+  - var pageTitle = "Nouvelle question"
+
+append scripts
+  script(src="/javascripts/ajoutQuestion.js")
+
+block content
+  div.success(hidden) Votre question à été enregistrée !
+  div.error(hidden) Il y a eu une erreur, veuillez redémarrer votre ordinateur...
+  div
+    form
+      div
+        label(for="question") Question
+        input#question(name="question" required)
+      div
+        label(for="domain") Domaine
+        input#domain(name="domain" required)
+      div.answers
+        div
+          label(for="answer-1") Réponse 1
+          input#answer-1(name="answers[]" required)
+          input(type="radio" name="goodAnswer" value="0" required)
+          a.delete
+            i.material-icons delete
+        div
+          label(for="answer-2") Réponse 2
+          input#answer-2(name="answers[]" required)
+          input(type="radio" name="goodAnswer" value="1" required)
+          a.delete
+            i.material-icons delete
+      a.add
+        i.material-icons add
+
+      button(type="submit") Envoyer
