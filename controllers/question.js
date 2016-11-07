@@ -18,6 +18,23 @@ function controller(){
     model.find(data, handleData(success, error));
   }
 
+  this.findOne = (success, error) => {
+    model.findRandom(
+      {},
+      {goodAnswer: 0},
+      {limit: 1},
+      (err, data) => handleData(success, error)(err, data[0])
+    );
+  }
+
+  this.findOneByDomain = (domains, success, error) => {
+    model.findRandom(
+      { domain: { $in: domains } },
+      {goodAnswer: 0},
+      {limit: 1},
+      (err, data) => handleData(success, error)(err, data[0])
+    );
+  }
   this.delete = (data, success, error) => {
     model.remove(data, handleData(success, error));
   }
