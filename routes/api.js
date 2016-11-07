@@ -24,12 +24,20 @@ var router = express.Router();
  */// ==========================================================================
 router.get("/ask(/:domains)?", (req, res) => {
   function onSuccess(data) {
-    res.json(data)
+    if (data) res.json(data)
+    else {
+      res.status(404);
+      res.json({
+        error: 'No question in these domains.',
+        params: req.params,
+        data: data
+      });
+    }
   }
   function onError(data) {
-    res.status(404);
+    res.status(500);
     res.json({
-      error: 'No question in these domains.',
+      error: 'DB: an internal error occurred',
       params: req.params,
       data: data
     });
