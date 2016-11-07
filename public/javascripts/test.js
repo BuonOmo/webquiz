@@ -77,7 +77,7 @@
     }
     $.get(url)
       .done(function(data) {
-        questionId = data.id;
+        questionId = data._id;
         $domain.html(data.domain);
         $question.html(data.question);
         // clean everything except first answer (bones)
