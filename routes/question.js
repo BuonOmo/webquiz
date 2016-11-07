@@ -42,12 +42,14 @@ router.get('(/:id)?', (req, res) => {
   );
 });
 
-router.put('/:id', (req, res) => {
-  // TODO
+router.put('', (req, res) => {
+  controller.update(req.body._id, req.body, (data) => res.json(data), (data) => res.json(data));
 });
 
-router.patch('/:id', (req, res) => {
-  // TODO
+router.patch('/:id/:field/:val', (req, res) => {
+  var field = {};
+  field[req.params.field] = req.params.val;
+  controller.update(req.params.id, field, (data) => res.json(data), (data) => res.json(data));
 });
 
 router.delete('(/:id)?', (req, res) => {
