@@ -61,7 +61,7 @@ const pages = [
 for (var page of pages) {
   (function (page) {
     var currentPage = page;
-    router.get(page.url, function(req, res, next) {
+    router.get(page.url, (req, res, next) => {
       res.render(page.path,page.opt);
     });
 

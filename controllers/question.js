@@ -30,7 +30,7 @@ function controller(){
       question.goodAnswer = parseInt(question.goodAnswer);
     function verify(value) {
       if (Array.isArray(value)) {
-        return value.length > 0 && value.reduce(function(prev, curr){
+        return value.length > 0 && value.reduce((prev, curr) => {
           return prev ? (typeof curr === "string" && curr.length > 0) : false;
         }, true);
       }

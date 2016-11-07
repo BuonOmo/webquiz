@@ -26,7 +26,7 @@ var router = express.Router();
  *   answer: Array[String]
  * }
  */// ==========================================================================
-router.get("/question(/:id)?", function(req, res) {
+router.get("/question(/:id)?", (req, res) => {
   var searchParams = req.params.id == null ? null : {_id: req.params.id};
   questionController.find(
     searchParams,
@@ -53,10 +53,10 @@ router.get("/question(/:id)?", function(req, res) {
  * }
  */// ==========================================================================
 router.get(["/ask(/:domains)?"],
-           function(req, res) {
+           (req, res) => {
   if (req.params.domains) {
     var domains = req.params.domains.split(',');
-    var ansList = dbAnswers.filter(function (element) {
+    var ansList = dbAnswers.filter((element) => {
       return domains.indexOf(element.domain) != -1;
     });
   } else {
@@ -85,7 +85,7 @@ router.get(["/ask(/:domains)?"],
  *   isGoodAnswer: Boolean
  * }
  */// ==========================================================================
-router.get('/ans(wers?)?/:id/:answer', function(req, res) {
+router.get('/ans(wers?)?/:id/:answer', (req, res) => {
   if (dbAnswers[req.params.id])
     res.json({
       goodAnswerIndex: dbAnswers[req.params.id]['goodAnswer'],
@@ -145,62 +145,5 @@ router.delete('/question(/:id)?', (req, res) => {
   })
 });
 
-
-/* =================================== MODEL ===================================
- * Retrieve answers from pseudo database using fs and a simple json file.
- * help from stackoverflow: http://stackoverflow.com/a/10011078/6320039
- */
-var dbAnswers;
-fs.readFile('database/answers.json','utf8', function (err, data) {
-  if (err) throw err;
-  dbAnswers = JSON.parse(data);
-});
-
-/**
- * This function returns a JSON of the good format of question to the
- * client using format from the database.
- * Return format:
- * {
- *   "id"       : 0,
- *   "domain"   : "LIFE",
- *   "question" : "To be or not to be ?",
- *   "answers"  : [
- *     "To be",
- *     "Not to be"
- *   ]
- * }
- * @return {object}
- */
-function questionJSON(dbQuestion) {
-    return {
-      id:       dbQuestion.id,
-      domain:   dbQuestion.domain,
-      question: dbQuestion.question,
-      answers:  dbQuestion.answers
-    }
-}
-
-/* This function returns a JSON of the good format of answer to the
- * client using format from the database.
- * Return format:
- * {
- *   "id"       : 0,
- *   "domain"   : "LIFE",
- *   "question" : "To be or not to be ?",
- *   "answers"  : [
- *     "To be",
- *     "Not to be"
- *   ]
- * }
- * @return {object}
- */
-// function questionJSON(dbQuestion) {
-//     return {
-//       id:       dbQuestion.id,
-//       domain:   dbQuestion.domain,
-//       question: dbQuestion.question,
-//       answers:  dbQuestion.answers
-//     }
-// }
 
 module.exports = router;
