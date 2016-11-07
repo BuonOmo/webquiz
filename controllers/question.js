@@ -14,12 +14,12 @@ function controller(){
     question.save(handleData(success, error));
   }
 
-  this.findById = (id, success, error) => {
-    model.find({_id: id}, handleData(success, error));
+  this.find = (data, success, error) => {
+    model.find(data, handleData(success, error));
   }
 
-  this.findAll = (success, error) => {
-    model.find({}, handleData(success, error));
+  this.delete = (data, success, error) => {
+    model.remove(data, handleData(success, error));
   }
 
   this.verify = (question) => {
