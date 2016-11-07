@@ -1,4 +1,4 @@
-var database = require('./connection.js')
+require('./connection.js');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;

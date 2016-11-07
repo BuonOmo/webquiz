@@ -1,4 +1,4 @@
-var database = require('./connection.js')
+require('./connection.js');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -9,6 +9,5 @@ var Question = new Schema({
   answers: [String],
   goodAnswer: Number
 });
-
 
 module.exports = mongoose.model('Question', Question);
