@@ -4,8 +4,14 @@ function controller(){
 
   function handleData(success, error) {
     return function(err, data) {
-      if (err) error(data);
-      else success(data);
+      if (err){
+        if(typeof error === "function")
+          error(data);
+        else
+          console.error(err);
+      }
+      else if(typeof success === "function")
+          success(data);
     }
   }
 
@@ -16,6 +22,10 @@ function controller(){
 
   this.find = (data, success, error) => {
     model.find(data, handleData(success, error));
+  }
+
+  this.update = (id, fields, success, error) => {
+    model.update({_id: id}, fields, handleData(success, error));
   }
 
   this.delete = (data, success, error) => {
