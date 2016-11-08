@@ -58,9 +58,16 @@ const pages = [
     opt: {}
   }];
 
+function examRedirection(req, res, next) {
+  if (req.url === '/exam') next();
+  else require('../controllers/user').inExam(
+      () => res.redirect('/exam'),
+      () => next());
+}
+
 for (var page of pages) {
   (function (page) {
-    router.get(page.url, (req, res, next) => {
+    router.get(page.url, examRedirection, (req, res, next) => {
       res.render(page.path,page.opt);
     });
 

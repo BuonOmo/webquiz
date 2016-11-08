@@ -46,6 +46,17 @@ function controller(){
 
   }
 
+  /**
+   * Check if a user has an exam ongoing
+   * @param  {function} yes
+   * @param  {function} no
+   */
+  this.inExam = (yes, no) => {
+    model.findOne({}, (err, data) => {
+      (err || data.currentExam) ? no() : yes();
+    });
+  }
+
   this.update = (fields, success, error) => {
     model.update({}, fields, handleData(success, error));
   }

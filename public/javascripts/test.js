@@ -285,7 +285,7 @@
     $(window).bind('beforeunload', function() {
       $.ajax({
         method: 'PATCH',
-        url: '/api/user/first',
+        url: '/api/user',
         data: {
           currentExam: (counter > numberOfQuestions ? null : {
             score: score,
