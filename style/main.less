@@ -177,6 +177,54 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.question{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  label{
+    display: block;
+    text-align: center;
+    padding: 10px;
+  }
+
+  div{
+    flex-basis: 100%;
+    margin-bottom: 20px;
+    input[type="text"]{
+      width: 99%;
+      padding:10px 0;
+      line-height: 10px;
+      text-align: center;
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .answers{
+    div{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+
+      input[type="text"]{
+        margin: 0;
+        flex-basis: 60%;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      i{
+        display: block;
+      }
+    }
+  }
+}
+
+
 
 .image-wrapper {
   margin-top: 60px;
@@ -380,6 +428,18 @@ body {
           &:nth-child(2), &:nth-child(3){
             width:100%;
           }
+        }
+      }
+    }
+  }
+
+  .question{
+    .answers{
+      div{
+        justify-content: center;
+        input[type="text"]{
+          flex-basis: 100%;
+          margin-bottom: 10px;
         }
       }
     }

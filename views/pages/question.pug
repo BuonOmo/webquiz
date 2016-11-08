@@ -9,24 +9,24 @@ append scripts
 block content
   div.success(hidden) Votre question à été enregistrée !
   div.error(hidden) Il y a eu une erreur, veuillez redémarrer votre ordinateur...
-  div
-    form
+  div.elevation--2dp
+    form.question
       div
         label(for="question") Question
-        input#question(name="question" required)
+        input#question(type="text" name="question" required)
       div
         label(for="domain") Domaine
-        input#domain(name="domain" required)
+        input#domain(type="text" name="domain" required)
       div.answers
         div
-          label(for="answer-1") Réponse 1
-          input#answer-1(name="answers[]" required)
+          label(for="answer-1") Réponse 1 :
+          input#answer-1(type="text" name="answers[]" required)
           input(type="radio" name="goodAnswer" value="0" required)
           a.delete
             i.material-icons delete
         div
-          label(for="answer-2") Réponse 2
-          input#answer-2(name="answers[]" required)
+          label(for="answer-2") Réponse 2 :
+          input#answer-2(type="text" name="answers[]" required)
           input(type="radio" name="goodAnswer" value="1" required)
           a.delete
             i.material-icons delete
