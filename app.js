@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var apiQuestion = require('./routes/question');
 var apiUser = require('./routes/user');
+var apiResult = require('./routes/result');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', routes);
 app.use('/api', api);
 app.use('/api/question', apiQuestion);
 app.use('/api/user', apiUser);
+app.use('/api/result', apiResult);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.min.js'))
 app.use('/modernizr', express.static(__dirname + '/public/javascripts/modernizr.min.js'))
 app.use('/less-css', less(
