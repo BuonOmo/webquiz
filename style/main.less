@@ -160,6 +160,21 @@
   }
 }
 
+.success, .error{
+  margin-bottom: 20px;
+  padding: 20px
+}
+
+.success{
+  color: green;
+  border: 2px solid green;
+}
+
+.error{
+  color: red;
+  border: 2px solid red;
+}
+
 .flexbox {
   display: flex;
 }
@@ -181,6 +196,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  .button{
+    margin: 0;
+  }
 
   label{
     display: block;

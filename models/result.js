@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var Result = new Schema({
   domains: [String],
-  timestamp: Timestamp,
+  timestamp: Date,
   goodAnswers: Number,
   totalAnswers: Number,
   surrender: Boolean
