@@ -15,12 +15,12 @@ function controller(){
     }
   }
 
-  this.find = (data, success, error) => {
-    model.find(data, handleData(success, error));
+  this.find = (success, error) => {
+    model.findOne({}, handleData(success, error));
   }
 
-  this.update = (id, fields, success, error) => {
-    model.update({_id: id}, fields, handleData(success, error));
+  this.update = (fields, success, error) => {
+    model.update({}, fields, handleData(success, error));
   }
 
 }

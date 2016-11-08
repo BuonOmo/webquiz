@@ -8,10 +8,17 @@ var User = new Schema({
   answers: Number,
   goodAnswers: Number,
   goodExamAnswers: Number,
-  results: "String",
+  results: [String],
   preferences: {
-    domains: {},
+    domains: [String],
     examAnswers: Number
+  },
+  currentExam: {
+    score: Number,
+    counter: Number,
+    questionId: String,
+    numberOfQuestions: Number,
+    domains: [String]
   }
 });
 

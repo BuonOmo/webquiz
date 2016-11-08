@@ -29,7 +29,7 @@
       var numberOfQuestions = data.numberOfQuestions || 10,
           domains           = data.domains           || "";
       changeQuestion();
-    );
+    });
   } else {
     changeQuestion();
   }
@@ -59,7 +59,7 @@
     ++counter;
     var url;
     if (isExam) {
-      if (counter == numberOfQuestions)
+      if (counter === numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > numberOfQuestions) {
         $.post('/api/results',{
@@ -68,8 +68,7 @@
             goodAnswers: score,
             totalAnswers: numberOfQuestions,
             surrender: false
-          },debug);
-        );
+        },debug);
         go('result');
         return;
       }
@@ -252,12 +251,16 @@
    * @return undefined
    */
   function updateQuestionStats(domain, isGood, isExam) {
-    $.patch('/api/statistics/increment/',{
-      answers: 1,
-      examAnswers: isExam ? 1 : 0,
-      goodAnswers: isGood ? 1 : 0,
-      goodExamAnswers: isExam && isGood ? 1 : 0
-    }, debug);
+    $.ajax({
+      method: 'PATCH',
+      url: '/api/statistics/increment/',
+      data: {
+        answers: 1,
+        examAnswers: isExam ? 1 : 0,
+        goodAnswers: isGood ? 1 : 0,
+        goodExamAnswers: isExam && isGood ? 1 : 0
+      }
+    }).always(debug);
   }
 
   // ------------------------------------------------------------- DOM binding
@@ -277,7 +280,23 @@
         surrender: true
       }, debug)
       go('result');
-    })
+    });
+    // save current exam
+    $(window).bind('beforeunload', function() {
+      $.ajax({
+        method: 'PATCH',
+        url: '/api/user/first',
+        data: {
+          currentExam: (counter > numberOfQuestions ? null : {
+            score: score,
+            counter: counter,
+            questionId: questionId,
+            numberOfQuestions: numberOfQuestions,
+            domains: domains
+          })
+        }
+      }).always(debug);
+    });
   }
 
   function debug(anything) {
