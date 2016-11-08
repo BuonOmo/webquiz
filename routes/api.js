@@ -4,7 +4,7 @@
  *
  * List of all requests:
  * 1. GET /ask/:domains => Any randomly chosen question without answer corresponding
- * 3. GET /answer[s]/:id/:answer /ans/:id/:answer => See if answer to a question
+ * 2. GET /answer[s]/:id/:answer /ans/:id/:answer => See if answer to a question
  *                                                   is good
  */
 
@@ -24,12 +24,20 @@ var router = express.Router();
  */// ==========================================================================
 router.get("/ask(/:domains)?", (req, res) => {
   function onSuccess(data) {
-    res.json(data)
+    if (data) res.json(data)
+    else {
+      res.status(404);
+      res.json({
+        error: 'No question in these domains.',
+        params: req.params,
+        data: data
+      });
+    }
   }
   function onError(data) {
-    res.status(404);
+    res.status(500);
     res.json({
-      error: 'No question in these domains.',
+      error: 'DB: an internal error occurred',
       params: req.params,
       data: data
     });
@@ -43,7 +51,7 @@ router.get("/ask(/:domains)?", (req, res) => {
 });
 
 
-/* ===================================== 3 =====================================
+/* ===================================== 2 =====================================
  * GET /ans/:id/:answer
  * Route to get an answer. This route is made separated from the question for
  * security purpose.
