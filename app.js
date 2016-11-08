@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var api = require('./routes/api');
 var apiQuestion = require('./routes/question');
-var users = require('./routes/users');
+var apiUser = require('./routes/user');
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/api', api);
 app.use('/api/question', apiQuestion);
-app.use('/users', users);
+app.use('/api/user', apiUser);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.min.js'))
 app.use('/modernizr', express.static(__dirname + '/public/javascripts/modernizr.min.js'))
 app.use('/less-css', less(

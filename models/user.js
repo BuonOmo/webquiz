@@ -7,9 +7,12 @@ var User = new Schema({
   name: String,
   answers: Number,
   goodAnswers: Number,
-  examAnswers: Number,
   goodExamAnswers: Number,
-  results: [ObjectId]
+  results: "String",
+  preferences: {
+    domains: {},
+    examAnswers: Number
+  }
 });
 
 module.exports = mongoose.model('User', User);
