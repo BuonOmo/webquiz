@@ -10,7 +10,8 @@
 
 var express            = require('express'),
     databaseError      = require('../misc/utils').databaseError,
-    questionController = require('../controllers/question');
+    questionController = require('../controllers/question'),
+    userController = require('../controllers/user');
 
 var router = express.Router();
 
@@ -66,5 +67,14 @@ router.get('/ans/:id/:answer', (req, res) => {
   );
 });
 
+router.get('/statistics', (req, res) => {
+  userController.getStatistics((data) => res.json(data), databaseError(req, res));
+});
+
+router.delete('/statistics', (req, res) => {
+  userController.clearStatistics();
+  res.status(204);
+  res.end();
+});
 
 module.exports = router;

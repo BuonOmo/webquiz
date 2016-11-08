@@ -182,6 +182,15 @@
   flex-direction: column;
   align-items: center;
 }
+.loading {
+  animation: spin 1.6s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ====================================================================
    Main content $mc
