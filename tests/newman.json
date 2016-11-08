@@ -91,7 +91,7 @@
 			{
 				"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
-				"url": "localhost:3000/api/ask/10000000000",
+				"url": "localhost:3000/api/question/short/domains/10000000000",
 				"preRequestScript": null,
 				"pathVariables": {},
 				"method": "GET",
@@ -102,7 +102,7 @@
 				"currentHelper": "normal",
 				"helperAttributes": {},
 				"time": 1478560682344,
-				"name": "localhost:3000/api/ask/10000000000",
+				"name": "localhost:3000/api/question/short/domains/10000000000",
 				"description": "Ask for a non existant question",
 				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"responses": []
@@ -110,7 +110,7 @@
 			{
 				"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
-				"url": "localhost:3000/api/ask/",
+				"url": "localhost:3000/api/question/short/domains/",
 				"preRequestScript": null,
 				"pathVariables": {},
 				"method": "GET",
@@ -121,7 +121,7 @@
 				"currentHelper": "normal",
 				"helperAttributes": {},
 				"time": 1478560826255,
-				"name": "localhost:3000/api/ask/",
+				"name": "localhost:3000/api/question/short/domains/",
 				"description": "Get a random question",
 				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"responses": []
@@ -439,14 +439,14 @@
 			{
 				"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
 				"headers": "Content-Type: application/json\nAccept: image/jpeg\n",
-				"url": "localhost:3000/api/ask/notArealdomain",
+				"url": "localhost:3000/api/question/short/domains/notArealdomain",
 				"pathVariables": {},
 				"preRequestScript": null,
 				"method": "GET",
 				"collectionId": "0b249a44-1b6b-132f-c3ae-ce45bb0c0324",
 				"data": "{\n\t\"posted\": \"post\"\n}",
 				"dataMode": "raw",
-				"name": "localhost:3000/api/ask/notArealdomain",
+				"name": "localhost:3000/api/question/short/domains/notArealdomain",
 				"description": "Get a random question",
 				"descriptionFormat": "html",
 				"time": 1477678175783,
@@ -620,8 +620,8 @@
 	"results": [
 		{
 			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"name": "localhost:3000/api/ask/",
-			"url": "localhost:3000/api/ask/",
+			"name": "localhost:3000/api/question/short/domains/",
+			"url": "localhost:3000/api/question/short/domains/",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -675,8 +675,8 @@
 		},
 		{
 			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
-			"name": "localhost:3000/api/ask/notArealdomain",
-			"url": "localhost:3000/api/ask/notArealdomain",
+			"name": "localhost:3000/api/question/short/domains/notArealdomain",
+			"url": "localhost:3000/api/question/short/domains/notArealdomain",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 404,
@@ -718,8 +718,8 @@
 		},
 		{
 			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
-			"name": "localhost:3000/api/ask/10000000000",
-			"url": "localhost:3000/api/ask/10000000000",
+			"name": "localhost:3000/api/question/short/domains/10000000000",
+			"url": "localhost:3000/api/question/short/domains/10000000000",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 404,
@@ -1504,9 +1504,9 @@
 	"willStop": false,
 	"requests": [
 		{
-			"name": "localhost:3000/api/ask/",
+			"name": "localhost:3000/api/question/short/domains/",
 			"id": "0c9bbae9-6b77-b1c3-4e32-c1b789a9e9d1",
-			"url": "localhost:3000/api/ask/",
+			"url": "localhost:3000/api/question/short/domains/",
 			"time": 193,
 			"responseCode": {
 				"code": 200,
@@ -1560,9 +1560,9 @@
 			}
 		},
 		{
-			"name": "localhost:3000/api/ask/notArealdomain",
+			"name": "localhost:3000/api/question/short/domains/notArealdomain",
 			"id": "9a772097-ebba-916a-2b2e-0cdb8c5a40fc",
-			"url": "localhost:3000/api/ask/notArealdomain",
+			"url": "localhost:3000/api/question/short/domains/notArealdomain",
 			"time": 148,
 			"responseCode": {
 				"code": 404,
@@ -1602,9 +1602,9 @@
 			}
 		},
 		{
-			"name": "localhost:3000/api/ask/10000000000",
+			"name": "localhost:3000/api/question/short/domains/10000000000",
 			"id": "0ba195f5-9efb-11ee-572c-d7435f4dc691",
-			"url": "localhost:3000/api/ask/10000000000",
+			"url": "localhost:3000/api/question/short/domains/10000000000",
 			"time": 154,
 			"responseCode": {
 				"code": 404,

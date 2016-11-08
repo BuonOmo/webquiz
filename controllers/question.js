@@ -37,6 +37,10 @@ function controller(){
     );
   }
 
+  this.findOneById = (id, success, error) => {
+    model.findOne({_id: id}, handleData(success, error));
+  }
+
   this.findOneByDomain = (domains, success, error) => {
     model.findRandom(
       { domain: { $in: domains } },

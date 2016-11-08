@@ -1,5 +1,6 @@
-var express    = require('express'),
-    controller = require('../controllers/question');
+var express       = require('express'),
+    databaseError = require('../misc/utils').databaseError,
+    controller    = require('../controllers/question');
 
 var router = express.Router();
 
@@ -26,6 +27,20 @@ router.post('', (req, res) => {
   }
 });
 
+router.get("/short", (req, res) => {
+    controller.findOne((data) => {
+      if (data) res.json(data)
+      else {
+        res.status(404);
+        res.json({
+          error: 'Question not found.',
+          params: req.params,
+          data: data
+        });
+      }
+    }, databaseError(req, res));
+});
+
 router.get('(?:/:id)?', (req, res) => {
   var searchParams = req.params.id == null ? null : {_id: req.params.id};
   controller.find(
@@ -40,6 +55,35 @@ router.get('(?:/:id)?', (req, res) => {
       });
     }
   );
+});
+
+router.get("/short/domains/:domains", (req, res) => {
+  var domains = req.params.domains.split(',');
+  controller.findOneByDomain(domains, (data) => {
+    if (data) res.json(data)
+    else {
+      res.status(404);
+      res.json({
+        error: 'Question not found.',
+        params: req.params,
+        data: data
+      });
+    }
+  }, databaseError(req, res));
+});
+
+router.get("/short/:id", (req, res) => {
+  controller.findOneById(req.params.id, (data) => {
+    if (data) res.json(data)
+    else {
+      res.status(404);
+      res.json({
+        error: 'Question not found.',
+        params: req.params,
+        data: data
+      });
+    }
+  }, databaseError(req, res));
 });
 
 router.put('', (req, res) => {
