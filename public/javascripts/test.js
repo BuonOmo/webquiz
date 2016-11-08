@@ -23,11 +23,15 @@
       $droptarget   = $('#droptarget');
 
   // Session storage use
-  if (isExam && getSession('preferences') !== null) {
-    var numberOfQuestions = getSession('preferences').numberOfQuestions || 10,
-        domains           = getSession('preferences').domains || "";
+  if (isExam) {
+    var numberOfQuestions = 10, domains = ""
+    $.get('/api/user',function(data){
+      var numberOfQuestions = data.numberOfQuestions || 10,
+          domains           = data.domains           || "";
+      changeQuestion();
+    );
   } else {
-    var numberOfQuestions = 10, domains = "";
+    changeQuestion();
   }
 
 
@@ -58,15 +62,13 @@
       if (counter == numberOfQuestions)
         $nextQuestion.find('span').html('Fin de l’examen');
       else if (counter > numberOfQuestions) {
-        setLocal(
-          "results",
-          (getLocal("results") || []).concat({
+        $.post('/api/results',{
             domains: domains,
             timestamp: Date.now(),
             goodAnswers: score,
             totalAnswers: numberOfQuestions,
             surrender: false
-          })
+          },debug);
         );
         go('result');
         return;
@@ -250,35 +252,12 @@
    * @return undefined
    */
   function updateQuestionStats(domain, isGood, isExam) {
-    var stats = getLocal("questionStatistics");
-    stats = stats || {
-      "answers"         : 0,
-      "examAnswers"     : 0,
-      "goodAnswers"     : 0,
-      "goodExamAnswers" : 0,
-      "domains"         : {}
-    };
-    stats.domains[domain] = stats.domains[domain] || {
-      "answers"         : 0,
-      "examAnswers"     : 0,
-      "goodAnswers"     : 0,
-      "goodExamAnswers" : 0
-    };
-    stats.domains[domain].answers++;
-    stats.answers++;
-    if (isExam) {
-      stats.domains[domain].examAnswers++;
-      stats.examAnswers++;
-      if (isGood) {
-        stats.domains[domain].goodExamAnswers++;
-        stats.goodExamAnswers++;
-      }
-    }
-    if (isGood) {
-      stats.domains[domain].goodAnswers++;
-      stats.goodAnswers++;
-    }
-    setLocal("questionStatistics",stats);
+    $.patch('/api/statistics/increment/',{
+      answers: 1,
+      examAnswers: isExam ? 1 : 0,
+      goodAnswers: isGood ? 1 : 0,
+      goodExamAnswers: isExam && isGood ? 1 : 0
+    }, debug);
   }
 
   // ------------------------------------------------------------- DOM binding
@@ -288,22 +267,20 @@
   });
 
   if (isExam) {
-    $('#dashboard').click(function (event) {
+    $('#dashboard').click(function(event) {
       event.preventDefault();
-      setLocal(
-        "results",
-        (getLocal("results") || []).concat({
-          domains: domains,
-          timestamp: Date.now(),
-          goodAnswers: 0,
-          totalAnswers: counter - 1,
-          surrender: true
-        })
-      );
+      $.post('/api/result',{
+        domains: domains,
+        timestamp: Date.now(),
+        goodAnswers: 0,
+        totalAnswers: counter - 1,
+        surrender: true
+      }, debug)
       go('result');
     })
   }
 
-  // ---------------------------------------------------------- Initialisation
-  changeQuestion();
+  function debug(anything) {
+    console.log(anything);
+  }
 })();
