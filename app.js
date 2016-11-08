@@ -27,7 +27,7 @@ swagger.setAppHandler(subpath);
 app.use(express.static('dist'));
 
 subpath.get('/', function (req, res) {
-    res.sendfile(__dirname + '/dist/index.html');
+    res.sendFile(__dirname + '/dist/index.html');
 });
 
 // Set api-doc path
