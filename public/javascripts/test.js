@@ -253,7 +253,7 @@
   function updateQuestionStats(domain, isGood, isExam) {
     $.ajax({
       method: 'PATCH',
-      url: '/api/statistics/increment/',
+      url: '/api/statistics/increment',
       data: {
         answers: 1,
         examAnswers: isExam ? 1 : 0,

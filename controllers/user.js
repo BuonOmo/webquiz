@@ -24,12 +24,26 @@ function controller(){
                   {_id: 0, answers: 1, goodAnswers: 1},
                   handleData(success,error));
   }
-  this.clearStatistics = () => {
+
+  this.clearStatistics = (success, error) => {
     model.update({}, {
       answers: 0,
       goodAnswers: 0,
       goodExamAnswers: 0
-    }).exec();
+    }, handleData(success, error));
+  }
+
+  this.incrementStatistics = (toInc, success, error) => {
+    model.findOne({}, (err, data) => {
+      if (err) error(data);
+      for (var key in toInc) {
+        if (typeof toInc[key] === "number" &&
+            ['answers', 'goodAnswers', 'goodExamAnswers'].indexOf(key) !== -1)
+          data[key]+= toInc[key];
+      }
+      model.update({}, data, handleData(success, error));
+    });
+
   }
 
   this.update = (fields, success, error) => {

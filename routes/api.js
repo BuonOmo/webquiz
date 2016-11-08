@@ -72,9 +72,16 @@ router.get('/statistics', (req, res) => {
 });
 
 router.delete('/statistics', (req, res) => {
-  userController.clearStatistics();
-  res.status(204);
-  res.end();
+  userController.clearStatistics(() => {
+    res.status(204);
+    res.end();
+  }, databaseError(req,res));
 });
 
+router.patch('/statistics/increment', (req, res) => {
+  userController.incrementStatistics(req.body, () => {
+    res.status(204);
+    res.end();
+  }, databaseError(req, res));
+});
 module.exports = router;
