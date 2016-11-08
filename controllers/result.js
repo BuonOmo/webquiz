@@ -25,11 +25,16 @@ function controller(){
   }
 
   this.findLast = (success, error) => {
-    model.find().sort({ $natural: -1 }).limit(1).exec(handleData(success, error));
+    model.findOne(handleData(success, error))
+         .sort({ timestamp: -1 })
   }
 
   this.update = (data, success, error) => {
     model.update(data, handleData(success, error));
+  }
+
+  this.delete = (data, success, error) => {
+    model.remove(data, handleData(success, error));
   }
 }
 module.exports = new controller();

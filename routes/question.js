@@ -26,7 +26,7 @@ router.post('', (req, res) => {
   }
 });
 
-router.get('(/:id)?', (req, res) => {
+router.get('(?:/:id)?', (req, res) => {
   var searchParams = req.params.id == null ? null : {_id: req.params.id};
   controller.find(
     searchParams,
@@ -52,11 +52,14 @@ router.patch('/:id/:field/:val', (req, res) => {
   controller.update(req.params.id, field, (data) => res.json(data), (data) => res.json(data));
 });
 
-router.delete('(/:id)?', (req, res) => {
+router.delete('(?:/:id)?', (req, res) => {
   var searchParams = req.params.id == null ? {} : req.params.id;
   controller.delete(
     searchParams,
-    () => res.end(),
+    () => {
+      res.status(204);
+      res.end();
+    },
     (data) => {
     res.status(500);
     res.json({

@@ -8,7 +8,8 @@
  *                                                   is good
  */
 
-var express = require('express'),
+var express            = require('express'),
+    databaseError      = require('../misc/utils').databaseError,
     questionController = require('../controllers/question');
 
 var router = express.Router();
@@ -22,7 +23,7 @@ var router = express.Router();
  * database without filter.
  * Response format : all from model except goodAnswers.
  */// ==========================================================================
-router.get("/ask(/:domains)?", (req, res) => {
+router.get("/ask(?:/:domains)?", (req, res) => {
   function onSuccess(data) {
     if (data) res.json(data)
     else {
@@ -34,19 +35,12 @@ router.get("/ask(/:domains)?", (req, res) => {
       });
     }
   }
-  function onError(data) {
-    res.status(500);
-    res.json({
-      error: 'DB: an internal error occurred',
-      params: req.params,
-      data: data
-    });
-  }
   if (req.params.domains) {
     var domains = req.params.domains.split(',');
-    questionController.findOneByDomain(domains, onSuccess, onError);
+    questionController.findOneByDomain(domains, onSuccess,
+                                       databaseError(req, res));
   } else {
-    questionController.findOne(onSuccess, onError);
+    questionController.findOne(onSuccess, databaseError(req, res));
   }
 });
 
@@ -68,15 +62,8 @@ router.get('/ans/:id/:answer', (req, res) => {
         goodAnswerIndex: data[0].goodAnswer,
         isGoodAnswer: data[0].goodAnswer == req.params.answer
       });
-    },
-    (data) => {
-      res.status(500);
-      res.json({
-        error: 'DB: an internal error occurred',
-        params: req.params
-      });
-    }
-  )
+    }, databaseError(req, res)
+  );
 });
 
 

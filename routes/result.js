@@ -1,5 +1,6 @@
-var express    = require('express')
-    controller = require('../controllers/result');
+var express       = require('express'),
+    databaseError = require('../misc/utils').databaseError,
+    controller    = require('../controllers/result');
 
 var router = express.Router();
 
@@ -8,66 +9,61 @@ router.post('', (req, res) => {
     controller.save(req.body, (data) => {
       res.status(201);
       res.json(data);
-    }, (data) => {
-      res.status(500);
-      res.json({
-        error: 'DB: error on save',
-        params: req.params,
-        data: data
-      })
-    });
-});
-
-router.get('(/:id)?', (req, res) => {
-  var searchParams = req.params.id == null ? null : {_id: req.params.id};
-  controller.find(
-    searchParams,
-    (data) => res.json( searchParams === null ? data : data.shift()),
-    (data) => {
-      res.status(404);
-      res.json({
-        error: 'Result not found.',
-        params: req.params,
-        data: data
-      });
-    }
-  );
+    }, databaseError(req, res));
 });
 
 router.get('/last', (req, res) => {
   controller.findLast(
-    (data) => res.json(data),
     (data) => {
-      res.status(404);
-      res.json({
-        error: 'Result not found.',
-        data: data
-      });
-    }
+      if (data) // check if data is not empty
+        res.json(data)
+      else {
+        res.status(404);
+        res.json({
+          error: 'Result not found.',
+          params: req.params,
+          data: data
+        });
+      }
+    }, databaseError(req, res)
   );
 });
 
-router.put('', (req, res) => {
-  controller.update(req.body._id, req.body, (data) => res.json(data), (data) => res.json(data));
+router.get('(?:/:id)?', (req, res) => {
+  var searchParams = req.params.id == null ? null : {_id: req.params.id};
+  controller.find(
+    searchParams,
+    (data) => {
+      if (data && data.length) // check if data is not empty
+        res.json( searchParams === null ? data : data.shift())
+      else {
+        res.status(404);
+        res.json({
+          error: 'Result not found.',
+          params: req.params,
+          data: data
+        });
+      }
+    }, databaseError(req, res)
+  );
 });
 
-router.patch('/statistics/increment', (req, res) => {
-  controller.update(req.body, (data) => res.json(data), (data) => res.json(data));
-});
+// router.put('', (req, res) => {
+//   controller.update(req.body._id, req.body, (data) => res.json(data), (data) => res.json(data));
+// });
+//
+// router.patch('/statistics/increment', (req, res) => {
+//   controller.update(req.body, (data) => res.json(data), (data) => res.json(data));
+// });
 
-router.delete('(/:id)?', (req, res) => {
+router.delete('(?:/:id)?', (req, res) => {
   var searchParams = req.params.id == null ? {} : req.params.id;
   controller.delete(
     searchParams,
-    () => res.end(),
     (data) => {
-    res.status(500);
-    res.json({
-      error: "DB: error retrieving results",
-      params: req.params,
-      data: data
-    });
-  });
+      res.status(204);
+      res.json(data);
+    }, databaseError(req,res));
 });
 
 module.exports = router;

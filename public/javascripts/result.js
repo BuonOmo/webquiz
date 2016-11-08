@@ -6,7 +6,7 @@
                      "Le pourcentage de réussite est donc de : " + pourcentage + "%. <br /><br />";
     var validiteRessource = 30000; //La ressource est valide pendant 30s
 
-    if(Date.now() < result.timestamp + validiteRessource){
+    if(Date.now() < Date.parse(result.timestamp) + validiteRessource){
       if(pourcentage >= 0 && pourcentage <= 25){
         affichage += "Ce n'est pas bon du tout ! Il va falloir plus réviser...";
       }
