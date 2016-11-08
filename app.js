@@ -14,6 +14,43 @@ var apiResult = require('./routes/result');
 
 var app = express();
 
+// ----------------------------- SWAGGER CONFIG ----------------------------- //
+var argv       = require('minimist')(process.argv.slice(2));
+var swagger    = require("swagger-node-express");
+var bodyParser = require( 'body-parser' );
+
+var subpath = express();
+app.use(bodyParser());
+app.use("/doc", subpath);
+swagger.setAppHandler(subpath);
+
+app.use(express.static('dist'));
+
+subpath.get('/', function (req, res) {
+    res.sendfile(__dirname + '/dist/index.html');
+});
+
+// Set api-doc path
+swagger.configureSwaggerPaths('', 'api-docs', '');
+
+// Configure the API domain
+var domain = 'localhost';
+if (argv.domain !== undefined) domain = argv.domain;
+else
+  console.log('No --domain=xxx specified, taking default hostname "'+domain+'".')
+
+// Configure the API port
+var port = 3000;
+if (argv.port !== undefined) port = argv.port;
+else console.log('No --port=xxx specified, taking default port ' + port + '.')
+
+// Set and display the application URL
+var applicationUrl = 'http://' + domain + ':' + port;
+console.log('snapJob API running on ' + applicationUrl);
+
+swagger.configure(applicationUrl, '1.0.0');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
