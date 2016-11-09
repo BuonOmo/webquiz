@@ -76,11 +76,21 @@ function controller(){
            typeof question.goodAnswer === "number" && verify(question.goodAnswer)
   }
 
+  /**
+   * Get all domains in different questions
+   * @param  {function} result callback that take a string array as parameter
+   */
   this.getAllDomains = (result) => {
     model.find({}, {_id: 0, domain: 1}, (err, data) =>{
-      result(data.map((val) => val.domain)
-                 .filter((val, index, self) => self.indexOf(val) === index ))
-
+      var ret = [];
+      if (err) {
+        result(ret);
+        return;
+      }
+      // The next operation may be low, that’s why it’s written this way.
+      // benchmark here: http://jsben.ch/#/dU9Xc
+      data.forEach((val) => ret.indexOf(val.domain) == -1 ? ret.push(val.domain) : null);
+      result(ret);
     });
   }
 }
