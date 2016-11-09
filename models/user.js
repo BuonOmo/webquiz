@@ -16,7 +16,7 @@ var User = new Schema({
   currentExam: {
     score: Number,
     counter: Number,
-    questionId: String,
+    questionIds: [String],
     numberOfQuestions: Number,
     domains: [String]
   }

@@ -1,6 +1,8 @@
 var model = require('../models/user');
-
+var debug = require('../configs').debug;
+var questionController = require('./question');
 function controller(){
+  var self = this;
 
   function handleData(success, error) {
     return function(err, data) {
@@ -55,6 +57,28 @@ function controller(){
 
   this.update = (fields, success, error) => {
     model.update({}, fields, handleData(success, error));
+  }
+
+  this.createNewExam = (numberOfQuestions, domains) => {
+    if (debug)
+      console.log('userController.createNewExam('+
+                  numberOfQuestions+',['+domains+'])');
+    if (domains && domains.length)
+      questionController.findAnyByDomain(numberOfQuestions, domains, onSuccess, console.error);
+    else
+      questionController.findAny(numberOfQuestions, onSuccess, console.error);
+    function onSuccess(questions) {
+      if (debug) console.log(questions.map((e) => e._id.toString()));
+      self.update({
+        currentExam: {
+          score: 0,
+          counter: 0,
+          questionIds: questions.map((e) => e._id.toString()),
+          numberOfQuestions: numberOfQuestions,
+          domains: domains
+        }
+      }, console.log, console.log);
+    }
   }
 
 }

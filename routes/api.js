@@ -56,4 +56,12 @@ router.patch('/statistics/increment', (req, res) => {
     res.end();
   }, databaseError(req, res));
 });
+
+router.post('/exam/new', (req, res) => {
+  parsed = jqueryFix(req.body);
+  userController.createNewExam(parsed.numberOfQuestions, parsed.domains);
+  res.status(204);
+  res.end();
+})
+
 module.exports = router;

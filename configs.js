@@ -8,5 +8,6 @@ const URL = ENVIRONMENT === "production" ?
 module.exports = {
   database: {
     url: URL
-  }
+  },
+  debug: ENVIRONMENT !== "production"
 }

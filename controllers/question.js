@@ -1,4 +1,5 @@
 var model = require('../models/question');
+var debug = require('../configs').debug;
 
 function controller(){
 
@@ -28,13 +29,30 @@ function controller(){
     model.update({_id: id}, fields, handleData(success, error));
   }
 
-  this.findOne = (success, error) => {
+
+  this.findAny = (number, success, error) => {
     model.findRandom(
       {},
       {goodAnswer: 0},
-      {limit: 1},
-      (err, data) => handleData(success, error)(err, data[0])
+      {limit: number},
+      handleData(success, error)
     );
+  }
+
+  this.findAnyByDomain = (number, domains, success, error) => {
+    if (debug)
+      console.log('questionController.findAnyByDomain(('+typeof number+')'+
+                  number+',['+domains+'], ...)');
+    model.findRandom(
+      { domain: { $in: domains } },
+      {goodAnswer: 0},
+      {limit: number},
+      handleData(success, error)
+    );
+  }
+
+  this.findOne = (success, error) => {
+    this.findAny(1, (data) => success(data[0]), error);
   }
 
   this.findOneById = (id, success, error) => {

@@ -3,17 +3,13 @@
 
   $('#start-exam').submit(function (event) {
     event.preventDefault();
-    $.ajax({
-      method: 'PATCH',
-      url: '/api/user',
-      data: {
-        preferences: {
-          domains          : $(this).find('select[name="domains"]').val(),
-          numberOfQuestions: $(this).find('input[name="numberOfQuestions"]').val()
-        }
-      }
+    $.post('/api/exam/new', JSON.stringify({
+      domains          : $(this).find('select[name="domains"]').val(),
+      numberOfQuestions: parseInt($(this).find('input[name="numberOfQuestions"]').val())
+    }), function (data) {
+      console.log(data);
+      go('exam');
     });
-    go('exam');
   });
 
   /* This function has an ugly part: it should get values ONLY if needed (for
