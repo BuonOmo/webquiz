@@ -4,8 +4,7 @@ prepend title
   - var pageTitle = firstHeader
 
 append scripts
-  script var pageId="#{id}";
-  script(src="/javascripts/test.js")
+  script(src="/javascripts/"+id+".js")
 
 block content
   main

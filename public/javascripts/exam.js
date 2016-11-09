@@ -121,9 +121,11 @@
           return;
         } else if (counter > numberOfQuestions)
           console.error("An error occured..");
-
+          console.log(questionId, domains)
         if (questionId) url = "/api/question/short/"+questionId;
-        else url = "/api/question/short/"+(domains ? ("domains/" + domains ): "");
+        else if (domains && domains.length)
+          url = "/api/question/short/domains/" + domains;
+        else url = "/api/question/short"
       } else {
         url = "/api/question/short/";
       }
