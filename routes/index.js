@@ -1,4 +1,5 @@
 var express = require('express');
+var getDomains = require('../controllers/question').getAllDomains;
 var router = express.Router();
 
 const pagePath = 'pages/';
@@ -65,13 +66,19 @@ function examRedirection(req, res, next) {
       () => next());
 }
 
-for (var page of pages) {
-  (function (page) {
-    router.get(page.url, examRedirection, (req, res, next) => {
-      res.render(page.path,page.opt);
-    });
+function loadAllPages() {
+  for (var page of pages) {
+    (function (page) {
+      router.get(page.url, examRedirection, (req, res, next) => {
+        res.render(page.path,page.opt);
+      });
 
-  })(page);
+    })(page);
+  }
 }
+getDomains((domains) => {
+  pages[1].opt.domains = domains;
+  loadAllPages();
+});
 
 module.exports = router;

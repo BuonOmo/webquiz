@@ -11,7 +11,7 @@ var User = new Schema({
   results: [String],
   preferences: {
     domains: [String],
-    examAnswers: Number
+    numberOfQuestions: Number
   },
   currentExam: {
     score: Number,

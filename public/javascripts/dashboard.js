@@ -3,9 +3,15 @@
 
   $('#start-exam').submit(function (event) {
     event.preventDefault();
-    $.put('/api/preferences', {
-      domains          : $(this).find('select[name="domains"]').val(),
-      numberOfQuestions: $(this).find('input[name="numberOfQuestions"]').val()
+    $.ajax({
+      method: 'PATCH',
+      url: '/api/user',
+      data: {
+        preferences: {
+          domains          : $(this).find('select[name="domains"]').val(),
+          numberOfQuestions: $(this).find('input[name="numberOfQuestions"]').val()
+        }
+      }
     });
     go('exam');
   });
@@ -29,10 +35,14 @@
         );
       }
     }
-    $.get('/api/result', resolveResults).fail(function() {
-      $('.exam-statistics, .exam-mean').html('Aucune statistique pour le moment');
-    });
-    function resolveResults(results) {
+    function noResult(){
+        $('.exam-statistics, .exam-mean').html('Aucune statistique pour le moment');
+    }
+    $.get('/api/result', resolveResults).fail(noResult);
+    function resolveResults(results, header) {
+      if (header === "nocontent") {
+        return noResult();
+      }
       var mean = 0;
       var table = $('tbody');
       for (var result of results) {

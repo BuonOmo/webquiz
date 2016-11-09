@@ -20,8 +20,12 @@ function controller(){
     question.save(handleData(success, error));
   }
 
-  this.find = (data, success, error) => {
-    model.find(data, handleData(success, error));
+  this.all = (success, error) => {
+    model.find({}, handleData(success, error));
+  }
+
+  this.findOneById = (id, success, error) => {
+    model.findOne({_id: id}, handleData(success, error));
   }
 
   this.findLast = (success, error) => {

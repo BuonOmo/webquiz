@@ -29,13 +29,30 @@ router.get('/last', (req, res) => {
   );
 });
 
-router.get('(?:/:id)?', (req, res) => {
-  var searchParams = req.params.id == null ? null : {_id: req.params.id};
-  controller.find(
-    searchParams,
+router.get(':id', (req, res) => {
+  controller.findOneById(
+    req.params.id,
     (data) => {
-      if (data && data.length) // check if data is not empty
-        res.json( searchParams === null ? data : data.shift())
+      if (data) res.json(data);
+      else {
+        res.status(404);
+        res.json({
+          error: 'Result not found.',
+          params: req.params,
+          data: data
+        });
+      }
+    }, databaseError(req, res)
+  );
+});
+
+router.get('', (req, res) => {
+  controller.all(
+    (data) => {
+      if (data) {
+        if (!data.length) res.status(204);
+        res.json(data);
+      }
       else {
         res.status(404);
         res.json({

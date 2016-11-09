@@ -71,7 +71,7 @@ block content
           input(type="number" min=1 value=10 name="numberOfQuestions" autofocus)
           label(for="domains") Domaines concernés :
           select(name="domains" multiple)
-            each domain in ['HTML5', 'CSS3', 'JS', 'Divers']
+            each domain in domains
               option(value= domain)= domain
         input#start-exam.button(type="submit" value="Commencer")
   // /modal-exam

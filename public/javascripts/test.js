@@ -10,7 +10,11 @@
   var questionId,
       score    = 0,
       counter  = 0,
-      answered = true; // used in changeQuestion, to see if used has answered
+      answered = true;
+
+  if (isExam)
+      var numberOfQuestions = 10,
+          domains  = ""; // used in changeQuestion, to see if used has answered
 
   // JQuery quick access to important nodes
   var $domain       = $('#domain'),
@@ -25,7 +29,6 @@
   else main();
 
   function initExam(exam) {
-    var numberOfQuestions = 10, domains = "";
 
     if (!exam) {
       $.get('/api/user',function(data){
@@ -121,10 +124,7 @@
           }
 
           dragndrop();
-        })
-        .fail(function (data) {
-          console.log(data);
-        });
+        }).always(console.log)
 
     }
 

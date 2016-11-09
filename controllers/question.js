@@ -75,6 +75,14 @@ function controller(){
            question.answers.length >= minQuestions &&
            typeof question.goodAnswer === "number" && verify(question.goodAnswer)
   }
+
+  this.getAllDomains = (result) => {
+    model.find({}, {_id: 0, domain: 1}, (err, data) =>{
+      result(data.map((val) => val.domain)
+                 .filter((val, index, self) => self.indexOf(val) === index ))
+
+    });
+  }
 }
 
 module.exports = new controller();
