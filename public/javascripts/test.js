@@ -34,26 +34,53 @@
       $.get('/api/user',function(data){
         numberOfQuestions = data.numberOfQuestions;
         domains           = data.domains;
-        $.ajax({
-          method: 'PATCH',
-          url: '/api/user',
-          data: {
-            currentExam: null
-          }
-        });
+        // clearEnhancement();
       });
       main();
       return;
     }
 
     questionId = exam.questionId;
-    score = exam.score || score;
-    counter = exam.counter || counter;
-    numberOfQuestions = exam.numberOfQuestions || numberOfQuestions;
-    domains = exam.domains;
+    score      = exam.score;
+    counter    = exam.counter;
+    domains    = exam.domains;
+    numberOfQuestions = exam.numberOfQuestions;
     main();
   }
+
   function main() {
+    function saveEnhancement() {
+      $.ajax({
+        method: 'PATCH',
+        url: '/api/user',
+        data: JSON.stringify({
+          currentExam: {
+            score: score,
+            counter: counter,
+            questionId: questionId,
+            numberOfQuestions: numberOfQuestions,
+            domains: domains
+          }
+        })
+      });
+    }
+    function clearEnhancement() {
+      $.ajax({
+        method: 'PATCH',
+        url: '/api/user',
+        data: {
+          currentExam: null
+        }
+      });
+    }
+    function validateAnswer(good) {
+      if (good) ++score;
+      answered = true;
+      questionId = null;
+      saveEnhancement();
+      updateQuestionStats(good);
+      $score.html(score + " / " + counter);
+    }
 
     changeQuestion();
 
@@ -78,12 +105,11 @@
         return;
       }
       answered = false;
-      ++counter;
       var url;
       if (isExam) {
-        if (counter === numberOfQuestions)
+        if (counter === numberOfQuestions - 1)
           $nextQuestion.find('span').html('Fin de l’examen');
-        else if (counter > numberOfQuestions) {
+        else if (counter === numberOfQuestions) {
           $.post('/api/results',{
               domains: domains,
               timestamp: Date.now(),
@@ -91,47 +117,39 @@
               totalAnswers: numberOfQuestions,
               surrender: false
           });
-          $(window).unbind('beforeunload');
           go('result');
           return;
-        }
-        url = "/api/question/short/"+(domains ? "domains/" + domains : "");
-      } else if (questionId) {
-        url = "/api/question/short/"+questionId;
+        } else if (counter > numberOfQuestions)
+          console.error("An error occured..");
+
+        if (questionId) url = "/api/question/short/"+questionId;
+        else url = "/api/question/short/"+(domains ? ("domains/" + domains ): "");
       } else {
         url = "/api/question/short/";
       }
       $.get(url)
         .done(function(data) {
+          ++counter;
           questionId = data._id;
+          // save enhancement again because we updated questionId and counter
+          saveEnhancement();
           $domain.html(data.domain);
           $question.html(data.question);
           // clean everything except first answer (bones)
           $answers.find('.answer:not(:first)').remove()
           for (var answer of data.answers) {
-            $answers
-              // clone body of an answer
-              .find('.answer:first')
-              .clone()
-              // append current answer elements to the clone
-              .find('label')
-                .html(answer)
-              .end()
-              // append the clone to DOM (#answer)
-              .appendTo($answers)
-              // show the clone
-              .show();
+            $answers.find('.answer:first').clone()
+                    .find('label').html(answer).end()
+                    .appendTo($answers).show();
           }
-
           dragndrop();
-        }).always(console.log)
+        }).fail(console.error);
 
     }
 
     function dragndrop(){
       var draggable = document.querySelectorAll(".answer");
       var droptarget = document.getElementById("droptarget");
-      //draggable[0].classList.remove("right");
 
       droptarget.innerHTML = "Glisser la réponse !";
       droptarget.classList.remove("false");
@@ -228,7 +246,6 @@
               isGoodAnswer = data.isGoodAnswer;
               indexAnswer = data.goodAnswerIndex;
               if(isGoodAnswer){
-                ++score;
                 droptarget.classList.add("right");
                 //We indicate that the choosen answer is the good one
               }else{
@@ -236,12 +253,8 @@
                 draggable[indexAnswer+1].classList.add("right");
                 //We indicate that the the choosen answer is not the good one and we show the good one
               }
-              answered = true;
-              questionId = null;
-              // update stats in localstorage
-              updateQuestionStats($domain.html(), isGoodAnswer, isExam);
-              // update score in DOM
-              $score.html(score + " / " + counter);
+              validateAnswer(isGoodAnswer);
+
 
               //When an element is dropped, we need to remove draggable class and attribute on other items in order to avoid multiple d&d
               for(var j = 1; j < draggable.length; j++ ){
@@ -273,17 +286,18 @@
      *
      * @return undefined
      */
-    function updateQuestionStats(domain, isGood, isExam) {
+    function updateQuestionStats(isGood, isExam) {
+      var toSend = ["answers"];
+      if (isExam) {
+        toSend.push("examAnswers");
+        if (isGood) toSend.push("goodExamAnswers");
+      }
+      if (isGood) toSend.push("goodAnswers");
       $.ajax({
         method: 'PATCH',
         url: '/api/statistics/increment',
-        data: {
-          answers: 1,
-          examAnswers: isExam ? 1 : 0,
-          goodAnswers: isGood ? 1 : 0,
-          goodExamAnswers: isExam && isGood ? 1 : 0
-        }
-      });
+        data: JSON.stringify(toSend)
+      }).fail(console.error);
     }
 
     // ------------------------------------------------------------- DOM binding
@@ -301,29 +315,10 @@
           goodAnswers: 0,
           totalAnswers: counter - 1,
           surrender: true
-        }, debug);
+        }).fail(console.error);
         $(window).unbind('beforeunload');
         go('result');
       });
-      // save current exam
-      $(window).bind('beforeunload', function() {
-        $.ajax({
-          method: 'PATCH',
-          url: '/api/user',
-          data: {
-            currentExam: (counter > numberOfQuestions ? null : {
-              score: score,
-              counter: counter,
-              questionId: questionId,
-              numberOfQuestions: numberOfQuestions,
-              domains: domains
-            })
-          }
-        }).always(debug);
-      });
     }
-  }
-  function debug(anything) {
-    console.log(anything);
   }
 })();

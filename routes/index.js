@@ -79,6 +79,7 @@ function loadAllPages() {
 getDomains((domains) => {
   pages[1].opt.domains = domains;
   loadAllPages();
+  console.log('pages ready to be served');
 });
 
 module.exports = router;

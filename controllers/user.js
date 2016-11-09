@@ -36,11 +36,7 @@ function controller(){
   this.incrementStatistics = (toInc, success, error) => {
     model.findOne({}, (err, data) => {
       if (err) error(data);
-      for (var key in toInc) {
-        if (typeof toInc[key] === "number" &&
-            ['answers', 'goodAnswers', 'goodExamAnswers'].indexOf(key) !== -1)
-          data[key]+= toInc[key];
-      }
+      toInc.forEach((key) => data[key]++);
       model.update({}, data, handleData(success, error));
     });
 

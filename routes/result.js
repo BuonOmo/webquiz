@@ -68,10 +68,6 @@ router.get('', (req, res) => {
 // router.put('', (req, res) => {
 //   controller.update(req.body._id, req.body, (data) => res.json(data), (data) => res.json(data));
 // });
-//
-// router.patch('/statistics/increment', (req, res) => {
-//   controller.update(req.body, (data) => res.json(data), (data) => res.json(data));
-// });
 
 router.delete('(?:/:id)?', (req, res) => {
   var searchParams = req.params.id == null ? {} : req.params.id;

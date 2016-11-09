@@ -1,5 +1,6 @@
 var express       = require('express'),
     databaseError = require('../misc/utils').databaseError,
+    jqueryFix     = require('../misc/utils').jqueryFix,
     controller    = require('../controllers/user');
 
 var router = express.Router();
@@ -9,7 +10,7 @@ router.get('', (req, res) => {
 });
 
 router.patch('', (req, res) => {
-  controller.update(req.body, (data) => {
+  controller.update(jqueryFix(req.body), (data) => {
     if (!(data && data.ok))
       res.status(400);
     res.end();

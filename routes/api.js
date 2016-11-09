@@ -10,6 +10,7 @@
 
 var express            = require('express'),
     databaseError      = require('../misc/utils').databaseError,
+    jqueryFix          = require('../misc/utils').jqueryFix,
     questionController = require('../controllers/question'),
     userController = require('../controllers/user');
 
@@ -49,7 +50,8 @@ router.delete('/statistics', (req, res) => {
 });
 
 router.patch('/statistics/increment', (req, res) => {
-  userController.incrementStatistics(req.body, () => {
+  console.log(req.body);
+  userController.incrementStatistics(jqueryFix(req.body), () => {
     res.status(204);
     res.end();
   }, databaseError(req, res));
