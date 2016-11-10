@@ -203,12 +203,8 @@
    *
    * @return undefined
    */
-  function updateQuestionStats(isGood, isExam) {
+  function updateQuestionStats(isGood) {
     var toSend = ["answers"];
-    if (isExam) {
-      toSend.push("examAnswers");
-      if (isGood) toSend.push("goodExamAnswers");
-    }
     if (isGood) toSend.push("goodAnswers");
     $.ajax({
       method: 'PATCH',

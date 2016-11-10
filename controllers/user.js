@@ -36,12 +36,9 @@ function controller(){
   }
 
   this.incrementStatistics = (toInc, success, error) => {
-    model.findOne({}, (err, data) => {
-      if (err) error(data);
-      toInc.forEach((key) => data[key]++);
-      model.update({}, data, handleData(success, error));
-    });
-
+    incObj = {};
+    toInc.forEach((e) => incObj[e]=1);
+    model.update({}, {$inc: incObj}, handleData(success, error));
   }
 
   /**
@@ -51,7 +48,9 @@ function controller(){
    */
   this.inExam = (yes, no) => {
     model.findOne({}, (err, data) => {
-      (err || data.currentExam) ? no() : yes();
+      if (err) no();
+      else if (data.currentExam.numberOfQuestions) yes();
+      else no();
     });
   }
 
@@ -74,11 +73,18 @@ function controller(){
           score: 0,
           counter: 0,
           questionIds: questions.map((e) => e._id.toString()),
-          numberOfQuestions: numberOfQuestions,
+          numberOfQuestions: questions.length, // can be less than numberOfQuestions asked by user!
           domains: domains
         }
-      }, console.log, console.log);
+      });
     }
+  }
+
+  this.saveCurrentExam = (enhancement) => {
+    model.update({}, {$set: {
+      "currentExam.counter": enhancement.counter,
+      "currentExam.score": enhancement.score
+    }});
   }
 
 }

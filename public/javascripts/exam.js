@@ -1,20 +1,8 @@
 (function () {
   'use strict';
   // --------------------------------------------------- variable initialisation
-  /*
-   * HACK: we are passing a parameter to this scripts through a script tag in
-   *       test.pug. pageId is a global variable.
-   */
-  var isExam = 'exam' == pageId;
-
-  var questionId,
-      score    = 0,
-      counter  = 0,
-      answered = true;
-
-  if (isExam)
-      var numberOfQuestions = 10,
-          domains  = ""; // used in changeQuestion, to see if used has answered
+  var score, counter, numberOfQuestions, domains, questionIds;
+  var answered = true;
 
   // JQuery quick access to important nodes
   var $domain       = $('#domain'),
@@ -25,44 +13,28 @@
       $score        = $('#score'),
       $droptarget   = $('#droptarget');
 
-  if (isExam) $.get('/api/user',(data) => initExam(data.currentExam));
-  else main();
+  $.get('/api/user',function(data){initExam(data.currentExam)});
 
   function initExam(exam) {
-
-    if (!exam) {
-      $.get('/api/user',function(data){
-        numberOfQuestions = data.numberOfQuestions;
-        domains           = data.domains;
-        // clearEnhancement();
-      });
-      main();
-      return;
+    // there should always be an exam, however, if the user try to go directly
+    // to this page he will be redirected.
+    if(!exam){
+      go('/dashboard');
     }
-
-    questionId = exam.questionId;
-    score      = exam.score;
-    counter    = exam.counter;
-    domains    = exam.domains;
+    questionIds = exam.questionIds;
+    score       = exam.score;
+    counter     = exam.counter;
+    domains     = exam.domains;
     numberOfQuestions = exam.numberOfQuestions;
     main();
   }
 
   function main() {
     function saveEnhancement() {
-      $.ajax({
-        method: 'PATCH',
-        url: '/api/user',
-        data: JSON.stringify({
-          currentExam: {
-            score: score,
-            counter: counter,
-            questionId: questionId,
-            numberOfQuestions: numberOfQuestions,
-            domains: domains
-          }
-        })
-      });
+      $.post('/api/exam/save',JSON.stringify({
+        score: score,
+        counter: counter
+      }));
     }
     function clearEnhancement() {
       $.ajax({
@@ -75,11 +47,23 @@
     }
     function validateAnswer(good) {
       if (good) ++score;
+      ++counter;
       answered = true;
-      questionId = null;
-      saveEnhancement();
       updateQuestionStats(good);
       $score.html(score + " / " + counter);
+    }
+
+    /**
+     * Update statistics for a question only.
+     */
+    function updateQuestionStats(isGood) {
+      var toSend = ["answers", "examAnswers"];
+      if (isGood) toSend = toSend.concat(["goodExamAnswers", "goodAnswers"]);
+      $.ajax({
+        method: 'PATCH',
+        url: '/api/statistics/increment',
+        data: JSON.stringify(toSend)
+      }).done(saveEnhancement).fail(console.error);
     }
 
     changeQuestion();
@@ -100,41 +84,33 @@
      * @return undefined
      */
     function changeQuestion() {
+      debugState();
       if (!answered) {
         $droptarget.addClass('blink');
         return;
       }
       answered = false;
       var url;
-      if (isExam) {
-        if (counter === numberOfQuestions - 1)
-          $nextQuestion.find('span').html('Fin de l’examen');
-        else if (counter === numberOfQuestions) {
-          $.post('/api/results',{
-              domains: domains,
-              timestamp: Date.now(),
-              goodAnswers: score,
-              totalAnswers: numberOfQuestions,
-              surrender: false
-          });
-          go('result');
-          return;
-        } else if (counter > numberOfQuestions)
-          console.error("An error occured..");
-          console.log(questionId, domains)
-        if (questionId) url = "/api/question/short/"+questionId;
-        else if (domains && domains.length)
-          url = "/api/question/short/domains/" + domains;
-        else url = "/api/question/short"
-      } else {
-        url = "/api/question/short/";
-      }
-      $.get(url)
+      if (counter === numberOfQuestions - 1)
+        $nextQuestion.find('span').html('Fin de l’examen');
+      else if (counter === numberOfQuestions) {
+        $.post('/api/result',{
+            domains: domains,
+            timestamp: Date.now(),
+            goodAnswers: score,
+            totalAnswers: numberOfQuestions,
+            surrender: false
+        });
+        clearEnhancement();
+        go('result');
+        return;
+      } else if (counter > numberOfQuestions)
+        console.error("An error occured..");
+      else
+        $nextQuestion.find('span').html('Question suivante ('+(counter+2)+')');
+
+      $.get("/api/question/short/"+questionIds[counter])
         .done(function(data) {
-          ++counter;
-          questionId = data._id;
-          // save enhancement again because we updated questionId and counter
-          saveEnhancement();
           $domain.html(data.domain);
           $question.html(data.question);
           // clean everything except first answer (bones)
@@ -225,7 +201,7 @@
 
       function drop(event) {
           var data = event.dataTransfer.getData('text'); //reads the data set in dragStart()
-          var url = "/api/ans/" + questionId + "/";
+          var url = "/api/ans/" + questionIds[counter] + "/";
           var isGoodAnswer = 0;
           var indexAnswer = 0;
           var choice = 0;
@@ -283,44 +259,33 @@
     }
 
 
-    /**
-     * Update statistics for a question only.
-     *
-     * @return undefined
-     */
-    function updateQuestionStats(isGood, isExam) {
-      var toSend = ["answers"];
-      if (isExam) {
-        toSend.push("examAnswers");
-        if (isGood) toSend.push("goodExamAnswers");
-      }
-      if (isGood) toSend.push("goodAnswers");
-      $.ajax({
-        method: 'PATCH',
-        url: '/api/statistics/increment',
-        data: JSON.stringify(toSend)
-      }).fail(console.error);
-    }
-
     // ------------------------------------------------------------- DOM binding
     $nextQuestion.click(changeQuestion);
     $droptarget.on('animationend', function(event) {
       $(this).removeClass('blink');
     });
 
-    if (isExam) {
-      $('#dashboard').click(function(event) {
-        event.preventDefault();
-        $.post('/api/result',{
-          domains: domains,
-          timestamp: Date.now(),
-          goodAnswers: 0,
-          totalAnswers: counter - 1,
-          surrender: true
-        }).fail(console.error);
-        $(window).unbind('beforeunload');
-        go('result');
-      });
-    }
+    $('#dashboard').click(function(event) {
+      event.preventDefault();
+      $.post('/api/result',{
+        domains: domains,
+        timestamp: Date.now(),
+        goodAnswers: 0,
+        totalAnswers: counter - 1,
+        surrender: true
+      }).fail(console.error);
+      clearEnhancement();
+      go('result');
+    });
+  }
+
+  function debugState() {
+    var user = {};
+    $.get('/api/user',function (data) {
+      user = data;
+      console.debug('user:',user);
+      console.debug('currentExam:', user.currentExam);
+    });
+
   }
 })();

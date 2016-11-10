@@ -16,6 +16,10 @@ var express            = require('express'),
 
 var router = express.Router();
 
+router.get('/test', (req, res)=>{
+  userController.inExam(() => console.log('yes'), () => console.error('no'));
+  res.end();
+})
 
 /* ===================================== 2 =====================================
  * GET /ans/:id/:answer
@@ -50,7 +54,6 @@ router.delete('/statistics', (req, res) => {
 });
 
 router.patch('/statistics/increment', (req, res) => {
-  console.log(req.body);
   userController.incrementStatistics(jqueryFix(req.body), () => {
     res.status(204);
     res.end();
@@ -64,4 +67,10 @@ router.post('/exam/new', (req, res) => {
   res.end();
 })
 
+router.post('/exam/save', (req, res) => {
+  parsed = jqueryFix(req.body);
+  userController.saveCurrentExam(parsed);
+  res.status(204);
+  res.end();
+})
 module.exports = router;
