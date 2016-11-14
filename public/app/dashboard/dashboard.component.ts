@@ -1,14 +1,9 @@
-import { Component  } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app',
   template: `
-    <h1>{{title}}</h1>
-    <p>{{value}}</p>
-  `
+    <h2>CRISIS CENTER</h2>
+    <p>Get your crisis here</p>`
 })
 
-export class AppComponent {
-  title = "Tour of heroes";
-  private value = "Hello";
-}
+export class DashboardComponent { }

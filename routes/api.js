@@ -16,8 +16,6 @@ var express            = require('express'),
 
 var router = express.Router();
 
-})
-
 /* ===================================== 2 =====================================
  * GET /ans/:id/:answer
  * Route to get an answer. This route is made separated from the question for

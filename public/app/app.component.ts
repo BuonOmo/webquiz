@@ -5,6 +5,8 @@ import { Component  } from '@angular/core';
   template: `
     <h1>{{title}}</h1>
     <p>{{value}}</p>
+    <a routerLink="/dashboard" routerLinkActive="active">Heroes</a>
+    <router-outlet></router-outlet>
   `
 })
 
