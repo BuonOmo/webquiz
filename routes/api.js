@@ -16,9 +16,6 @@ var express            = require('express'),
 
 var router = express.Router();
 
-router.get('/test', (req, res)=>{
-  userController.inExam(() => console.log('yes'), () => console.error('no'));
-  res.end();
 })
 
 /* ===================================== 2 =====================================

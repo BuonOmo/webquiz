@@ -1,3 +1,8 @@
+### Typescript generated files ###
+/public/**/*.js
+/public/**/*.map
+!/public/systemjs.config.js
+
 # Part below reated by https://www.gitignore.io/api/node
 ### Node ###
 # Logs
