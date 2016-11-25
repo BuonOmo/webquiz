@@ -7,11 +7,17 @@ import { RouterModule }   from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.route'
 import { DashboardComponent }  from './dashboard/dashboard.component';
+import {NavbarComponent} from "./layout/navbar/navbar.component";
+import {QuestionComponent} from "./question/question.component";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, AppRoutes ],
-  declarations: [ AppComponent,
-  DashboardComponent ],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    NavbarComponent,
+    QuestionComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 

@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  template: `
-    <h2>CRISIS CENTER</h2>
-    <p>Get your crisis here</p>`
+  templateUrl: `/templates/dashboard`
 })
 
-export class DashboardComponent { }
+export class DashboardComponent implements OnInit{
+  
+  ngOnInit(): void {
+  }
+  
+  constructor() {};
+  
+  
+}

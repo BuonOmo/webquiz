@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
+  selector: 'wq-navbar',
   templateUrl: '/layouts/navbar'
 })
 
-export class DashboardComponent { }
+export class NavbarComponent { }

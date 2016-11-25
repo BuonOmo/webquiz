@@ -1,33 +1,25 @@
-extends ../index
-
-prepend title
-  - var pageTitle = "Nouvelle question"
-
-append scripts
-  script(src="/javascripts/ajoutQuestion.js")
-
-block content
-  div.success(hidden) Votre question à été enregistrée !
-  div.error(hidden) Il y a eu une erreur, veuillez redémarrer votre ordinateur...
+div
+  div.success([hidden]="saved !== true") Votre question à été enregistrée !
+  div.error([hidden]="saved !== false") Il y a eu une erreur, veuillez redémarrer votre ordinateur...
   div.elevation--2dp
     form.question
       div
         label(for="question") Question
-        input#question(type="text" name="question" required)
+        input#question(type="text" name="question" [(ngModel)]="question.question" required)
       div
         label(for="domain") Domaine
-        input#domain(type="text" name="domain" required)
+        input#domain(type="text" name="domain" [(ngModel)]="question.domain" required)
       div.answers
         div
           label(for="answer-1") Réponse 1 :
-          input#answer-1(type="text" name="answers[]" required)
-          input(type="radio" name="goodAnswer" value="0" required)
+          input#answer-1(type="text" name="answers[]" [(ngModel)]="question.answers[]" required)
+          input(type="radio" name="goodAnswer" [(ngModel)]="question.goodAnswer" value="0" required)
           a.delete
             i.material-icons delete
         div
           label(for="answer-2") Réponse 2 :
-          input#answer-2(type="text" name="answers[]" required)
-          input(type="radio" name="goodAnswer" value="1" required)
+          input#answer-2(type="text" name="answers[]" [(ngModel)]="question.answers[]" required)
+          input(type="radio" name="goodAnswer" [(ngModel)]="question.goodAnswer" value="1" required)
           a.delete
             i.material-icons delete
       a.add

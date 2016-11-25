@@ -1,8 +1,9 @@
 -
   var pages = [
     {path: "/", title: "Accueil", icon: "home", id: "home"},
-    {path: "/dashboard/", title:"Tableau de bord", icon: "dashboard", id: "dashboard"},
-    {path: "/instructions/", title:"Instructions", icon: "help", id: "instructions"}
+    {path: "/dashboard", title:"Tableau de bord", icon: "dashboard", id: "dashboard"},
+    {path: "/question", title:"Ajouter une question", icon: "plus", id: "question"},
+    {path: "/instructions", title:"Instructions", icon: "help", id: "instructions"}
   ]
 
 header.navbar.elevation--4dp
@@ -17,11 +18,11 @@ header.navbar.elevation--4dp
       each page in pages
         if page.id == id
           li.navbar-button.active
-            a(href=page.path)
+            a(routerLink=page.path)
               i.material-icons.small-screen= page.icon
               span.large-screen= page.title
         else
           li.navbar-button
-            a(href=page.path)
+            a(routerLink=page.path)
               i.material-icons.small-screen= page.icon
               span.large-screen= page.title
