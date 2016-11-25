@@ -9,20 +9,14 @@ div
       div
         label(for="domain") Domaine
         input#domain(type="text" name="domain" [(ngModel)]="question.domain" required)
-      div.answers
+      div.answers(*ngFor="let answer of question.answers; let index = index")
         div
-          label(for="answer-1") Réponse 1 :
-          input#answer-1(type="text" name="answers[]" [(ngModel)]="question.answers[]" required)
-          input(type="radio" name="goodAnswer" [(ngModel)]="question.goodAnswer" value="0" required)
-          a.delete
+          label Réponse {{index}} :
+          input(type="text" [(ngModel)]="answer" required)
+          input(type="radio" [(ngModel)]="question.goodAnswer" value="{{index}}" required)
+          a.delete((click)="deleteAnswer(index)")
             i.material-icons delete
-        div
-          label(for="answer-2") Réponse 2 :
-          input#answer-2(type="text" name="answers[]" [(ngModel)]="question.answers[]" required)
-          input(type="radio" name="goodAnswer" [(ngModel)]="question.goodAnswer" value="1" required)
-          a.delete
-            i.material-icons delete
-      a.add
+      a.add((click)="addAnswer()")
         i.material-icons add
-
+      a((click)="debug()") debug
       button(type="submit").button Envoyer
