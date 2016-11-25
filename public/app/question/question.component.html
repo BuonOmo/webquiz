@@ -1,0 +1,31 @@
+<div>
+    <div class="success" [hidden]="saved !== true">Votre question à été enregistrée !</div>
+    <div class="error" [hidden]="saved !== false">Il y a eu une erreur, veuillez redémarrer votre ordinateur...</div>
+    <div class="elevation--2dp">
+        <form class="question">
+            <div>
+                <label for="question">Question</label>
+                <input id="question" type="text" name="question.question" [(ngModel)]="question.question" required="required"/>
+            </div>
+            <div>
+                <label for="domain">Domaine</label>
+                <input id="domain" type="text" name="question.domain" [(ngModel)]="question.domain" required="required"/>
+            </div>
+            <div class="answers" *ngFor="let answer of question.answers; let index = index">
+                <div>
+                    <label>Réponse {{index}} :</label>
+                    <!--<input type="text" name="question.answers[]" [(ngModel)]="question.answers[]" required="required"/>-->
+                    <input type="radio" name="question.goodAnswer" [(ngModel)]="question.goodAnswer" value="{{index}}" required="required"/>
+                    <a class="delete" (click)="deleteAnswer(index)">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </div>
+            </div>
+            <a class="add" (click)="addAnswer()">
+                <i class="material-icons">add</i>
+            </a>
+            <a (click)="debug()">debug</a>
+            <button class="button" type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>

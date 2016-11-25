@@ -3,7 +3,7 @@ import { Router }            from '@angular/router';
 import {Question} from "./question";
 
 @Component({
-  templateUrl: 'templates/question'
+  templateUrl: '/app/question/question.component.html'
 })
 export class QuestionComponent implements OnInit {
   
@@ -26,6 +26,7 @@ export class QuestionComponent implements OnInit {
   }
   
   addAnswer(): void {
-    this.question.answers.push("");
+    if (this.question.answers.length < 4)
+      this.question.answers.push(null);
   }
 }
