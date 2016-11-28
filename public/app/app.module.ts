@@ -15,6 +15,7 @@ import {TestComponent} from "./test/test.component";
 import {ExamComponent} from "./exam/exam.component";
 import {QuestionService} from "./question/question.service";
 import {HttpModule} from "@angular/http";
+import {UserService} from "./user/user.service";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, AppRoutes, HttpModule],
@@ -30,7 +31,7 @@ import {HttpModule} from "@angular/http";
     ExamComponent
   ],
   bootstrap: [AppComponent],
-  providers: [QuestionService]
+  providers: [QuestionService, UserService]
 })
 
 export class AppModule {
