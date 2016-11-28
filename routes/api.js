@@ -10,7 +10,6 @@
 
 var express            = require('express'),
     databaseError      = require('../misc/utils').databaseError,
-    jqueryFix          = require('../misc/utils').jqueryFix,
     questionController = require('../controllers/question'),
     userController = require('../controllers/user');
 
@@ -56,15 +55,13 @@ router.patch('/statistics/increment', (req, res) => {
 });
 
 router.post('/exam/new', (req, res) => {
-  parsed = jqueryFix(req.body);
-  userController.createNewExam(parsed.numberOfQuestions, parsed.domains);
+  userController.createNewExam(req.body.numberOfQuestions, req.body.domains);
   res.status(204);
   res.end();
 })
 
 router.post('/exam/save', (req, res) => {
-  parsed = jqueryFix(req.body);
-  userController.saveCurrentExam(parsed);
+  userController.saveCurrentExam(req.body);
   res.status(204);
   res.end();
 })
