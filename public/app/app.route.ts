@@ -8,6 +8,7 @@ import {HomeComponent} from "./home/home.component";
 import {InstructionsComponent} from "./instructions/instructions.component";
 import {ResultComponent} from "./result/result.component";
 import {TestComponent} from "./test/test.component";
+import {ExamComponent} from "./exam/exam.component"
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {TestComponent} from "./test/test.component";
       { path: '', component: HomeComponent},
       { path: 'test', component: TestComponent},
       { path: 'result', component: ResultComponent},
+      { path: 'exam', component: ExamComponent}
     ])
   ],
   exports: [
