@@ -68,8 +68,6 @@ app.use('/api', api);
 app.use('/api/question', apiQuestion);
 app.use('/api/user', apiUser);
 app.use('/api/result', apiResult);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/jquery.min.js'))
-app.use('/modernizr', express.static(__dirname + '/public/javascripts/modernizr.min.js'))
 app.use('/less-css', less(
     path.join(__dirname, 'style'),
     { debug: app.get('env') == 'development' }
