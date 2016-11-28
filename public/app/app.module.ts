@@ -10,6 +10,9 @@ import { DashboardComponent }  from './dashboard/dashboard.component';
 import {NavbarComponent} from "./layout/navbar/navbar.component";
 import {QuestionComponent} from "./question/question.component";
 import {HomeComponent} from "./home/home.component";
+import {InstructionsComponent} from "./instructions/instructions.component";
+import {ResultComponent} from "./result/result.component";
+import {TestComponent} from "./test/test.component";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, AppRoutes ],
@@ -18,7 +21,10 @@ import {HomeComponent} from "./home/home.component";
     DashboardComponent,
     NavbarComponent,
     QuestionComponent,
-    HomeComponent
+    HomeComponent,
+    InstructionsComponent,
+    ResultComponent,
+    TestComponent
   ],
   bootstrap: [ AppComponent ]
 })
