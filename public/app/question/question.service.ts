@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class QuestionService {
-  private url = '/api/question';
+  private url = '/api/question/short';
   constructor(private http: Http) {
   };
   
@@ -15,15 +15,10 @@ export class QuestionService {
     return Promise.reject(err.message || err);
   }
   
-  getQuestions(): Promise<Question[]> {
-    return this.http.get(this.url)
-      .toPromise()
-      .then(response => response.json() as Array<Question>)
-      .catch(this.handleError);
-  }
-  
-  getQuestion(id: string) {
-    return this.http.get(this.url+'?'+id)
+  getQuestion(id?: Object) {
+    var url = this.url;
+    if (id) url += '/'+id;
+    return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Question)
       .catch(this.handleError);
