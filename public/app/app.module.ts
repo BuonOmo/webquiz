@@ -9,6 +9,7 @@ import { AppRoutes } from './app.route'
 import { DashboardComponent }  from './dashboard/dashboard.component';
 import {NavbarComponent} from "./layout/navbar/navbar.component";
 import {QuestionComponent} from "./question/question.component";
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
   imports: [ BrowserModule, FormsModule, AppRoutes ],
@@ -16,7 +17,8 @@ import {QuestionComponent} from "./question/question.component";
     AppComponent,
     DashboardComponent,
     NavbarComponent,
-    QuestionComponent
+    QuestionComponent,
+    HomeComponent
   ],
   bootstrap: [ AppComponent ]
 })
