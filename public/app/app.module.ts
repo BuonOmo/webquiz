@@ -1,21 +1,22 @@
-import { NgModule  }      from '@angular/core';
-import { BrowserModule  } from '@angular/platform-browser';
-import { FormsModule  }   from '@angular/forms';
-import { RouterModule }   from '@angular/router';
+import {NgModule}      from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule}   from '@angular/forms';
 
 
-import { AppComponent } from './app.component';
-import { AppRoutes } from './app.route'
-import { DashboardComponent }  from './dashboard/dashboard.component';
+import {AppComponent} from './app.component';
+import {AppRoutes} from './app.route'
+import {DashboardComponent}  from './dashboard/dashboard.component';
 import {NavbarComponent} from "./layout/navbar/navbar.component";
 import {QuestionComponent} from "./question/question.component";
 import {HomeComponent} from "./home/home.component";
 import {InstructionsComponent} from "./instructions/instructions.component";
 import {ResultComponent} from "./result/result.component";
 import {TestComponent} from "./test/test.component";
+import {QuestionService} from "./question/question.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule, AppRoutes ],
+  imports: [BrowserModule, FormsModule, AppRoutes, HttpModule],
   declarations: [
     AppComponent,
     DashboardComponent,
@@ -26,7 +27,9 @@ import {TestComponent} from "./test/test.component";
     ResultComponent,
     TestComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
+  providers: [QuestionService]
 })
 
-export class AppModule { }
+export class AppModule {
+}
