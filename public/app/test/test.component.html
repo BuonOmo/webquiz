@@ -1,12 +1,13 @@
 <main>
-    <h1></h1>
-    <section class="elevation--2dp sheet">
-        <h2 id="question"></h2>
-        <span class="top-right" id="domain"></span>
-        <div id="droptarget"></div>
+    <h1>Test rapide</h1>
+    <section class="elevation--2dp sheet" *ngIf="question">
+        <h2 id="question">{{question.question}}</h2>
+        <span class="top-right" id="domain">{{question.domain}}</span>
+        <div id="droptarget" class="free"></div>
         <div class="center flexbox wrap" id="answers">
-            <div class="draggable answer" draggable="false" hidden="hidden">
-                <label></label>
+            <div class="draggable answer" draggable="true"
+                 *ngFor="let answer of question.answers; let i = index">
+                <label>{{answer}}</label>
             </div>
         </div>
         <ul class="action-group">
@@ -17,7 +18,7 @@
                 </a>
             </li>
             <li>
-                <a id="next-question">
+                <a (click)="nextQuestion()">
                     <span class="large-screen">Question suivante</span>
                     <i class="material-icons">navigate_next</i>
                 </a>
@@ -26,6 +27,6 @@
     </section>
     <aside>
         <h1>Score courant</h1>
-        <div id="score">0 / 0</div>
+        <div>{{score}} / {{count}}</div>
     </aside>
 </main>

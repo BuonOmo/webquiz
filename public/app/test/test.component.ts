@@ -7,11 +7,18 @@ import {QuestionService} from "../question/question.service";
 })
 
 export class TestComponent implements OnInit{
-  questions: Array<Question>;
+  question: Question;
+  count: number = 0;
+  score: number = 0;
+  
   ngOnInit(): void {
+    this.questionService.getQuestion().then(question => this.question = question);
   }
   
   constructor(private questionService: QuestionService) {};
 
-
+  nextQuestion() {
+    this.count++;
+    this.questionService.getQuestion().then(question => this.question = question);
+  }
 }
