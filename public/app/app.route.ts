@@ -9,7 +9,7 @@ import {QuestionComponent} from "./question/question.component";
     RouterModule.forRoot([
       { path: 'dashboard', component: DashboardComponent },
       { path: 'question', component: QuestionComponent },
-      { path: '', component: AppComponent}
+      { path: '', component: QuestionComponent}
     ])
   ],
   exports: [
