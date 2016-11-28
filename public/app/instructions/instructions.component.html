@@ -1,0 +1,136 @@
+<main class="instructions">
+    <h1>WebQuiz</h1>
+    <p>
+        <a href="https://travis-ci.org/BuonOmo/webquiz">
+            <img src="https://travis-ci.org/BuonOmo/webquiz.svg?branch=master" alt="Build Status">
+        </a>
+    </p>
+    <p>WebQuiz vous permet de tester vos connaissances et de suivre vos résultats facilement ! Cette documentation est faite pour les développeurs et pour les visiteurs du site. Si vous êtes développeur rendez-vous
+        <a href="#instructions-aux-developpeurs">ici</a>. Sinon vous trouverez les instructions aux usagers ci-dessous.
+    </p>
+    <p>
+        <strong>Les liens du sommaire ne sont pas encore fonctionnels sur le site</strong>. Nous allons changer le convertisseur de markdown bientôt, en attendant vous pouvez lire ces instructions sur
+        <a href="//github.com/buonomo/webquiz#readme">github</a>.
+    </p>
+    <h2>Instructions aux usagers</h2>
+    <h3>Comment naviguer sur WebQuiz ?</h3>
+    <p>Afin d'avoir une navigation la plus fluide possible, l'équipe de WebQuiz vous recommande d'utiliser la barre de navigation. celle-ci est conçue de telle sorte à vous emmener sur les principales parties du site.</p>
+    <h3>Comment utiliser les questionnaires ?</h3>
+    <p>
+        <img src="/images/logo.png" alt="logo, visible seulement sur le site, partie instructions">
+    </p>
+    <p>Nous vous conseillons d'utiliser les questionnaires d’examens uniquement après avoir révisé votre cours. En revanche vous pouvez utiliser les questionnaires de test pour vous entrainer. Ceux-ci peuvent être arreter n’importe quand.
+Lorsque vous êtes dans un examen, vous ne pouvez plus le quitter sans l’abandonner et obtenir la note 0. Vous devez finir les examens. Avant chaque examen, vous pouvez choisir les domaines et nombre de questions que vous souhaitez faire. Le nombre de questions est requis. Par contre
+        <strong>si vous n’entrez pas de domaine</strong>, tous les domaines disponible seront utilisés.
+    </p>
+    <h2>Instructions aux développeurs</h2>
+    <p>
+        <strong>Sommaire :</strong>
+        <a href="#d%C3%A9pendances">Dépendances</a> —
+        <a href="#installation">Installation</a> —
+        <a href="#routes">Routes</a> —
+        <a href="#api">API</a> —
+        <a href="#tests">Tests</a> —
+        <a href="#auteurs">Auteurs</a>
+    </p>
+    <h3>Dépendances</h3>
+    <p>WebQuiz utilise essentiellement des dépendances associées au gestionnaire de projets node
+        <a href="https://npmjs.com">npm</a>. Pour les tests, certaines dépendances sont à installer globalement, voir
+        <a href="#tests">Tests</a>.
+    </p>
+    <h3>Installation</h3>
+    <p>Récuperez d’abord le code source, soit grace à
+        <a href="https://github.com/BuonOmo/webquiz/archive/master.zip">l’archive zip</a>. Soit en utilisant
+        <code>git</code> :
+    </p>
+    <pre>
+        <code>git clone https://github.com/buonomo/webquiz.git
+cd webquiz
+</code>
+    </pre>
+    <p>Ensuite pour lancer le programme il vous suffit d’executer les commandes suivantes.</p>
+    <pre>
+        <code>npm install &amp;&amp; npm start
+</code>
+    </pre>
+    <p>Après l’execution de ces commandes, vous pourrez acceder au site sur la page http://localhost:3000.</p>
+    <h3>Routes</h3>
+    <p>En plus des routes générées par express pour pug, tous le contenu du dossier style est lié au projet gràce à la route
+        <code>/less-css</code>.
+    </p>
+    <p>Les routes
+        <code>/jquery</code> et
+        <code>/modernizr</code> permettent d’accerder aux scripts des paquets respectifs.
+    </p>
+    <h3>API</h3>
+    <p>L’API n’est documentée qu’au sein du code pour l’instant, voir
+        <code>routes/api.js</code>. Toutes les routes de l’API sont précédées de
+        <code>/api</code>.
+    </p>
+    <h3>Tests</h3>
+    <p>A shorthand to run them:</p>
+    <pre>
+        <code>npm install -g newman phantomjs-prebuilt mocha
+npm test
+</code>
+    </pre>
+    <h4>Tests d’API</h4>
+    <p>Les tests d’API sont fait avec
+        <a href="https://www.npmjs.com/package/newman">Newman</a>, aka postman in command lines. You have to install it globally before running tests:
+    </p>
+    <pre>
+        <code>npm install -g newman
+</code>
+    </pre>
+    <h4>Tests d’interfaces</h4>
+    <p>Pour plus de clarté les tests sont fait en
+        <a href="http://coffeescript.org/">coffee script</a>, avec les outils de test
+        <a href="https://mochajs.org/">mocha</a> pour la mise en forme générale des tests et
+        <a href="http://chaijs.com/">chai</a> pour les assertions. Pour les requetes asynchrones, ce projet utilise aussi le plugin
+        <a href="http://chaijs.com/plugins/chai-as-promised/">chai as promised</a>.
+    </p>
+    <p>Les tests d’interfaces utilisent
+        <a href="http://seleniumhq.github.io/selenium/docs/api/javascript/index.html">Selenium Webdriver</a> et le navigateur
+        <a href="http://phantomjs.org/">PhantomJS</a> pour simuler une interface directement dans un terminal, avec de marcher aussi sur les machines virtuelles de
+        <a href="https://travis-ci.org/">travis-ci</a>. Pour faire tourner ceux-ci il vous faudra installer globalement PhantomJS, mocha et lancer la commande npm de tests :
+    </p>
+    <pre>
+        <code>npm install -g phantomjs-prebuilt mocha
+npm test
+</code>
+    </pre>
+    <p>Si vous ne souhaitez pas ou ne pouvez faire d’installation, vous pouvez les installer relativement au projet, dans ce cas il faut
+        <strong>impérativement</strong> ajouter les scripts au chemin d’execution (
+        <code>path</code>) de votre terminal.
+    </p>
+    <pre>
+        <code>npm test
+</code>
+    </pre>
+    <p>Si vous voulez rendre ces tests plus visuels sur votre machine vous pouvez installer chromedriver sur votre machine avec npm :</p>
+    <pre>
+        <code>npm install -g chromedriver
+</code>
+    </pre>
+    <p>Modifiez ensuite la fonction before du fichier
+        <code>tests/interfaces.coffee</code> comme indiqué dans le commentaire de code.
+    </p>
+    <p>Remplacez donc la ligne :</p>
+    <pre>
+        <code class="language-coffee">.forBrowser 'phantomjs'
+</code>
+    </pre>
+    <p>par :</p>
+    <pre>
+        <code class="language-coffee">.forBrowser 'chrome'
+</code>
+    </pre>
+    <p>Il est aussi possible de faire la même manipulation avec firefox et le
+        <code>geckodriver</code>. Une fois l’installation faite lancez
+        <code>npm test</code> et vous verrez une fenetre de votre navigateur s’ouvrir et executer les tests. Le resultat reste ecrit dans le terminal depuis lequel vous avez lancé les tests.
+    </p>
+    <h2>Auteurs</h2>
+    <p>Ce travail est réalisé dans le cadre des cours, et sous license MIT par Lucas Boudereaux et
+        <a href="mailto:buonomo.ulysse@gmail.com">Ulysse Buonomo</a>.
+    </p>
+</main>
