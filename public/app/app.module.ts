@@ -26,7 +26,8 @@ import {HttpModule} from "@angular/http";
     HomeComponent,
     InstructionsComponent,
     ResultComponent,
-    TestComponent
+    TestComponent,
+    ExamComponent
   ],
   bootstrap: [AppComponent],
   providers: [QuestionService]
