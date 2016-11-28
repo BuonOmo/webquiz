@@ -6,19 +6,26 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class QuestionService {
-  
+  private url = '/api/question';
   constructor(private http: Http) {
   };
   
+  private handleError(err: any): Promise<any> {
+    console.error('An error occurred', err);
+    return Promise.reject(err.message || err);
+  }
+  
   getQuestions(): Promise<Question[]> {
-    return this.http.get('/api/question')
+    return this.http.get(this.url)
       .toPromise()
       .then(response => response.json() as Array<Question>)
       .catch(this.handleError);
   }
   
-  private handleError(err: any): Promise<any> {
-    console.error('An error occurred', err);
-    return Promise.reject(err.message || err);
+  getQuestion(id: string) {
+    return this.http.get(this.url+'?'+id)
+      .toPromise()
+      .then(response => response.json() as Question)
+      .catch(this.handleError);
   }
 }
