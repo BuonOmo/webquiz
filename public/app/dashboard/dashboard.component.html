@@ -7,7 +7,13 @@
             <section>
                 <h1>Taux de réussite</h1>
                 <p class="question-statistics">
-                    <i class="material-icons loading">autorenew</i>
+                    <i class="material-icons loading" *ngIf="hasTotalRatio == undefined">autorenew</i>
+                    <span *ngIf="hasTotalRatio === true">
+                        Votre taux de réussite est de {{ totalRatio }}%
+                    </span>
+                    <span *ngIf="hasTotalRatio === false">
+                        Vous n’avez aucune statistique pour le moment
+                    </span>
                 </p>
             </section>
             <section>
