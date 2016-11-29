@@ -19,6 +19,12 @@ export class DashboardComponent implements OnInit{
     this.totalRatio = Math.round(user.goodAnswers / user.answers * 100);
     this.hasTotalRatio = !Number.isNaN(this.totalRatio);
   }
+  
+  removeStatistics() {
+    this.userService.removeStatistics().then(() => {
+      this.hasTotalRatio = false;
+    })
+  }
 
   constructor(private userService: UserService) {};
 

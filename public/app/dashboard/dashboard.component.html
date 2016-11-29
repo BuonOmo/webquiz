@@ -23,7 +23,7 @@
                 </p>
             </section>
         </section>
-        <a id="reset">Remise à zéro</a>
+        <a (click)="removeStatistics()" *ngIf="hasTotalRatio != undefined">Remise à zéro</a>
         <aside>
             <h1>Accès rapide</h1>
             <ul>

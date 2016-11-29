@@ -21,4 +21,11 @@ export class UserService {
     console.error('An error occurred', err);
     return Promise.reject(err.message || err);
   }
+  
+  removeStatistics(): Promise<any>{
+    return Promise.all([
+      this.http.delete('/api/statistics').toPromise(),
+      this.http.delete('/api/result').toPromise()
+    ]);
+  }
 }
