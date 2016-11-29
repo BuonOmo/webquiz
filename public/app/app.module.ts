@@ -17,9 +17,18 @@ import {QuestionService} from "./question/question.service";
 import {HttpModule} from "@angular/http";
 import {UserService} from "./user/user.service";
 import {TestComponent} from "./test/test.component";
+import {ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, AppRoutes, HttpModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutes,
+    HttpModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule
+  ],
   declarations: [
     AppComponent,
     DashboardComponent,
