@@ -7,7 +7,7 @@ import {QuestionComponent} from "./question/question.component";
 import {HomeComponent} from "./home/home.component";
 import {InstructionsComponent} from "./instructions/instructions.component";
 import {ResultComponent} from "./result/result.component";
-import {TestComponent} from "./test/test.component";
+import {QuickTestComponent} from "./quick-test/quick-test.component";
 import {ExamComponent} from "./exam/exam.component"
 
 @NgModule({
@@ -17,7 +17,7 @@ import {ExamComponent} from "./exam/exam.component"
       { path: 'question', component: QuestionComponent },
       { path: 'instructions', component: InstructionsComponent},
       { path: '', component: HomeComponent},
-      { path: 'test', component: TestComponent},
+      { path: 'test', component: QuickTestComponent},
       { path: 'result', component: ResultComponent},
       { path: 'exam', component: ExamComponent}
     ])

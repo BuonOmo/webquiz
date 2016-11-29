@@ -11,11 +11,12 @@ import {QuestionComponent} from "./question/question.component";
 import {HomeComponent} from "./home/home.component";
 import {InstructionsComponent} from "./instructions/instructions.component";
 import {ResultComponent} from "./result/result.component";
-import {TestComponent} from "./test/test.component";
+import {QuickTestComponent} from "./quick-test/quick-test.component";
 import {ExamComponent} from "./exam/exam.component";
 import {QuestionService} from "./question/question.service";
 import {HttpModule} from "@angular/http";
 import {UserService} from "./user/user.service";
+import {TestComponent} from "./test/test.component";
 
 @NgModule({
   imports: [BrowserModule, FormsModule, AppRoutes, HttpModule],
@@ -27,7 +28,7 @@ import {UserService} from "./user/user.service";
     HomeComponent,
     InstructionsComponent,
     ResultComponent,
-    TestComponent,
+    QuickTestComponent,
     ExamComponent
   ],
   bootstrap: [AppComponent],
