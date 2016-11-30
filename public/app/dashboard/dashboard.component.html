@@ -1,7 +1,7 @@
 <div>
     <main>
         <h1>Tableau de bord</h1>
-        <a href="#modal-notes">Accéder au détail des notes !</a>
+        <a (click)="openGradesModal()">Accéder au détail des notes !</a>
         <section class="central">
             <h1>Statistiques</h1>
             <section>
@@ -31,66 +31,9 @@
                     <a class="button" routerLink="/test">Test</a>
                 </li>
                 <li>
-                    <a class="button" (click)="openModalExam()">Exam</a>
+                    <a class="button" (click)="openExamModal()">Exam</a>
                 </li>
             </ul>
         </aside>
     </main>
-    <!-- modals-->
-    <!-- modal-notes-->
-    <div class="modal" id="modal-notes">
-        <div>
-            <header>
-                <a class="droite" href="#" title="Fermer la fenêtre">X</a>
-                <h2>Détails des notes :</h2>
-            </header>
-            <section>
-                <div class="exam-statistics">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Domaines</th>
-                                <th>Date</th>
-                                <th>réponses juste</th>
-                                <th>total des réponses</th>
-                                <th>Note (/20)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="domains"></td>
-                                <td class="date"></td>
-                                <td class="good-answers"></td>
-                                <td class="total-answers"></td>
-                                <td class="grade"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-    </div>
-    <!-- /modal-notes-->
-    <!-- modal-exam-->
-    <div class="modal" id="modal-exam">
-        <div>
-            <header>
-                <a class="droite" href="#" title="Fermer la fenêtre">X</a>
-                <h2>Choix des caractéristiques de l’examen :</h2>
-            </header>
-            <form method="POST" action="/exam">
-                <fieldset>
-                    <legend>Theme et nombre de questions</legend>
-                    <label for="numberOfQuestions">Nombre de questions :</label>
-                    <input id="numberOfQuestions" type="number" min="1" value="10" name="numberOfQuestions" autofocus="autofocus"/>
-                    <label for="domains">Domaines concernés :</label>
-                    <select id="domains" name="domains" multiple="multiple">
-                        <option value="foo">foo</option>
-                    </select>
-                </fieldset>
-                <input class="button" id="start-exam" type="submit" value="Commencer"/>
-            </form>
-        </div>
-    </div>
-    <!-- /modal-exam-->
 </div>

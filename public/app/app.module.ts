@@ -17,7 +17,7 @@ import {QuestionService} from "./question/question.service";
 import {HttpModule} from "@angular/http";
 import {UserService} from "./user/user.service";
 import {TestComponent} from "./test/test.component";
-import {ModalModule} from "angular2-modal";
+import {ModalModule, Overlay} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 @NgModule({
@@ -41,7 +41,7 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
     ExamComponent
   ],
   bootstrap: [AppComponent],
-  providers: [QuestionService, UserService]
+  providers: [QuestionService, UserService, Overlay]
 })
 
 export class AppModule {
