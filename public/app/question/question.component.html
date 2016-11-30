@@ -11,12 +11,15 @@
                 <label for="domain">Domaine</label>
                 <input id="domain" type="text" name="question.domain" [(ngModel)]="question.domain" required/>
             </div>
-            <div class="answers" *ngFor="let answer of question.answers; let index = index">
+            <div class="answers" *ngFor="let _ of dummyArray; let i = index">
                 <div>
-                    <label>Réponse {{index+1}} :</label>
-                    <input type="text" name="question.answers[]" [(ngModel)]="question.answers[index]" required/>
-                    <input type="radio" name="question.goodAnswer" [(ngModel)]="question.goodAnswer" value="{{index}}" required/>
-                    <a class="delete" (click)="deleteAnswer(index)">
+                    <label for="question.answers[]">Réponse {{i+1}} :</label>
+                    <input type="text" id="question.answers[]" name="question.answers[]"
+                           [(ngModel)]="question.answers[i]" placeholder="{{question.answers[i]}}" required/>
+                    <!-- we use a placeholder because we had an issue binding [value], see github issue #43-->
+                    <input type="radio" name="question.goodAnswer" [(ngModel)]="question.goodAnswer" [value]="i"
+                           required/>
+                    <a class="delete" (click)="deleteAnswer(i)">
                         <i class="material-icons">delete</i>
                     </a>
                 </div>
