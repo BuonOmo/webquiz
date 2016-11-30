@@ -2,7 +2,7 @@
     <div class="success" [hidden]="saved !== true">Votre question à été enregistrée !</div>
     <div class="error" [hidden]="saved !== false">Il y a eu une erreur, veuillez redémarrer votre ordinateur...</div>
     <div class="elevation--2dp">
-        <form class="question">
+        <form class="question" (submit)="save()">
             <div>
                 <label for="question">Question</label>
                 <input id="question" type="text" name="question.question" [(ngModel)]="question.question" required/>

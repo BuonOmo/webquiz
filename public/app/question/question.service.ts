@@ -23,4 +23,11 @@ export class QuestionService {
       .then(response => response.json() as Question)
       .catch(this.handleError);
   }
+  
+  saveQuestion(question: Question): Promise<Question> {
+    return this.http.post('/api/question', question)
+      .toPromise()
+      .then(response => response.json() as Question)
+      .catch(this.handleError);
+  }
 }
