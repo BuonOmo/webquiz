@@ -9,7 +9,7 @@
                 <p class="question-statistics">
                     <i class="material-icons loading" *ngIf="hasTotalRatio == undefined">autorenew</i>
                     <span *ngIf="hasTotalRatio === true">
-                        Votre taux de réussite est de {{ totalRatio }}%
+                        Votre taux de réussite est de {{ totalRatio | number:'1.0-2' }}%
                     </span>
                     <span *ngIf="hasTotalRatio === false">
                         Vous n’avez aucune statistique pour le moment
@@ -19,7 +19,13 @@
             <section>
                 <h1>Moyenne</h1>
                 <p class="exam-mean">
-                    <i class="material-icons loading">autorenew</i>
+                    <i class="material-icons loading" *ngIf="hasMean == undefined">autorenew</i>
+                    <span *ngIf="hasMean === true">
+                        Votre moyenne aux examens est de {{ mean | number:'1.0-2' }} / 20
+                    </span>
+                    <span *ngIf="hasMean === false">
+                        Vous n’avez finit aucun examen
+                    </span>
                 </p>
             </section>
         </section>

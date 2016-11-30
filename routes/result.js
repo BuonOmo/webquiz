@@ -50,7 +50,6 @@ router.get('', (req, res) => {
   controller.all(
     (data) => {
       if (data) {
-        if (!data.length) res.status(204);
         res.json(data);
       }
       else {
