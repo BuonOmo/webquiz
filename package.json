@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "deploy": "NODE_ENV=production npm start",
-    "test": "newman run tests/newman.json && mocha tests/interface.coffee --compilers coffee:coffee-script/register",
+    "test": "newman run test/newman.json && mocha test/interface.coffee --compilers coffee:coffee-script/register",
     "clean": "rm -rf node_modules public/node_modules; zsh -c \"rm public/app/**/*.(js|js.map)\""
   },
   "dependencies": {
