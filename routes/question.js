@@ -27,6 +27,10 @@ router.post('', (req, res) => {
   }
 });
 
+router.get("/domains", (req, res) => {
+  controller.getAllDomains(data => res.json(data));
+});
+
 router.get("/short", (req, res) => {
     controller.findOne((data) => {
       if (data) res.json(data)
