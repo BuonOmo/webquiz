@@ -14,8 +14,7 @@
   This class is a "container" for boostrap stylesheets, see
   http://stackoverflow.com/a/11841935/6320039
  */
-.bootstrap,
-modal-overlay {
+.bootstrap {
   // HACK: To conserve dependencies a link easily bootstrap, the
   // bootsrap.less file is a hard link copy of /public/node_modules_bootstrap/dist/css
   @import "bootstrap";
@@ -484,6 +483,124 @@ app {
     }
   }
 }
+
+/* ====================================================================
+   Modal handling $mh
+   ==================================================================== */
+.modal {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+
+  .droite {
+    float:right;
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  &.focus {
+    opacity:1;
+    pointer-events: auto;
+
+    &>div {
+      margin: 10% auto;
+      transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+    }
+  }
+
+  fieldset {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row wrap;
+
+    label, input, select {
+      width:100%;
+    }
+  }
+
+  input[type ="submit"]{
+    width: 200px;
+    display: block;
+  }
+
+  &>div {
+    max-width: 600px;
+    position: relative;
+    margin: 1% auto;
+    padding: 8px 8px 8px 8px;
+    border-radius: 5px;
+    background: #eee;
+    transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+
+    header, footer {
+      border-bottom: 1px solid #e7e7e7;
+      border-radius: 5px 5px 0 0;
+    }
+
+    h2 {
+      margin:0;
+    }
+
+    .btn {
+      float:right;
+    }
+  }
+
+  .footer {
+    border:none;
+    border-top: 1px solid #e7e7e7;
+    border-radius: 0 0 5px 5px;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin:auto;
+
+    tr, th {
+      text-align: center;
+      margin: 10px;
+    }
+
+    td {
+      padding: 15px;
+    }
+
+    tr {
+      border-top: 1px solid @dividerColor;
+      &:hover {
+        color: brown;
+        transition: color 0.3s;
+      }
+    }
+
+    td:first-child {
+      font-weight: bold;
+      margin-right:1px solid @dividerColor;
+    }
+
+    tr:nth-child(2n){
+      background-color:rgba(81, 45, 168, 0.2);
+    }
+  }
+}
+
 
 /* ====================================================================
    Animations $a

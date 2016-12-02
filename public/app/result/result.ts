@@ -1,6 +1,6 @@
 export class Result {
   domains: Array<string>;
-  time: Date;
+  timestamp: Date;
   goodAnswers: number;
   totalAnswers: number;
   surrender: boolean;
