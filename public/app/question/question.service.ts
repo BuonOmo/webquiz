@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Question} from './question';
+import {Question, Answer} from './question';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 
@@ -15,13 +15,20 @@ export class QuestionService {
     return Promise.reject(err.message || err);
   }
   
-  getQuestion(id?: Object) {
-    var url = this.url;
+  getQuestion(id?: string) {
+    let url = this.url;
     if (id) url += '/'+id;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Question)
       .catch(this.handleError);
+  }
+  
+  getAnswer(id: string, index: number) {
+    return this.http.get('/api/ans/'+id+'/'+index)
+      .toPromise()
+      .then(response => response.json() as Answer)
+      .catch(this.handleError)
   }
   
   saveQuestion(question: Question): Promise<Question> {

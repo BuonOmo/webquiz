@@ -48,7 +48,7 @@ router.delete('/statistics', (req, res) => {
 });
 
 router.patch('/statistics/increment', (req, res) => {
-  userController.incrementStatistics(jqueryFix(req.body), () => {
+  userController.incrementStatistics(req.body, () => {
     res.status(204);
     res.end();
   }, databaseError(req, res));

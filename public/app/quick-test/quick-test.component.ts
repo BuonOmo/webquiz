@@ -1,6 +1,7 @@
 import {Component, OnInit, forwardRef} from '@angular/core';
 import {QuestionService} from "../question/question.service";
 import {TestComponent} from "../test/test.component";
+import {StatisticsService} from "../statistics/statistics.service";
 
 @Component({
   templateUrl: `/app/quick-test/quick-test.component.html`,
@@ -14,6 +15,7 @@ export class QuickTestComponent extends TestComponent implements OnInit{
     this.questionService.getQuestion().then(question => this.question = question);
   }
   
-  
-  constructor(protected questionService: QuestionService) { super(questionService)};
+  constructor(questionService: QuestionService, statisticsService: StatisticsService) {
+    super(questionService, statisticsService);
+  }
 }

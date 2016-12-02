@@ -20,8 +20,8 @@ const EXAM_MODAL = `
        <option value="foo">foo</option>
     </select> 
   </div>
-</form>`
-;
+</form>`;
+
 const GRADES_MODAL = `
 <table class="table table-hover"  *ngIf="results">
   <thead>

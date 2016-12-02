@@ -20,6 +20,7 @@ import {TestComponent} from "./test/test.component";
 import {ModalModule, Overlay} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import {ResultService} from "./result/result.service";
+import {StatisticsService} from "./statistics/statistics.service";
 
 @NgModule({
   imports: [
@@ -42,7 +43,7 @@ import {ResultService} from "./result/result.service";
     ExamComponent
   ],
   bootstrap: [AppComponent],
-  providers: [QuestionService, UserService, ResultService, Overlay]
+  providers: [QuestionService, ResultService, StatisticsService, UserService, Overlay]
 })
 
 export class AppModule {

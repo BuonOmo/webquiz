@@ -3,10 +3,16 @@
     <section class="elevation--2dp sheet" *ngIf="question">
         <h2 id="question">{{question.question}}</h2>
         <span class="top-right" id="domain">{{question.domain}}</span>
-        <div id="droptarget" class="free"></div>
+        <div id="droptarget" [ngClass]="{free: !dropped, right: isGoodAnswer, wrong: !isGoodAnswer}"
+             (drop)="checkAnswer()" (dragover)="prevent($event)">
+            <span *ngIf="!dropped">Glisser la réponse !</span>
+            <span *ngIf="dropped">{{draggedAnswer}}</span>
+        </div>
         <div class="center flexbox wrap" id="answers">
-            <div class="draggable answer" draggable="true"
-                 *ngFor="let answer of question.answers; let i = index">
+            <div class="draggable answer" [draggable]="!dropped" *ngFor="let answer of question.answers; let i = index"
+                 [ngClass]="{right: i === goodAnswerIndex, dragged: draggedAnswer === answer}"
+                 (dragstart)="draggedAnswer = answer; draggedAnswerIndex = i"
+                 (dragend)="draggedAnswer = draggedAnswerIndex = null">
                 <label>{{answer}}</label>
             </div>
         </div>
