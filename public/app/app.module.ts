@@ -16,9 +16,6 @@ import {ExamComponent} from "./exam/exam.component";
 import {QuestionService} from "./question/question.service";
 import {HttpModule} from "@angular/http";
 import {UserService} from "./user/user.service";
-import {TestComponent} from "./test/test.component";
-import {ModalModule, Overlay} from "angular2-modal";
-import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 import {ResultService} from "./result/result.service";
 import {StatisticsService} from "./statistics/statistics.service";
 
@@ -27,9 +24,7 @@ import {StatisticsService} from "./statistics/statistics.service";
     BrowserModule,
     FormsModule,
     AppRoutes,
-    HttpModule,
-    ModalModule.forRoot(),
-    BootstrapModalModule
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -43,7 +38,7 @@ import {StatisticsService} from "./statistics/statistics.service";
     ExamComponent
   ],
   bootstrap: [AppComponent],
-  providers: [QuestionService, ResultService, StatisticsService, UserService, Overlay]
+  providers: [QuestionService, ResultService, StatisticsService, UserService]
 })
 
 export class AppModule {
