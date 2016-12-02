@@ -28,4 +28,11 @@ export class UserService {
       this.http.delete('/api/result').toPromise()
     ]);
   }
+  
+  createExam(numberOfQuestions: number, domains: Array<string>): Promise<any> {
+    return this.http.post('/api/exam/new', {
+      domains: domains,
+      numberOfQuestions: numberOfQuestions
+    }).toPromise();
+  }
 }
