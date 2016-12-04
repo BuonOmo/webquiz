@@ -2,11 +2,11 @@ import {Question} from "../question/question";
 import {QuestionService} from "../question/question.service";
 import {StatisticsService} from "../statistics/statistics.service";
 
-export class TestComponent{
+export abstract class TestComponent{
 
   question: Question;
   count: number = 0;
-  score: number = 0;
+  goodAnswers: number = 0;
   dropped: boolean = false;
   droppedAnswer: string;
   isGoodAnswer: boolean;
@@ -39,7 +39,7 @@ export class TestComponent{
         else if (this.draggedAnswerIndex > answer.goodAnswerIndex)
           this.goodAnswerIndex = answer.goodAnswerIndex;
         if (this.isGoodAnswer = answer.isGoodAnswer){
-          this.score++;
+          this.goodAnswers++;
           this.statisticsService.inc(['goodAnswers', 'answers']);
         } else this.statisticsService.inc(['answers']);
         this.count++;

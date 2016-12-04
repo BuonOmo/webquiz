@@ -3,7 +3,7 @@
     <section class="elevation--2dp sheet" *ngIf="question">
         <h2 id="question">{{question.question}}</h2>
         <span class="top-right" id="domain">{{question.domain}}</span>
-        <div id="droptarget" [ngClass]="{free: !dropped, right: isGoodAnswer, wrong: !isGoodAnswer}"
+        <div id="droptarget" [ngClass]="{free: !dropped, right: isGoodAnswer === true, wrong: isGoodAnswer === false}"
              (drop)="checkAnswer()" (dragover)="prevent($event)">
             <span *ngIf="!dropped">Glisser la réponse !</span>
             <span *ngIf="dropped">{{draggedAnswer}}</span>
@@ -18,7 +18,7 @@
         </div>
         <ul class="action-group">
             <li>
-                <a id="dashboard" routerLink="/dashboard">
+                <a routerLink="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <span class="large-screen">Retourner au tableau de bord</span>
                 </a>
@@ -33,6 +33,6 @@
     </section>
     <aside>
         <h1>Score courant</h1>
-        <div>{{score}} / {{count}}</div>
+        <div>{{goodAnswers}} / {{count}}</div>
     </aside>
 </main>

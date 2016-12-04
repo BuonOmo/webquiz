@@ -1,24 +1,35 @@
 <main>
-    <h1></h1>
-    <section class="elevation--2dp sheet">
-        <h2 id="question"></h2>
-        <span class="top-right" id="domain"></span>
-        <div id="droptarget"></div>
+    <h1>Examen</h1>
+    <section class="elevation--2dp sheet" *ngIf="question">
+        <h2 id="question">{{question.question}}</h2>
+        <span class="top-right" id="domain">{{question.domain}}</span>
+        <div id="droptarget" [ngClass]="{free: !dropped, right: isGoodAnswer === true, wrong: isGoodAnswer === false}"
+             (drop)="checkAnswer()" (dragover)="prevent($event)">
+            <span *ngIf="!dropped">Glisser la réponse !</span>
+            <span *ngIf="dropped">{{draggedAnswer}}</span>
+        </div>
         <div class="center flexbox wrap" id="answers">
-            <div class="draggable answer" draggable="false" hidden="hidden">
-                <label></label>
+            <div class="draggable answer" [draggable]="!dropped" *ngFor="let answer of question.answers; let i = index"
+                 [ngClass]="{right: i === goodAnswerIndex, dragged: draggedAnswer === answer}"
+                 (dragstart)="draggedAnswer = answer; draggedAnswerIndex = i"
+                 (dragend)="draggedAnswer = draggedAnswerIndex = null">
+                <label>{{answer}}</label>
             </div>
         </div>
         <ul class="action-group">
             <li>
-                <a id="dashboard" href="/dashboard">
+                <a (click)="surrender()">
                     <i class="material-icons">dashboard</i>
-                    <span class="large-screen">Retourner au tableau de bord</span>
+                    <span class="large-screen">Abandonner</span>
                 </a>
             </li>
             <li>
-                <a id="next-question">
-                    <span class="large-screen">Question suivante</span>
+                <a (click)="nextQuestion()">
+                    <span class="large-screen" [ngSwitch]="count">
+                        <span *ngSwitchCase="user.currentExam.numberOfQuestions">Finir l’examen</span>
+                        <span *ngSwitchCase="user.currentExam.numberOfQuestions - 1">Dernière question</span>
+                        <span *ngSwitchDefault>Question suivante</span>
+                    </span>
                     <i class="material-icons">navigate_next</i>
                 </a>
             </li>
@@ -26,6 +37,6 @@
     </section>
     <aside>
         <h1>Score courant</h1>
-        <div id="score">0 / 0</div>
+        <div *ngIf="user">{{goodAnswers}} / {{user.currentExam.numberOfQuestions}}</div>
     </aside>
 </main>

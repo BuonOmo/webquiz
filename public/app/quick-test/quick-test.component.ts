@@ -15,7 +15,7 @@ export class QuickTestComponent extends TestComponent implements OnInit{
     this.questionService.getQuestion().then(question => this.question = question);
   }
   
-  constructor(questionService: QuestionService, statisticsService: StatisticsService) {
+  constructor(protected questionService: QuestionService, protected statisticsService: StatisticsService) {
     super(questionService, statisticsService);
   }
 }

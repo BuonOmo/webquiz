@@ -17,10 +17,16 @@ export class ResultService {
   }
   
   getResults() {
-    
     return this.http.get(this.url)
       .toPromise()
       .then(response => response.json() as Array<Result>)
+      .catch(this.handleError);
+  }
+  
+  addResult(result: Result) {
+    return this.http.post(this.url, result)
+      .toPromise()
+      .then(response => response.json() as Result)
       .catch(this.handleError);
   }
 }

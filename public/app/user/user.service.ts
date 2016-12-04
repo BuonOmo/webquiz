@@ -35,4 +35,9 @@ export class UserService {
       numberOfQuestions: numberOfQuestions
     }).toPromise();
   }
+  
+  finishExam(): Promise<any> {
+    return this.http.patch('/api/user', { currentExam: null })
+      .toPromise();
+  }
 }
