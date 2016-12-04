@@ -36,6 +36,13 @@ export class UserService {
     }).toPromise();
   }
   
+  saveExam(score: number, counter: number): Promise<any> {
+    return this.http.post('/api/exam/save', {
+      score: score,
+      counter: counter
+    }).toPromise();
+  }
+  
   finishExam(): Promise<any> {
     return this.http.patch('/api/user', { currentExam: null })
       .toPromise();

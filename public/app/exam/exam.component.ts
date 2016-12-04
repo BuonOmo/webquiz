@@ -1,6 +1,6 @@
 import {Component, OnInit, forwardRef} from '@angular/core';
 import {User} from "../user/user";
-import {Question} from "../question/question";
+import {Question, Answer} from "../question/question";
 import {QuestionService} from "../question/question.service";
 import {UserService} from "../user/user.service";
 import {Router} from "@angular/router";
@@ -19,12 +19,13 @@ export class ExamComponent extends TestComponent implements OnInit{
   
   ngOnInit(): void {
     this.userService.getUser()
-      .then(user => this.user = user)
-      .then(() => {
-        if (!this.user.currentExam) this.router.navigate(['/dashboard'])
+      .then(user => {
+        this.user = user;
+        if (!user.currentExam) this.router.navigate(['/dashboard']);
+        this.count = user.currentExam.counter;
+        this.goodAnswers = user.currentExam.score;
+        this.getQuestion();
       });
-    this.questionService.getQuestion().then(question => this.question = question);
-      // .then(this.loadQuestion);
   }
   
   
@@ -34,18 +35,26 @@ export class ExamComponent extends TestComponent implements OnInit{
     super(questionService, statisticsService);
   }
   
-  loadQuestion() {
-    this.questionService.getQuestion(this.user.currentExam.questionIds[this.count])
+  getQuestion(): Promise<Question> {
+    if (this.count >= this.user.currentExam.numberOfQuestions) {
+      const result = new Result(this.user.currentExam.domains, new Date, this.goodAnswers, this.count, false);
+      this.resultService.addResult(result).then(() => {
+        this.userService.finishExam();
+        this.router.navigate(['result']);
+      })
+    } else return this.questionService.getQuestion(this.user.currentExam.questionIds[this.count])
       .then(question => this.question = question)
   }
   
-  // nextQuestion() {
-  //
-  // }
-  //
-  // checkAnswer() {
-  //
-  // }
+  updateStatistics(answer: Answer) {
+    if (this.isGoodAnswer = answer.isGoodAnswer){
+      this.goodAnswers++;
+      this.statisticsService.inc(['goodAnswers', 'answers', 'goodExamAnswers', 'examAnswers']);
+    } else this.statisticsService.inc(['answers']);
+    this.count++;
+    console.log(this.goodAnswers, this.count);
+    this.userService.saveExam(this.goodAnswers, this.count);
+  }
   
   surrender() {
     const result = new Result(this.user.currentExam.domains, new Date, 0, this.count, true);

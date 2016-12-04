@@ -12,7 +12,7 @@ export class QuickTestComponent extends TestComponent implements OnInit{
   
   
   ngOnInit(): void {
-    this.questionService.getQuestion().then(question => this.question = question);
+    this.getQuestion();
   }
   
   constructor(protected questionService: QuestionService, protected statisticsService: StatisticsService) {

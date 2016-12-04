@@ -1,4 +1,4 @@
-import {Question} from "../question/question";
+import {Question, Answer} from "../question/question";
 import {QuestionService} from "../question/question.service";
 import {StatisticsService} from "../statistics/statistics.service";
 
@@ -25,7 +25,11 @@ export abstract class TestComponent{
     }
     this.dropped = false;
     this.question = this.isGoodAnswer = this.goodAnswerIndex = this.draggedAnswer = this.draggedAnswerIndex = null;
-    this.questionService.getQuestion().then(question => this.question = question);
+    this.getQuestion();
+  }
+  
+  getQuestion(): Promise<Question> {
+    return this.questionService.getQuestion().then(question => this.question = question);
   }
   
   checkAnswer() {
@@ -38,12 +42,16 @@ export abstract class TestComponent{
           this.goodAnswerIndex = answer.goodAnswerIndex - 1;
         else if (this.draggedAnswerIndex > answer.goodAnswerIndex)
           this.goodAnswerIndex = answer.goodAnswerIndex;
-        if (this.isGoodAnswer = answer.isGoodAnswer){
-          this.goodAnswers++;
-          this.statisticsService.inc(['goodAnswers', 'answers']);
-        } else this.statisticsService.inc(['answers']);
-        this.count++;
+        this.updateStatistics(answer);
       });
+  }
+  
+  updateStatistics(answer: Answer) {
+    if (this.isGoodAnswer = answer.isGoodAnswer){
+      this.goodAnswers++;
+      this.statisticsService.inc(['goodAnswers', 'answers']);
+    } else this.statisticsService.inc(['answers']);
+    this.count++;
   }
   
   prevent(event: Event) {

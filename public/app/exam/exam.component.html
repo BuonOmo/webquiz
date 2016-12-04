@@ -25,11 +25,7 @@
             </li>
             <li>
                 <a (click)="nextQuestion()">
-                    <span class="large-screen" [ngSwitch]="count">
-                        <span *ngSwitchCase="user.currentExam.numberOfQuestions">Finir l’examen</span>
-                        <span *ngSwitchCase="user.currentExam.numberOfQuestions - 1">Dernière question</span>
-                        <span *ngSwitchDefault>Question suivante</span>
-                    </span>
+                    <span class="large-screen">Question suivante</span>
                     <i class="material-icons">navigate_next</i>
                 </a>
             </li>
