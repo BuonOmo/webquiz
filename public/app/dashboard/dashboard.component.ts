@@ -31,8 +31,9 @@ export class DashboardComponent implements OnInit{
     this.resultService.getResults().then(results => {
       if (results && results.length) {
         this.results = results;
-        this.mean = results.reduce((prev,curr) => prev + curr.goodAnswers / curr.totalAnswers, 0) * 20;
+        this.mean = results.reduce((prev,curr) => prev + curr.goodAnswers / (curr.totalAnswers || 1), 0);
         this.hasMean = !Number.isNaN(this.mean);
+        this.mean = 20 * this.mean / results.length;
       } else {
         this.hasMean = false
       }
