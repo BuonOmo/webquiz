@@ -1,7 +1,23 @@
 <main>
-    <h1>Félicitations, vous avez fini votre test !</h1>
-    <p class="result"></p>
+    <h1 *ngIf="result && !result.surrender">Félicitations, vous avez fini votre test !</h1>
+    <h1 *ngIf="result && result.surrender">Oups, il semblerait que vous ayez abandonné votre test...</h1>
+    <div *ngIf="isValid && !result.surrender">
+        <p>Vous avez {{result.goodAnswers}} / {{result.totalAnswers}} bonnes réponses.</p>
+        <p>Le pourcentage de réussite est donc de : {{percentage}}%.</p>
+        <div [ngSwitch]="grade">
+            <p *ngSwitchCase="0">Ce n’est pas bien du tout ! Il va falloir plus réviser...</p>
+            <p *ngSwitchCase="1">
+                Un proverbe russe dit : <em>en dessous de la moyenne.. direction le goulag !</em>
+                <br>
+                Reprenez vous...
+            </p>
+            <p *ngSwitchCase="2">Vous avez plus de la moyenne ! C’est correct mais perfectible !</p>
+            <p *ngSwitchDefault>Quelle performance, presque aussi bon qu’Armstrong !</p>
+        </div>
+    </div>
+    <p *ngIf="result && result.surrender">Pour que celui-ci soit finalement pris en compte, veuillez redémarrer votre ordinateur.</p>
+    <p *ngIf="!isValid">La ressource demandée n’est plus disponible</p>
     <div class="big-centered-button-container">
-        <a class="big-centered-button" href="/dashboard">Retourner au Tableau de bord</a>
+        <a class="big-centered-button" routerLink="/dashboard">Retourner au Tableau de bord</a>
     </div>
 </main>

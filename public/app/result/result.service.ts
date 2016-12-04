@@ -16,10 +16,17 @@ export class ResultService {
     return Promise.reject(err.message || err);
   }
   
-  getResults() {
+  getResults(): Promise<Array<Result>> {
     return this.http.get(this.url)
       .toPromise()
       .then(response => response.json() as Array<Result>)
+      .catch(this.handleError);
+  }
+  
+  getLast(): Promise<Result> {
+    return this.http.get(this.url+'/last')
+      .toPromise()
+      .then(response => response.json() as Result)
       .catch(this.handleError);
   }
   

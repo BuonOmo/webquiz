@@ -1,11 +1,11 @@
 export class Result {
   domains: Array<string>;
-  timestamp: Date;
+  timestamp: string;
   goodAnswers: number;
   totalAnswers: number;
   surrender: boolean;
   
-  constructor(domains: Array<string>, timestamp: Date, goodAnswers: number, totalAnswers: number, surrender: boolean) {
+  constructor(domains: Array<string>, timestamp: string, goodAnswers: number, totalAnswers: number, surrender: boolean) {
     this.domains = domains;
     this.timestamp = timestamp;
     this.goodAnswers = goodAnswers;
