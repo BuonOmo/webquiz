@@ -501,14 +501,8 @@ app {
   transition: opacity 400ms ease-in;
   pointer-events: none;
 
-  .droite {
+  .float-right {
     float:right;
-    color: black;
-    text-decoration: none;
-
-    &:hover {
-      transform: scale(1.5);
-    }
   }
 
   &.focus {
@@ -539,10 +533,10 @@ app {
   }
 
   &>div {
-    max-width: 600px;
+    max-width: 700px;
     position: relative;
     margin: 1% auto;
-    padding: 8px 8px 8px 8px;
+    padding: 8px;
     border-radius: 5px;
     background: #eee;
     transition: all 0.4s ease-in-out;
@@ -552,6 +546,10 @@ app {
     header, footer {
       border-bottom: 1px solid #e7e7e7;
       border-radius: 5px 5px 0 0;
+    }
+
+    header {
+      padding-bottom: 20px;
     }
 
     h2 {
@@ -567,37 +565,6 @@ app {
     border:none;
     border-top: 1px solid #e7e7e7;
     border-radius: 0 0 5px 5px;
-  }
-
-  table {
-    border-collapse: collapse;
-    margin:auto;
-
-    tr, th {
-      text-align: center;
-      margin: 10px;
-    }
-
-    td {
-      padding: 15px;
-    }
-
-    tr {
-      border-top: 1px solid @dividerColor;
-      &:hover {
-        color: brown;
-        transition: color 0.3s;
-      }
-    }
-
-    td:first-child {
-      font-weight: bold;
-      margin-right:1px solid @dividerColor;
-    }
-
-    tr:nth-child(2n){
-      background-color:rgba(81, 45, 168, 0.2);
-    }
   }
 }
 

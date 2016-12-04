@@ -45,14 +45,16 @@
     <!-- modals-->
     <!-- modal-notes-->
     <div class="modal" id="modal-notes" [ngClass]="{focus: modalGrades}">
-        <div>
+        <div class="bootstrap">
             <header>
-                <a class="droite" (click)="modalGrades = false" title="Fermer la fenêtre">X</a>
+                <button type="button" (click)="modalGrades = false" class="close float-right" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h2>Détails des notes :</h2>
             </header>
             <section>
-                <div class="exam-statistics">
-                    <table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>Domaines</th>
@@ -84,7 +86,7 @@
     <div class="modal" id="modal-exam" [ngClass]="{focus: modalExam}">
         <div>
             <header>
-                <a class="droite" (click)="modalExam = false" title="Fermer la fenêtre">X</a>
+                <a class="float-right" (click)="modalExam = false" title="Fermer la fenêtre">X</a>
                 <h2>Choix des caractéristiques de l’examen :</h2>
             </header>
             <form (ngSubmit)="startExam()">
