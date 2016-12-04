@@ -83,8 +83,8 @@ function controller(){
   this.saveCurrentExam = (enhancement) => {
     model.update({}, {$set: {
       "currentExam.counter": enhancement.counter,
-      "currentExam.score": enhancement.goodAnswers
-    }});
+      "currentExam.score": enhancement.score
+    }}).exec();
   }
 
 }

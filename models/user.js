@@ -7,6 +7,7 @@ var User = new Schema({
   name: String,
   answers: Number,
   goodAnswers: Number,
+  examAnswers: Number,
   goodExamAnswers: Number,
   results: [String],
   preferences: {
