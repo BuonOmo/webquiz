@@ -37,7 +37,7 @@ export class ExamComponent extends TestComponent implements OnInit{
   
   getQuestion(): Promise<Question> {
     if (this.count >= this.user.currentExam.numberOfQuestions) {
-      const result = new Result(this.user.currentExam.domains, new Date, this.goodAnswers, this.count, false);
+      const result = new Result(this.user.currentExam.domains, (new Date).toISOString(), this.goodAnswers, this.count, false);
       this.resultService.addResult(result).then(() => {
         this.userService.finishExam();
         this.router.navigate(['result']);
@@ -52,12 +52,11 @@ export class ExamComponent extends TestComponent implements OnInit{
       this.statisticsService.inc(['goodAnswers', 'answers', 'goodExamAnswers', 'examAnswers']);
     } else this.statisticsService.inc(['answers']);
     this.count++;
-    console.log(this.goodAnswers, this.count);
     this.userService.saveExam(this.goodAnswers, this.count);
   }
   
   surrender() {
-    const result = new Result(this.user.currentExam.domains, new Date, 0, this.count, true);
+    const result = new Result(this.user.currentExam.domains, (new Date).toISOString(), 0, this.count, true);
     this.resultService.addResult(result).then(() => {
       this.userService.finishExam();
       this.router.navigate(['result']);

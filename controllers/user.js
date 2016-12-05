@@ -58,7 +58,7 @@ function controller(){
     model.update({}, fields, handleData(success, error));
   }
 
-  this.createNewExam = (numberOfQuestions, domains) => {
+  this.createNewExam = (numberOfQuestions, domains, callback) => {
     if (debug)
       console.log('userController.createNewExam('+
                   numberOfQuestions+',['+domains+'])');
@@ -76,7 +76,7 @@ function controller(){
           numberOfQuestions: questions.length, // can be less than numberOfQuestions asked by user!
           domains: domains
         }
-      });
+      }, callback);
     }
   }
 

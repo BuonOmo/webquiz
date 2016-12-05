@@ -55,10 +55,11 @@ router.patch('/statistics/increment', (req, res) => {
 });
 
 router.post('/exam/new', (req, res) => {
-  userController.createNewExam(req.body.numberOfQuestions, req.body.domains);
-  res.status(204);
-  res.end();
-})
+  userController.createNewExam(req.body.numberOfQuestions, req.body.domains, () => {
+    res.status(204);
+    res.end();
+  });
+});
 
 router.post('/exam/save', (req, res) => {
   userController.saveCurrentExam(req.body);

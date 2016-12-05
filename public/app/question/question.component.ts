@@ -22,10 +22,6 @@ export class QuestionComponent implements OnInit {
   
   constructor(private questionService: QuestionService) {};
   
-  debug(): void {
-    console.log(this.question);
-  }
-  
   deleteAnswer(index: number): void {
     if (this.question.answers.length > 2)
       if (this.question.goodAnswer === index) this.question.goodAnswer = null;
