@@ -13,6 +13,7 @@ export abstract class TestComponent{
   goodAnswerIndex: number;
   draggedAnswer: string;
   draggedAnswerIndex: number;
+  overDropzone: boolean = false;
   
   constructor(protected questionService: QuestionService,
               protected statisticsService: StatisticsService) {
@@ -34,6 +35,7 @@ export abstract class TestComponent{
   
   checkAnswer() {
     this.droppedAnswer = this.draggedAnswer;
+    this.overDropzone = false;
     this.dropped = true;
     this.question.answers.splice(this.draggedAnswerIndex,1);
     this.questionService.getAnswer(this.question._id, this.draggedAnswerIndex)

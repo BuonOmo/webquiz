@@ -3,8 +3,13 @@
     <section class="elevation--2dp sheet" *ngIf="question">
         <h2 id="question">{{question.question}}</h2>
         <span class="top-right" id="domain">{{question.domain}}</span>
-        <div id="droptarget" [ngClass]="{free: !dropped, right: isGoodAnswer === true, wrong: isGoodAnswer === false}"
-             (drop)="checkAnswer()" (dragover)="prevent($event)">
+        <div id="droptarget" [ngClass]="{free: !dropped,
+                                         hover: overDropzone,
+                                         right: isGoodAnswer === true,
+                                         wrong: isGoodAnswer === false}"
+             (drop)="checkAnswer()" (dragover)="prevent($event)"
+             (dragenter)="overDropzone = true"
+             (dragleave)="overDropzone = false">
             <span *ngIf="!dropped">Glisser la réponse !</span>
             <span *ngIf="dropped">{{draggedAnswer}}</span>
         </div>
