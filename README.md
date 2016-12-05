@@ -1,12 +1,13 @@
 # WebQuiz
 
-[![Build Status](https://travis-ci.org/BuonOmo/webquiz.svg?branch=master)](https://travis-ci.org/BuonOmo/webquiz)
+<!--[![Build Status](https://travis-ci.org/BuonOmo/webquiz.svg?branch=master)](https://travis-ci.org/BuonOmo/webquiz)-->
 
 WebQuiz vous permet de tester vos connaissances et de suivre vos résultats facilement ! Cette documentation est faite pour les développeurs et pour les visiteurs du site. Si vous êtes développeur rendez-vous [ici](#instructions-aux-developpeurs). Sinon vous trouverez les instructions aux usagers ci-dessous.
 
 **Les liens du sommaire ne sont pas encore fonctionnels sur le site**. Nous allons changer le convertisseur de markdown bientôt, en attendant vous pouvez lire ces instructions sur [github](//github.com/buonomo/webquiz#readme).
 
 ## Instructions aux usagers
+
 
 ### Comment naviguer sur WebQuiz ?
 
@@ -37,10 +38,11 @@ Récuperez d’abord le code source, soit grace à [l’archive zip](https://git
 
 Ensuite pour lancer le programme il vous suffit d’executer les commandes suivantes.
 
-    npm install && npm start
+    npm run build && npm start
 
 
 Après l’execution de ces commandes, vous pourrez acceder au site sur la page http://localhost:3000.
+
 
 ### Routes
 
@@ -104,6 +106,7 @@ par :
 
 Il est aussi possible de faire la même manipulation avec firefox et le `geckodriver`. Une fois l’installation faite lancez `npm test` et vous verrez une fenetre de votre navigateur s’ouvrir et executer les tests. Le resultat reste ecrit dans le terminal depuis lequel vous avez lancé les tests.
 
+
 ## Auteurs
 
 Ce travail est réalisé dans le cadre des cours, et sous license MIT par Lucas Boudereaux et [Ulysse Buonomo](mailto:buonomo.ulysse@gmail.com).
@@ -117,3 +120,4 @@ Ce travail est réalisé dans le cadre des cours, et sous license MIT par Lucas 
 [phantomjs]: http://phantomjs.org/
 [selenium webdriver]: http://seleniumhq.github.io/selenium/docs/api/javascript/index.html
 [travis-ci]: https://travis-ci.org/
+
