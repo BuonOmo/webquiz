@@ -3,6 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
+    "build": "npm install && cd public && npm install && tsc && cd ..",
     "start": "node ./bin/www",
     "deploy": "NODE_ENV=production npm start",
     "test": "newman run test/newman.json && mocha test/interface.coffee --compilers coffee:coffee-script/register",
